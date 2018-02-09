@@ -1,7 +1,7 @@
 <?php
 
 class DB {
-    public $dbName = 'barber_2';
+    public $dbName = getenv('PELUQUEROS_DB_NAME');
     public $servername = "localhost";
     public $username = "root";
     public $password = "";

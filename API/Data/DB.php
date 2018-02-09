@@ -1,6 +1,9 @@
 <?php
 
 class DB {
+    error_log("hello, this is a test!");
+    error_log(getenv('PELUQUEROS_DB_NAME'));
+    error_log(getenv('PELUQUEROS_DB_USER'));
     public $dbName = getenv('PELUQUEROS_DB_NAME');
     public $servername = "localhost";
     public $username = "root";

@@ -1,10 +1,7 @@
 <?php
 
 class DB {
-    error_log("hello, this is a test!");
-    error_log(getenv('PELUQUEROS_DB_NAME'));
-    error_log(getenv('PELUQUEROS_DB_USER'));
-    public $dbName = getenv('PELUQUEROS_DB_NAME');
+    public $dbName = "";
     public $servername = "localhost";
     public $username = "root";
     public $password = "";
@@ -19,6 +16,7 @@ class DB {
             // $this->servername = "lospeluqueroscom.ipagemysql.com";
             // $this->username = "lospeluqueros";
             // $this->password = "lospeluqueros";
+            $this->dbName = getenv('PELUQUEROS_DB_NAME');
             $this->servername = getenv('PELUQUEROS_DB_URL');
             $this->username = getenv('PELUQUEROS_DB_USER');
             $this->password = getenv('PELUQUEROS_DB_PW');

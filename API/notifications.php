@@ -27,9 +27,10 @@
     function getCitas(){
 		$dbReserva = new DBReserva(); 
 		$actualHour = date('H');
+		$actualDay = date('Y-m-d');
 		$timeInicial = ($actualHour + 1).':00:00';
-		$timeInicial = ($actualHour + 2).':00:00';
-		$reservas = $dbReserva->obtenerReservaFechaHora('2018-02-15','12:00:00','14:00:00');
+		$timeFinal = ($actualHour + 2).':00:00';
+		$reservas = $dbReserva->obtenerReservaFechaHora($actualDay,$timeInicial,$timeFinal);
 		foreach ($reservas as $reserva) {
             $topic = 'user'.$reserva->idUsuarioReserva;
             sendNotification($topic);

@@ -36,7 +36,7 @@
 		$reservas = $dbReserva->obtenerReservaFechaHora($actualDay,$timeInicial,$timeFinal);
 		foreach ($reservas as $reserva) {
             $topic = 'user'.$reserva->idUsuarioReserva;
-            sendNotification($topic,$reserva->horaInicial);
+            sendNotification($topic,date("g:i A", strtotime($reserva->horaInicial)));
         }
     }
 

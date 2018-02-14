@@ -94,6 +94,23 @@ class DBReserva {
         $reserva = $this->parseDataList($row);
         return $reserva;
     }
+
+    function obtenerReservaFechaHora($fecha, $horaInicial, $horaFinal){
+        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,
+                s.Descripcion AS Servicio, s.Duracion, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                sb.Descripcion AS Sucursal
+                FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
+                LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1
+                LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
+                JOIN sucursalbarberia sb ON sb.PkIdSucursalBarberia = r.FkIdSucursalBarberiaReserva WHERE r.Estado=1";
+            $sql.= " AND r.dia='".$fecha."'";
+            $sql.= " AND r.HoraInicial>='".$horaInicial."'";
+            $sql.= " AND r.HoraInicial<='".$horaFinal."'";
+        $db = new DB();
+        $row = $db->listar($sql);     
+        $reserva = $this->parseDataList($row);
+        return $reserva;
+    }
     
     function obtenerReservaFechaRango($busqueda, $fechaInicial,$fechaFinal){
         $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,

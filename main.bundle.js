@@ -1892,6 +1892,8 @@ var InfoComponent = (function () {
     InfoComponent.prototype.updateHora = function (horario) {
         if (typeof (horario.horaInicial) == 'string') {
             horario.horaInicial = Number(horario.horaInicial.substring(0, 2) + horario.horaInicial.substring(3, 5));
+        }
+        if (typeof (horario.horaFinal) == 'string') {
             horario.horaFinal = Number(horario.horaFinal.substring(0, 2) + horario.horaFinal.substring(3, 5));
         }
         return horario;

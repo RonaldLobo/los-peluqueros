@@ -202,6 +202,9 @@ class Usuario {
             $this->idSucursal = $user->idSucursal;
         }
         if(isset($user->rol)){
+            if($user->rol == "BA" || $user->rol == "AB"){
+                $user->rol = "BS";
+            }
             $this->rol = $user->rol;
         }
         if(isset($user->tiempoBarbero)){

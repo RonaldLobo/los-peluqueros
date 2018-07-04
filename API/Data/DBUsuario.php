@@ -95,7 +95,7 @@ class DbUsuario {
          } elseif ($opcion == 2) {
             $sql .= " WHERE Estado = 1 AND Usuario='".$busqueda."'";
         }elseif ($opcion == 3) {
-            $sql .= " WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BA' OR Rol='B')";
+            $sql .= " WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
         }
         else{
             $sql .= "WHERE Estado = 1";

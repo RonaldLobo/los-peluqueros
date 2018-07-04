@@ -1890,8 +1890,10 @@ var InfoComponent = (function () {
         return ((i < 10 ? '0' : '') + i);
     };
     InfoComponent.prototype.updateHora = function (horario) {
-        horario.horaInicial = Number(horario.horaInicial.substring(0, 2) + horario.horaInicial.substring(3, 5));
-        horario.horaFinal = Number(horario.horaFinal.substring(0, 2) + horario.horaFinal.substring(3, 5));
+        if (typeof (horario.horaInicial) == 'string') {
+            horario.horaInicial = Number(horario.horaInicial.substring(0, 2) + horario.horaInicial.substring(3, 5));
+            horario.horaFinal = Number(horario.horaFinal.substring(0, 2) + horario.horaFinal.substring(3, 5));
+        }
         return horario;
     };
     InfoComponent.prototype.updateTimeToHora = function (pausas) {

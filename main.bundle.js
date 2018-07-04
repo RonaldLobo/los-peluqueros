@@ -2221,8 +2221,7 @@ var InfoComponent = (function () {
         var dayInUse = 0;
         var that = this;
         var agregar = function (dia) {
-            var _this = this;
-            this.cargando = true;
+            that.cargando = true;
             that.dataService.post('/horarioBarbero/?method=put', { "horarioBarbero": that.modificaHoraToTime(Object.assign({}, dia)) })
                 .then(function (response) {
                 that.authService.loggedUser.horarios.push(response.usuario);
@@ -2231,7 +2230,7 @@ var InfoComponent = (function () {
                     agregar(daysMap[dayInUse]);
                 }
                 else {
-                    _this.cargando = false;
+                    that.cargando = false;
                 }
             }, function (error) {
             });

@@ -2226,13 +2226,18 @@ var InfoComponent = (function () {
             that.cargando = true;
             that.dataService.post('/horarioBarbero/?method=put', { "horarioBarbero": that.modificaHoraToTime(Object.assign({}, dia)) })
                 .then(function (response) {
-                that.authService.loggedUser.horarios.push(response.usuario);
+                // that.authService.loggedUser.horarios.push(response.usuario);
                 dayInUse = dayInUse + 1;
                 if (dayInUse <= 6) {
                     agregar(daysMap[dayInUse]);
                 }
                 else {
                     that.cargando = false;
+                    that.dataService.get('/usuario/' + that.authService.loggedUser.id)
+                        .then(function (res) {
+                        that.authService.loggedUser.horarios = res.usuario.horarios;
+                    }, function (error) {
+                    });
                 }
             }, function (error) {
             });

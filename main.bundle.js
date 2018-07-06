@@ -2893,7 +2893,7 @@ var ReservaComponent = (function () {
             alert('Por favor ingrese al sistema para guardar su reserva');
             this.openModal(modal);
             this.authService.loggedObservable.subscribe(function (value) {
-                if (value) {
+                if (value && _this.router.url === '/reserva') {
                     _this.cargando = true;
                     var reserva = {};
                     reserva.idSucursal = _this.reservacion.local.id;

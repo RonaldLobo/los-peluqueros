@@ -547,6 +547,10 @@ class EmailServicios {
                     </center>
                 </body>
             </html>';
+            echo $to;
+            echo $subject;
+            echo $message;
+            echo $headers;
         mail($to,$subject,$message,$headers);
         return $usuarios;
     }

@@ -18,6 +18,7 @@ class EmailServicios {
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: <reservas@lospeluqueros.com>' . "\r\n";
         $to = $usuarios['correo'];
+        echo 'correo';
         echo $to;
         $subject="Confirmación de Cita en ".$usuarios['barberia'];
         $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

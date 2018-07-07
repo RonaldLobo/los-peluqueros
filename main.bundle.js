@@ -2654,6 +2654,7 @@ var ReservaComponent = (function () {
             var timeBoxes = [];
             var horasBarbero = 0;
             var horarioInicio = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaInicial;
+            console.log('horarioInicio', horarioInicio);
             var today = new Date();
             if (this.dateSelected.getFullYear() + this.dateSelected.getMonth() + this.dateSelected.getDate() == today.getFullYear() + today.getMonth() + today.getDate()) {
                 var veces = 60 / this.reservacion.barbero.tiempoBarbero;
@@ -2664,6 +2665,7 @@ var ReservaComponent = (function () {
                 horarioInicio = today.getHours() * 100 + minutos;
             }
             var horarioFinal = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaFinal;
+            console.log('horarioFinal', horarioFinal);
             var hora = new Date();
             var horarioInicioFull = this.modificaHoraToTime(horarioInicio);
             if (horarioInicio) {
@@ -2671,7 +2673,9 @@ var ReservaComponent = (function () {
                 hora.setHours(Number(horarioInicioFull.substring(0, 2)));
                 hora.setMinutes(Number(horarioInicioFull.substring(2, 4)));
             }
+            console.log('hora', hora);
             var timeBoxCount = horasBarbero * 60 / this.reservacion.barbero.tiempoBarbero;
+            console.log('timeBoxCount', timeBoxCount);
             for (var i = 0; i < timeBoxCount; i++) {
                 var reservada = false;
                 for (var o = 0; o < this.reservas.length; o++) {

@@ -2653,7 +2653,8 @@ var ReservaComponent = (function () {
         if (this.reservacion.servicio && this.dateSelected) {
             var timeBoxes = [];
             var horasBarbero = 0;
-            var horarioInicio = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaInicial;
+            console.log('map day', this.dateSelected.getDay(), daysMap[this.dateSelected.getDay()]);
+            var horarioInicio = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay()]; }))).horaInicial;
             console.log('horarioInicio', horarioInicio);
             var today = new Date();
             if (this.dateSelected.getFullYear() + this.dateSelected.getMonth() + this.dateSelected.getDate() == today.getFullYear() + today.getMonth() + today.getDate()) {
@@ -2664,7 +2665,7 @@ var ReservaComponent = (function () {
                 }
                 horarioInicio = today.getHours() * 100 + minutos;
             }
-            var horarioFinal = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaFinal;
+            var horarioFinal = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay()]; }))).horaFinal;
             console.log('horarioFinal', horarioFinal);
             var hora = new Date();
             var horarioInicioFull = this.modificaHoraToTime(horarioInicio);

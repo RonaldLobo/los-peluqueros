@@ -510,7 +510,7 @@ class EmailServicios {
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Duracion: '.$reserva->duracion.' Minutos
+                                                           	Duración: '.$reserva->duracion.' Minutos
                                                         </td>
                                                     </tr>
                                                 </table>

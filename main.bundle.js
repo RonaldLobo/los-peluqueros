@@ -2649,12 +2649,12 @@ var ReservaComponent = (function () {
     };
     ReservaComponent.prototype.actualizaTimeBox = function () {
         var _this = this;
-        var daysMap = ['LU', 'MA', 'MI', 'JU', 'VI', 'SA', 'DO'];
+        var daysMap = ['DO', 'LU', 'MA', 'MI', 'JU', 'VI', 'SA'];
         if (this.reservacion.servicio && this.dateSelected) {
             var timeBoxes = [];
             var horasBarbero = 0;
-            console.log('map day', this.dateSelected.getDay(), daysMap[this.dateSelected.getDay() - 1]);
-            var horarioInicio = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaInicial;
+            console.log('map day', this.dateSelected.getDay(), daysMap[this.dateSelected.getDay()]);
+            var horarioInicio = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay()]; }))).horaInicial;
             console.log('horarioInicio', horarioInicio);
             var today = new Date();
             if (this.dateSelected.getFullYear() + this.dateSelected.getMonth() + this.dateSelected.getDate() == today.getFullYear() + today.getMonth() + today.getDate()) {
@@ -2665,7 +2665,7 @@ var ReservaComponent = (function () {
                 }
                 horarioInicio = today.getHours() * 100 + minutos;
             }
-            var horarioFinal = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay() - 1]; }))).horaFinal;
+            var horarioFinal = this.updateHora(Object.assign({}, this.reservacion.barbero.horarios.find(function (o) { return o.dia == daysMap[_this.dateSelected.getDay()]; }))).horaFinal;
             console.log('horarioFinal', horarioFinal);
             var hora = new Date();
             var horarioInicioFull = this.modificaHoraToTime(horarioInicio);
@@ -2703,7 +2703,7 @@ var ReservaComponent = (function () {
                     horaReservaFinal.setMinutes(horaReservaFinal.getMinutes() + Number(this.pausas[o].duracion));
                     horaReservaFinal.setSeconds(0);
                     if (horaReservaInicial.getTime() <= hora.getTime() && hora.getTime() <= horaReservaFinal.getTime()) {
-                        if (this.pausas[o].dia != '' && this.reservacion.fecha && this.pausas[o].dia.indexOf(daysMap[this.reservacion.fecha.getDay() - 1]) != -1) {
+                        if (this.pausas[o].dia != '' && this.reservacion.fecha && this.pausas[o].dia.indexOf(daysMap[this.reservacion.fecha.getDay()]) != -1) {
                             reservada = true;
                         }
                         if (this.pausas[o].fecha && this.reservacion.fecha) {

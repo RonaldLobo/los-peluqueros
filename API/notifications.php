@@ -32,8 +32,8 @@
 		$dbReserva = new DBReserva(); 
 		$actualHour = date('H');
 		$actualDay = date('Y-m-d');
-		$timeInicial = ($actualHour + 2).':00:00';
-		$timeFinal = ($actualHour + 3).':00:00';
+		$timeInicial = ($actualHour + 3).':00:00';
+		$timeFinal = ($actualHour + 4).':00:00';
 		$reservas = $dbReserva->obtenerReservaFechaHora($actualDay,$timeInicial,$timeFinal);
 		foreach ($reservas as $reserva) {
             $topic = 'user'.$reserva->idUsuarioReserva;

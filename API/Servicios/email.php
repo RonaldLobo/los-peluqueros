@@ -553,11 +553,10 @@ class EmailServicios {
             // echo $headers;
         // mail($to,$subject,$message,$headers);
 
-            
-  //       $sendgrid_apikey = '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'
-  //       // $sendgrid_apikey = getenv('YOUR_SENDGRID_APIKEY');
+
+        $sendgrid_apikey = getenv('SENDGRID_APIKEY');
 		// // $sendgrid = new SendGrid($sendgrid_apikey);
-		// $url = 'https://api.sendgrid.com/';
+		$url = 'https://api.sendgrid.com/';
 		// $pass = $sendgrid_apikey;
 		// $template_id = '<your_template_id>';
 		// $js = array(
@@ -565,34 +564,34 @@ class EmailServicios {
 		//   'filters' => array('templates' => array('settings' => array('enable' => 1, 'template_id' => $template_id)))
 		// );
 
-		// $params = array(
-		//     'to'        => "ronald.lb2@gmail.com",
-		//     'toname'    => "Ronald Lobo",
-		//     'from'      => "reservas@lospeluqueros.com",
-		//     'fromname'  => "Reservas Los Peluqueros",
-		//     'subject'   => "Lista su reserva con los peluqueros",
-		//     'text'      => "Lista la reserva",
-		//     'html'      => "<strong>Soy el contenido de la reserva en html</strong>",
-		//   );
+		$params = array(
+		    'to'        => "ronald.lb2@gmail.com",
+		    'toname'    => "Ronald Lobo",
+		    'from'      => "reservas@lospeluqueros.com",
+		    'fromname'  => "Reservas Los Peluqueros",
+		    'subject'   => "Lista su reserva con los peluqueros",
+		    'text'      => "Lista la reserva",
+		    'html'      => "<strong>Soy el contenido de la reserva en html</strong>"
+		  );
 
-		// $request =  $url.'api/mail.send.json';
+		$request =  $url.'api/mail.send.json';
 
-		// // Generate curl request
-		// $session = curl_init($request);
-		// // Tell PHP not to use SSLv3 (instead opting for TLS)
-		// curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-		// curl_setopt($session, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $sendgrid_apikey));
-		// // Tell curl to use HTTP POST
-		// curl_setopt ($session, CURLOPT_POST, true);
-		// // Tell curl that this is the body of the POST
-		// curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
-		// // Tell curl not to return headers, but do return the response
-		// curl_setopt($session, CURLOPT_HEADER, false);
-		// curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+		// Generate curl request
+		$session = curl_init($request);
+		// Tell PHP not to use SSLv3 (instead opting for TLS)
+		curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+		curl_setopt($session, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $sendgrid_apikey));
+		// Tell curl to use HTTP POST
+		curl_setopt ($session, CURLOPT_POST, true);
+		// Tell curl that this is the body of the POST
+		curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+		// Tell curl not to return headers, but do return the response
+		curl_setopt($session, CURLOPT_HEADER, false);
+		curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
-		// // obtain response
-		// $response = curl_exec($session);
-		// curl_close($session);
+		// obtain response
+		$response = curl_exec($session);
+		curl_close($session);
         return $usuarios;
     }
     

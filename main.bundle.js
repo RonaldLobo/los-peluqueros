@@ -2675,7 +2675,7 @@ var ReservaComponent = (function () {
                 hora.setMinutes(Number(horarioInicioFull.substring(2, 4)));
             }
             console.log('hora', hora);
-            var timeBoxCount = horasBarbero * 60 / this.reservacion.barbero.tiempoBarbero;
+            var timeBoxCount = (horasBarbero * 60 / this.reservacion.barbero.tiempoBarbero) - 1;
             console.log('timeBoxCount', timeBoxCount);
             for (var i = 0; i < timeBoxCount; i++) {
                 var reservada = false;

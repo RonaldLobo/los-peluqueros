@@ -571,7 +571,7 @@ class EmailServicios {
 		    'fromname'  => "Reservas Los Peluqueros",
 		    'subject'   => "Lista su reserva con los peluqueros",
 		    'text'      => "Lista la reserva",
-		    'html'      => "<strong>Soy el contenido de la reserva en html</strong>"
+		    'html'      => $message
 		  );
 
 		$request =  $url.'api/mail.send.json';

@@ -19,6 +19,7 @@ class Reserva {
     public $primerApellidoUserReserva=""; 
     public $segundoApellidoUserReserva="";    
     public $nombreBarbero="";
+    public $telefonoBarbero="";
     public $primerApellidoBarbero="";
     public $segundoApellidoBarbero=""; 
     
@@ -81,6 +82,10 @@ class Reserva {
 
     function getNombreBarbero() {
         return $this->nombreBarbero;
+    }
+
+    function getTelefonoBarbero() {
+        return $this->telefonoBarbero;
     }
 
     function getPrimerApellidoBarbero() {
@@ -149,6 +154,10 @@ class Reserva {
 
     function setNombreBarbero($nombreBarbero) {
         $this->nombreBarbero = $nombreBarbero;
+    }
+
+    function setTelefonoBarbero($telefonoBarbero) {
+        $this->telefonoBarbero = $telefonoBarbero;
     }
 
     function setPrimerApellidoBarbero($primerApellidoBarbero) {
@@ -221,6 +230,9 @@ class Reserva {
         if(isset($reserva->nombreBarbero)){
             $this->nombreBarbero = $reserva->nombreBarbero;
         }
+        if(isset($reserva->telefonoBarbero)){
+            $this->telefonoBarbero = $reserva->telefonoBarbero;
+        }
         if(isset($reserva->primerApellidoBarbero)){
             $this->primerApellidoBarbero = $reserva->primerApellidoBarbero;
         }
@@ -248,6 +260,7 @@ class Reserva {
             'primerApellidoUserReserva'=> $this->primerApellidoUserReserva,
             'segundoApellidoUserReserva'=> $this->segundoApellidoUserReserva,
             'nombreBarbero'=> $this->nombreBarbero,
+            'telefonoBarbero'=> $this->telefonoBarbero,
             'primerApellidoBarbero'=> $this->primerApellidoBarbero,
             'segundoApellidoBarbero'=> $this->segundoApellidoBarbero
             )

@@ -480,7 +480,7 @@ class EmailServicios {
                                                 <table border="0" cellpadding="0" cellspacing="0" width="80%" id="templateHeader">
                                                     <tr>
                                                     	<td valign="top" class="headerContent">
-                                                           	Local: '.$reserva->sucursal.'
+                                                           	Barbería: '.$reserva->sucursal.'
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -510,7 +510,7 @@ class EmailServicios {
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Duracion: '.$reserva->duracion.'
+                                                           	Duracion: '.$reserva->duracion.' Minutos
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -522,7 +522,7 @@ class EmailServicios {
                                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter">
                                                     <tr>
                                                         <td valign="top" class="footerContent fb" mc:edit="footer_content00">
-                                                            <a href="https://www.facebook.com/lospeluqueros">Síguenos en Facebook</a>
+                                                            <a href="https://www.facebook.com/Los-Peluqueros-1465529030227557/">Síguenos en Facebook</a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -547,30 +547,18 @@ class EmailServicios {
                     </center>
                 </body>
             </html>';
-            // echo $to;
-            // echo $subject;
-            // echo $message;
-            // echo $headers;
-        // mail($to,$subject,$message,$headers);
 
 
         $sendgrid_apikey = getenv('SENDGRID_APIKEY');
-		// // $sendgrid = new SendGrid($sendgrid_apikey);
 		$url = 'https://api.sendgrid.com/';
-		// $pass = $sendgrid_apikey;
-		// $template_id = '<your_template_id>';
-		// $js = array(
-		//   'sub' => array(':name' => array('Elmer')),
-		//   'filters' => array('templates' => array('settings' => array('enable' => 1, 'template_id' => $template_id)))
-		// );
 
 		$params = array(
-		    'to'        => "ronald.lb2@gmail.com",
-		    'toname'    => "Ronald Lobo",
+		    'to'        => $to,
+		    'toname'    => $reserva->nombreUserReserva,
 		    'from'      => "reservas@lospeluqueros.com",
 		    'fromname'  => "Reservas Los Peluqueros",
-		    'subject'   => "Lista su reserva con los peluqueros",
-		    'text'      => "Lista la reserva",
+		    'subject'   => $subject,
+		    'text'      => "Lista su reserva.",
 		    'html'      => $message
 		  );
 

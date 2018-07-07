@@ -8,8 +8,9 @@
 		$serverKey = 'AAAApRuZq9k:APA91bHH6QoNIcEZXYOFQ3BQhmuiECEn6rrc8Qj8YCB-CGCYOwx6KsENR57Fz0IJ7lcdnySvVTd_S0OclvBlMTVab3FkOQhR4vVc9H-h7bpRtUuyBhscKA2iLSBJ9wZPQM0FgJ2HGVxX';	
 	    $title = "Recordatorio de cita";
 	    $body = "Recordatorio de cita";	
+        $hora = date("g:i A", strtotime($reserva->horaInicial)
 	    if($hora){
-	    	$body = "Hola ".$reserva->nombreUserReserva." le recordamos su cita a las ".$reserva->hora." en ".$reserva->sucursal;	
+	    	$body = "Hola ".$reserva->nombreUserReserva." le recordamos su cita a las ".$hora." en ".$reserva->sucursal;	
 	    }
         $token = '/topics/'.$topic;
         $notification = array('title' =>$title , 'text' => $body, 'sound' => 'enable', 'badge' => '1');
@@ -36,7 +37,7 @@
 		$reservas = $dbReserva->obtenerReservaFechaHora($actualDay,$timeInicial,$timeFinal);
 		foreach ($reservas as $reserva) {
             $topic = 'user'.$reserva->idUsuarioReserva;
-            sendNotification($topic,date("g:i A", strtotime($reserva->horaInicial)));
+            sendNotification($topic,$reserva));
         }
     }
 

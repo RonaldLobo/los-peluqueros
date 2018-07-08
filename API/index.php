@@ -28,7 +28,7 @@ date_default_timezone_set('America/Costa_Rica');
 $app = new \Slim\Slim();
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/BarberiaController.php';
+/*require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/BarberiaController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/UsuarioController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/HorarioBarberoController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/PausaHorarioBarberoController.php';
@@ -36,7 +36,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ProvinciaCantonContro
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/AuthController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ReservarController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ServicioController.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/SucursalController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/SucursalController.php';*/
+require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/CalificacionBarberoController.php';
 
 $app->run();
 ?>

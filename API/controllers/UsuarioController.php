@@ -9,11 +9,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Correo.php';
 $app->get('/usuario/', function() use ($app) {
     $dbUsuario = new DbUsuario(); 
     $user = $app->request->params('usuario');
+    $nombre = $app->request->params('nombre');
     $idSucursal = $app->request->params('idSucursal');
     if (!empty($user)){ 
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($user,2));
-    }elseif (!empty($idSucursal)) {
-         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($idSucursal,3));
+    } elseif (!empty($idSucursal)) {
+        $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($idSucursal,3));
+    } elseif (!empty($nombre)) {
+        $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($nombre,4));
     } else {
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario("",0));
     }
@@ -37,7 +40,7 @@ $app->get('/usuario/', function() use ($app) {
         $verificarReg = $dbUsuario->obtenerUsuario($usuario->usuario,2);
         if(is_null($method)){
              if( count($verificarReg) == 0){
-                $resultUsuario = $dbUsuario->agregarUsuario($usuario,$postedUser->usuario->telefono,$postedUser->usuario->correo);
+                $resultUsuario = $dbUsuario->agregarUsuario($usuario,$postedUser->usuario->telefono,$postedUser->usuario->correo); 
                 $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($resultUsuario->id,1));
                 $jsonArray = json_encode($usuarios);            
                 $app->response->headers->set('Content-Type', 'application/json');

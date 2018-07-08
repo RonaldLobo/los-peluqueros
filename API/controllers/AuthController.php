@@ -57,8 +57,7 @@ $app->post('/signup/', function() use ($app) {
     $usuario = new Usuario(); 
     $dbUsuario = new DbUsuario(); 
     $postedUser = json_decode($app->request->getBody());
-    $usuario->parseDto($postedUser->usuario);
-    $usuario->parseDto($postedUser->usuario);        
+    $usuario->parseDto($postedUser->usuario);    
     $verificarReg = $dbUsuario->obtenerUsuario($usuario->usuario,2);
     if( count($verificarReg) == 0){
         $resultUsuario = $dbUsuario->agregarUsuario($usuario,$postedUser->usuario->telefono,$postedUser->usuario->correo);  

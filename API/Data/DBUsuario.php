@@ -89,13 +89,15 @@ class DbUsuario {
        
     function obtenerUsuario($busqueda, $opcion){
         
-        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado, Rol,TiempoBarbero FROM usuarios ";
+        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero";
         if($opcion == 1){
-            $sql.= " WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
-         } elseif ($opcion == 2) {
-            $sql .= " WHERE Estado = 1 AND Usuario='".$busqueda."'";
-        }elseif ($opcion == 3) {
-            $sql .= " WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
+            $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
+        } elseif ($opcion == 2) {
+            $sql .= " FROM usuarios WHERE Estado = 1 AND Usuario='".$busqueda."'";
+        } elseif ($opcion == 3) {
+            $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
+        } elseif ($opcion == 4) {
+            $sql .= " FROM usuarios WHERE CONCAT(Nombre, ' ', PrimerApellido,' ', SegundoApellido)  LIKE '%".$busqueda."%'";
         }
         else{
             $sql .= "WHERE Estado = 1";

@@ -169,7 +169,7 @@ class DbUsuario {
     }
     
     function listarUsuarios(){
-        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero FROM usuarios";
+        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero FROM usuarios";
         $db = new DB();
         $rowList = $db->listar($sql);
         $usuarioList = $this->parseRowAUsuarioList($rowList);

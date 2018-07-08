@@ -102,14 +102,13 @@ class DbUsuario {
         else{
             $sql .= "WHERE Estado = 1";
         }
-        echo $sql;
         $db = new DB();     
-        if($opcion == 0 || $opcion == 3){
+        if($opcion == 0 || $opcion == 3 || $opcion == 4){
             $row = $db->listar($sql);
         }elseif($opcion == 1 || $opcion == 2){
             $row = $db->obtenerUno($sql);
         }
-        if(count($row) > 0 && ($opcion==0 || $opcion == 3)){
+        if(count($row) > 0 && ($opcion==0 || $opcion == 3 || $opcion == 4)){
              $usuario = $this->parseDataList($row);
         }elseif (count($row) > 0 && ($opcion==1 || $opcion==2)) {
              $usuario = $this->parseDataOne($row);

@@ -102,6 +102,7 @@ class DbUsuario {
         else{
             $sql .= "WHERE Estado = 1";
         }
+        echo $sql;
         $db = new DB();     
         if($opcion == 0 || $opcion == 3){
             $row = $db->listar($sql);

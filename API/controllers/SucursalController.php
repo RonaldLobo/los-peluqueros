@@ -9,9 +9,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Data/DBSucursal.php';
 
 $app->get('/sucursal/', function() use ($app) {
     $dbSucursal = new DbSucursal(); 
+    $idSucursal = $app->request->params('idSucursal');
     $idBarberia = $app->request->params('idBarberia');
     $idCanton = $app->request->params('idCanton');
-     if (!empty($idBarberia)) {
+    if (!empty($idSucursal)) {
+        $sucursal = array('sucursal' => $dbSucursal->obtenerSucursal($idSucursal,1));
+    }  else  if (!empty($idBarberia)) {
         $sucursal = array('sucursal' => $dbSucursal->obtenerSucursal($idBarberia,2));
     }  else  if (!empty($idCanton)) {
         $sucursal = array('sucursal' => $dbSucursal->obtenerSucursal($idCanton,3));

@@ -36,7 +36,6 @@ class DbSucursal {
         return $sucursal;
     }
     
-    
     function actualizarSucursal($sucursal,$telefonos,$correos){
         $db = new DB();
         $sql = "UPDATE sucursalbarberia SET "
@@ -50,7 +49,6 @@ class DbSucursal {
                 $sqlClean = "DELETE FROM telefonosucursal WHERE FkIdSucursalBarberiaTelefono=".$sucursal->id;
                 $db->actualizar($sqlClean);
                 foreach ($telefonos  as $tel){
-//                    echo $tel->telefono;
                     $sql = "INSERT INTO telefonosucursal (FkIdSucursalBarberiaTelefono ,Telefono, Estado) VALUES ("
                         .$sucursal->id.",'"
                         .$tel->telefono."',".$tel->estado.")";
@@ -71,8 +69,6 @@ class DbSucursal {
         return $sucursal;
     }
    
-        
-       
     function eliminar($id){
         $db = new DB();
         $sql = "UPDATE sucursalbarberia SET Estado=0 WHERE PkIdSucursalBarberia=".$id;
@@ -131,7 +127,6 @@ class DbSucursal {
     }
     
     function parseRowTelefono($telefonos) {
-//        $tel = new Telefono();
         $arrayTelefonos= array();
         foreach ($telefonos as $row) {
             $tel = new Telefono();
@@ -214,7 +209,7 @@ class DbSucursal {
         return $parseDatos;
     }
     
-     function agregarTelefono($telefonos){
+    function agregarTelefono($telefonos){
         $db = new DB();
         $sql = "INSERT INTO telefonosucursal (FkIdSucursalBarberiaTelefono  ,Telefono, Estado) VALUES ("
         .$telefonos->idUsuario."," .$telefonos->telefono.",".$telefonos->estado.")";

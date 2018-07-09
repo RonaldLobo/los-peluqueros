@@ -11,7 +11,8 @@ class EmailServicios {
         $dbReserva = new DBReserva(); 
         $usuarios = $dbUsuario->obtenerDatosEmail($idUsuario,$idSucursal);
         $reserva = $dbReserva->obtenerReserva($idReserva,1);
-        $hora = date("g:i A", strtotime($reserva->horaInicial);
+        // $hora = date("g:i A", strtotime($reserva->horaInicial);
+        $hora = $reserva->horaInicial;
         $to = "";
         $subject = "";
         $message = "";

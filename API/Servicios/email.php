@@ -6,12 +6,12 @@
 class EmailServicios {
     
     function EnvioEmailReserva($idUsuario,$idSucursal,$idReserva){
-        date_default_timezone_set('Canada/Saskatchewan');
+        // date_default_timezone_set('Canada/Saskatchewan');
         $dbUsuario = new DbUsuario(); 
         $dbReserva = new DBReserva(); 
         $usuarios = $dbUsuario->obtenerDatosEmail($idUsuario,$idSucursal);
         $reserva = $dbReserva->obtenerReserva($idReserva,1);
-        $hora = date("g:i A", strtotime($reserva->horaInicial)
+        $hora = date("g:i A", strtotime($reserva->horaInicial);
         $to = "";
         $subject = "";
         $message = "";

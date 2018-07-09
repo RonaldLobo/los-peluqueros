@@ -6,7 +6,7 @@
 class EmailServicios {
     
     function EnvioEmailReserva($idUsuario,$idSucursal,$idReserva){
-               
+        date_default_timezone_set('Canada/Saskatchewan');
         $dbUsuario = new DbUsuario(); 
         $dbReserva = new DBReserva(); 
         $usuarios = $dbUsuario->obtenerDatosEmail($idUsuario,$idSucursal);

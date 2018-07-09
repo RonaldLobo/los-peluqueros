@@ -93,7 +93,7 @@ class DbUsuario {
         if($opcion == 1){
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
         } elseif ($opcion == 2) {
-            $sql .= " FROM usuarios WHERE Estado = 1 AND Usuario='".$busqueda."'";
+            $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND Usuario='".$busqueda."'";
         } elseif ($opcion == 3) {
             $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
         } elseif ($opcion == 4) {

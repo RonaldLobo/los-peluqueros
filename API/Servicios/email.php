@@ -11,6 +11,7 @@ class EmailServicios {
         $dbReserva = new DBReserva(); 
         $usuarios = $dbUsuario->obtenerDatosEmail($idUsuario,$idSucursal);
         $reserva = $dbReserva->obtenerReserva($idReserva,1);
+        $hora = date("g:i A", strtotime($reserva->horaInicial)
         $to = "";
         $subject = "";
         $message = "";
@@ -490,7 +491,7 @@ class EmailServicios {
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Hora: '.$reserva->horaInicial.'
+                                                           	Hora: '.$hora.'
                                                         </td>
                                                     </tr>
                                                     <tr>

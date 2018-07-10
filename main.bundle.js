@@ -14462,7 +14462,7 @@ var ReservaComponent = (function () {
         if (this.usuarioErrores.length == 0) {
             this.cargando = true;
             this.authService.nuevoUsuarioNoLogin(this.nuevoUsuario);
-            this.authService.loggedObservable.subscribe(function (value) {
+            var sub_1 = this.authService.loggedObservable.subscribe(function (value) {
                 _this.cargando = false;
                 _this.usuarioCita = [];
                 if (value) {
@@ -14474,6 +14474,7 @@ var ReservaComponent = (function () {
                 else {
                     _this.nuevoUsuarioError = true;
                 }
+                sub_1.unsubscribe();
             });
         }
     };
@@ -14609,9 +14610,9 @@ var UsuariosComponent = (function () {
         if (this.usuarioErrores.length == 0) {
             this.cargando = true;
             this.authService.nuevoUsuarioNoLogin(this.nuevoUsuario);
-            this.authService.loggedObservable.subscribe(function (value) {
+            var sub_1 = this.authService.loggedObservable.subscribe(function (value) {
                 _this.cargando = false;
-                if (_this.router.url === '/usuarios') {
+                if (_this.router.url === '/clientes') {
                     if (value) {
                         _this.nuevoUsuarioError = false;
                         alert('Nuevo cliente guardado.');
@@ -14621,6 +14622,7 @@ var UsuariosComponent = (function () {
                         _this.nuevoUsuarioError = true;
                     }
                 }
+                sub_1.unsubscribe();
             });
         }
     };

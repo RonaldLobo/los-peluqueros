@@ -81,9 +81,10 @@ class Servicios {
         if(isset($servicios->precio)){
             $this->precio = $servicios->precio;
         }
-        echo $servicios->esDinamico;
-        if(isset($servicios->esDinamico) || $servicios->esDinamico == false){
+        if(isset($servicios->esDinamico)){
             $this->esDinamico = $servicios->esDinamico;
+        } else {
+            $this->esDinamico = false;
         }
     }
   

@@ -16,9 +16,9 @@ class DBReserva {
                 .$reserva->idServicio. ",'"
                 .$reserva->dia. "','"
                 .$reserva->horaInicial. "',"
-                .$reserva->estado. "',"
+                .$reserva->estado. ",'"
                 .$reserva->descripcion. "',"
-                .$reserva->precioDinamico. "',"
+                .$reserva->precioDinamico. ","
                 .$reserva->duracionDinamica. ")";
         $id = $db->agregar($sql);
         $reserva->id = $id;
@@ -36,7 +36,7 @@ class DBReserva {
                 . "HoraInicial='".$reserva->horaInicial."', "
                 . "FkIdUsuarioBarbero=".$reserva->idUsuarioBarbero.", "
                 . "Estado=".$reserva->estado.", "
-                . "Descripcion=".$reserva->descripcion.", "
+                . "Descripcion='".$reserva->descripcion."', "
                 . "DuracionDinamica=".$reserva->duracionDinamica.", "
                 . "PrecioDinamico=".$reserva->precioDinamico." "
                 . "WHERE PkIdReserva=".$reserva->id;

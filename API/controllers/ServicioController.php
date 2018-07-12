@@ -39,12 +39,7 @@ $app->post('/servicio/', function() use ($app) {
         $dbServicio = new DBServicio(); 
         $body = $app->request->getBody();
         $postedServicio= json_decode($body);
-        echo 'antes dto';
-        echo $postedServicio->esDinamico;
-        // if($postedServicio->servicio)
         $servicio->parseDto($postedServicio->servicio);
-        echo 'ya paso';
-        echo $servicio->esDinamico;
         $descripcion = $app->request->params('descripcion');
         $verificarReg = $dbServicio->obtenerServicio($descripcion,3);
         if(is_null($method)){   

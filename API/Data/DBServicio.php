@@ -86,7 +86,7 @@ class DBServicio {
             $servicio->precio = $row['Precio'];
         }
         if(isset($row['EsDinamico'])){
-            $servicio->esDinamico = $row['EsDinamico'];
+            $servicio->esDinamico = ($row['EsDinamico'] == 0 ? false : true);
         }
         return $servicio;
     }

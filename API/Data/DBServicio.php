@@ -12,7 +12,7 @@ class DBServicio {
                 .$servicio->descripcion."',"
                 .$servicio->duracion. ", "
                 .$servicio->estado. ",'"
-                .$servicio->precio. ","
+                .$servicio->precio. "',"
                 .$servicio->esDinamico. ")";
         $id = $db->agregar($sql);
         $servicio->id = $id;

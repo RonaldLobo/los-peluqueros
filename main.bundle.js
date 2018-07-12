@@ -1824,8 +1824,9 @@ var BarberosComponent = (function () {
     };
     BarberosComponent.prototype.selectServicio = function (servicio, dinamico) {
         this.selectedServicio = servicio;
-        var valid = false;
+        var valid = true;
         if (dinamico) {
+            valid = false;
             if (isNaN(this.selectedServicio.precioDinamico)) {
                 alert('Revise el precio del Servicio.');
             }

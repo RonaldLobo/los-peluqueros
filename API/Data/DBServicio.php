@@ -7,6 +7,8 @@ class DBServicio {
 
     function agregarServicio($servicio){
         $db = new DB();
+        echo "agregar";
+        echo servicio->esDinamico;
         $sql = "INSERT INTO servicio (FkIdUsuarioServicio,Descripcion,Duracion,Estado,Precio,EsDinamico) VALUES ("
                 .$servicio->idUsuario.",'"
                 .$servicio->descripcion."',"

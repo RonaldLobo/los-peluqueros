@@ -9,14 +9,17 @@ class DBReserva {
     
     function agregarReserva($reserva){
         $db = new DB();
-        $sql = "INSERT INTO reserva (FkIdSucursalBarberiaReserva,FkIdUsuarioReserva,FkIdUsuarioBarbero,FkIdServicioReserva,Dia,HoraInicial,Estado) VALUES ("
+        $sql = "INSERT INTO reserva (FkIdSucursalBarberiaReserva,FkIdUsuarioReserva,FkIdUsuarioBarbero,FkIdServicioReserva,Dia,HoraInicial,Estado,Descripcion,PrecioDinamico,DuracionDinamica) VALUES ("
                 .$reserva->idSucursal.","
                 .$reserva->idUsuarioReserva.","
                 .$reserva->idUsuarioBarbero.","
                 .$reserva->idServicio. ",'"
                 .$reserva->dia. "','"
                 .$reserva->horaInicial. "',"
-                .$reserva->estado. ")";
+                .$reserva->estado. "',"
+                .$reserva->descripcion. "',"
+                .$reserva->precioDinamico. "',"
+                .$reserva->duracionDinamica. ")";
         $id = $db->agregar($sql);
         $reserva->id = $id;
         return $reserva;
@@ -32,7 +35,10 @@ class DBReserva {
                 . "Dia='".$reserva->dia."', "
                 . "HoraInicial='".$reserva->horaInicial."', "
                 . "FkIdUsuarioBarbero=".$reserva->idUsuarioBarbero.", "
-                . "Estado=".$reserva->estado." "
+                . "Estado=".$reserva->estado.", "
+                . "Descripcion=".$reserva->descripcion.", "
+                . "DuracionDinamica=".$reserva->duracionDinamica.", "
+                . "PrecioDinamico=".$reserva->precioDinamico." "
                 . "WHERE PkIdReserva=".$reserva->id;
         $db->actualizar($sql);
         return $reserva;
@@ -47,9 +53,9 @@ class DBReserva {
     
   
     function obtenerReserva($busqueda, $opcion){
-        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,
-                s.Descripcion AS Servicio, s.Duracion, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
-                sb.Descripcion AS Sucursal
+        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado, r.Descripcion AS DescripcionDinamica, r.DuracionDinamica, r.PrecioDinamico,
+                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                sb.Descripcion AS Sucursal, sb.DetalleDireccion
                 FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
                 LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1
                 LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
@@ -79,9 +85,9 @@ class DBReserva {
     }
     
     function obtenerReservaFecha($busqueda, $fecha){
-        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,
-                s.Descripcion AS Servicio, s.Duracion, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
-                sb.Descripcion AS Sucursal
+        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado, r.Descripcion AS DescripcionDinamica, r.DuracionDinamica, r.PrecioDinamico,
+                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                sb.Descripcion AS Sucursal, sb.DetalleDireccion
                 FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
                 LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1
                 LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
@@ -96,9 +102,9 @@ class DBReserva {
     }
 
     function obtenerReservaFechaHora($fecha, $horaInicial, $horaFinal){
-        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,
-                s.Descripcion AS Servicio, s.Duracion, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
-                sb.Descripcion AS Sucursal
+        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado, r.Descripcion AS DescripcionDinamica, r.DuracionDinamica, r.PrecioDinamico,
+                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                sb.Descripcion AS Sucursal, sb.DetalleDireccion
                 FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
                 LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1
                 LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
@@ -113,9 +119,9 @@ class DBReserva {
     }
     
     function obtenerReservaFechaRango($busqueda, $fechaInicial,$fechaFinal){
-        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado,
-                s.Descripcion AS Servicio, s.Duracion, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
-                sb.Descripcion AS Sucursal
+        $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado, r.Descripcion AS DescripcionDinamica, r.DuracionDinamica, r.PrecioDinamico,
+                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                sb.Descripcion AS Sucursal, sb.DetalleDireccion
                 FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
                 LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1
                 LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
@@ -162,6 +168,9 @@ class DBReserva {
         if(isset($row['Servicio'])){
             $reserva->servicio = $row['Servicio'];
         }
+        if(isset($row['EsDinamico'])){
+            $reserva->esDinamico = $row['EsDinamico'];
+        }
         if(isset($row['Sucursal'])){
             $reserva->sucursal = $row['Sucursal'];
         }
@@ -188,6 +197,18 @@ class DBReserva {
         }
         if(isset($row['SegundoApellidoBarbero'])){
             $reserva->segundoApellidoBarbero = $row['SegundoApellidoBarbero'];
+        }
+        if(isset($row['DuracionDinamica'])){
+            $reserva->duracionDinamica = $row['DuracionDinamica'];
+        }
+        if(isset($row['PrecioDinamico'])){
+            $reserva->precioDinamico = $row['PrecioDinamico'];
+        }
+        if(isset($row['DescripcionDinamica'])){
+            $reserva->descripcion = $row['DescripcionDinamica'];
+        }
+        if(isset($row['DetalleDireccion'])){
+            $reserva->detalleDireccion = $row['DetalleDireccion'];
         }
         return $reserva;
     }

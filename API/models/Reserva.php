@@ -22,7 +22,11 @@ class Reserva {
     public $telefonoBarbero="";
     public $primerApellidoBarbero="";
     public $segundoApellidoBarbero=""; 
-    
+    public $descripcion="";
+    public $precioDinamico=0;
+    public $duracionDinamica=0;
+    public $esDinamico=false;
+    public $detalleDireccion="";
     
     function getId() {
         return $this->id;
@@ -94,6 +98,18 @@ class Reserva {
 
     function getSegundoApellidoBarbero() {
         return $this->segundoApellidoBarbero;
+    }
+
+    function getDescripcion() {
+        return $this->descripcion;
+    }
+
+    function getPrecioDinamico() {
+        return $this->precioDinamico;
+    }
+
+    function getDuracionDinamica() {
+        return $this->duracionDinamica;
     }
 
     function setId($id) {
@@ -168,6 +184,18 @@ class Reserva {
         $this->segundoApellidoBarbero = $segundoApellidoBarbero;
     }
 
+    function setDescripcion($descripcion) {
+        $this->descripcion = $descripcion;
+    }
+
+    function setPrecioDinamico($precioDinamico) {
+        $this->precioDinamico = $precioDinamico;
+    }
+
+    function setDuracionDinamica($duracionDinamica) {
+        $this->duracionDinamica = $duracionDinamica;
+    }
+
     function getSucursal() {
         return $this->sucursal;
     }
@@ -175,6 +203,24 @@ class Reserva {
     function setSucursal($sucursal) {
         $this->sucursal = $sucursal;
     }        
+
+    function getEsDinamico() {
+        return $this->esDinamico;
+    }
+    
+    function setEsDinamico($esDinamico) {
+        $this->esDinamico = $esDinamico;
+    }
+
+    function getDetalleDireccion() {
+        return $this->detalleDireccion;
+    }
+    
+    function setDetalleDireccion($detalleDireccion) {
+        $this->detalleDireccion = $detalleDireccion;
+    }
+
+    
     
        
     function parseDto($reserva) {
@@ -201,8 +247,7 @@ class Reserva {
         }
         if(isset($reserva->idServicio)){
             $this->idServicio = $reserva->idServicio;
-        }
-               
+        }  
         if(isset($reserva->servicio)){
             $this->servicio = $reserva->servicio;
         }
@@ -239,6 +284,21 @@ class Reserva {
         if(isset($reserva->segundoApellidoBarbero)){
             $this->segundoApellidoBarbero = $reserva->segundoApellidoBarbero;
         }
+        if(isset($reserva->descripcion)){
+            $this->descripcion = $reserva->descripcion;
+        }
+        if(isset($reserva->precioDinamico)){
+            $this->precioDinamico = $reserva->precioDinamico;
+        }
+        if(isset($reserva->duracionDinamica)){
+            $this->duracionDinamica = $reserva->duracionDinamica;
+        }
+        if(isset($reserva->esDinamico)){
+            $this->esDinamico = $reserva->esDinamico;
+        }
+        if(isset($reserva->detalleDireccion)){
+            $this->detalleDireccion = $reserva->detalleDireccion;
+        }
     }
     
      function toJson() {
@@ -253,7 +313,7 @@ class Reserva {
             'sucursal'=> $this->sucursal,
             'dia'=> $this->dia,
             'idServicio'=> $this->idServicio,
-              'servicio'=>$this->servicio,
+            'servicio'=>$this->servicio,
             'duracion'=> $this->duracion,
             'precio'=> $this->precio,
             'nombreUserReserva'=> $this->nombreUserReserva,
@@ -262,7 +322,12 @@ class Reserva {
             'nombreBarbero'=> $this->nombreBarbero,
             'telefonoBarbero'=> $this->telefonoBarbero,
             'primerApellidoBarbero'=> $this->primerApellidoBarbero,
-            'segundoApellidoBarbero'=> $this->segundoApellidoBarbero
+            'segundoApellidoBarbero'=> $this->segundoApellidoBarbero,
+            'descripcion'=> $this->descripcion,
+            'precioDinamico'=> $this->precioDinamico,
+            'duracionDinamica'=> $this->duracionDinamica,
+            'detalleDireccion'=> $this->detalleDireccion,
+            'esDinamico'=> $this->esDinamico
             )
         );
         return json_encode($data);

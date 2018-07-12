@@ -7,7 +7,7 @@ class DBServicio {
 
     function agregarServicio($servicio){
         $db = new DB();
-        $sql = "INSERT INTO servicio (FkIdUsuarioServicio,Descripcion,Duracion,Estado,Precio) VALUES ("
+        $sql = "INSERT INTO servicio (FkIdUsuarioServicio,Descripcion,Duracion,Estado,Precio,EsDinamico) VALUES ("
                 .$servicio->idUsuario.",'"
                 .$servicio->descripcion."',"
                 .$servicio->duracion. ", "
@@ -26,6 +26,7 @@ class DBServicio {
                 . "Descripcion='".$servicio->descripcion."',"
                 . "Duracion=".$servicio->duracion.", "
                 . "Estado=".$servicio->estado.","
+                . "EsDinamico=".$servicio->esDinamico.","
                 . "Precio='".$servicio->precio."' "
                 . "WHERE PkIdServicio=".$servicio->id;
         $db->actualizar($sql);
@@ -39,7 +40,7 @@ class DBServicio {
     }
     
     function obtenerServicio($busqueda, $opcion){
-        $sql = "SELECT PkIdServicio,FkIdUsuarioServicio,Descripcion, Duracion,Estado,Precio FROM servicio WHERE Estado=1 ";
+        $sql = "SELECT PkIdServicio,FkIdUsuarioServicio,Descripcion, Duracion,Estado,Precio, EsDinamico FROM servicio WHERE Estado=1 ";
         if($opcion == 1){
             $sql.= " AND PkIdServicio=".$busqueda;
         } elseif ($opcion == 2) {
@@ -83,6 +84,9 @@ class DBServicio {
         }
         if(isset($row['Precio'])){
             $servicio->precio = $row['Precio'];
+        }
+        if(isset($row['EsDinamico'])){
+            $servicio->esDinamico = $row['EsDinamico'];
         }
         return $servicio;
     }

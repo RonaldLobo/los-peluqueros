@@ -6,6 +6,7 @@ class Servicios {
     public $descripcion="";
     public $duracion=0;
     public $estado="";
+    public $esDinamico=false;
     public $precio=0;
     
     function getId() {
@@ -29,6 +30,14 @@ class Servicios {
     }
     function getPrecio() {
         return $this->precio;
+    }
+
+    function getEsDinamico() {
+        return $this->esDinamico;
+    }
+    
+    function setEsDinamico($esDinamico) {
+        $this->esDinamico = $esDinamico;
     }
     
     function setId($id) {
@@ -72,6 +81,9 @@ class Servicios {
         if(isset($servicios->precio)){
             $this->precio = $servicios->precio;
         }
+        if(isset($servicios->esDinamico)){
+            $this->esDinamico = $servicios->esDinamico;
+        }
     }
   
      function toJson() {
@@ -82,7 +94,8 @@ class Servicios {
             'descripcion'=> $this->descripcion,
             'duracion'=> $this->duracion,
             'estado'=> $this->estado,
-            'precio'=> $this->precio
+            'precio'=> $this->precio,
+            'esDinamico'=> $this->esDinamico
             )
         );
         return json_encode($data);

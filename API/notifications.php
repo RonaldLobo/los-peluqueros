@@ -5,7 +5,10 @@
 
 	function sendNotification($topic,$reserva) {
     	$url = "https://fcm.googleapis.com/fcm/send";
-		$serverKey = 'AAAApRuZq9k:APA91bHH6QoNIcEZXYOFQ3BQhmuiECEn6rrc8Qj8YCB-CGCYOwx6KsENR57Fz0IJ7lcdnySvVTd_S0OclvBlMTVab3FkOQhR4vVc9H-h7bpRtUuyBhscKA2iLSBJ9wZPQM0FgJ2HGVxX';	
+		// $serverKey = 'AAAApRuZq9k:APA91bHH6QoNIcEZXYOFQ3BQhmuiECEn6rrc8Qj8YCB-CGCYOwx6KsENR57Fz0IJ7lcdnySvVTd_S0OclvBlMTVab3FkOQhR4vVc9H-h7bpRtUuyBhscKA2iLSBJ9wZPQM0FgJ2HGVxX';	
+
+        $serverKey = 'AAAAj2NAhYA:APA91bG2-NLTA_e7_yKysK3gNsUaTSFjjjhTy9iUg5LEqdjJxdRb-Ezduk5wTXJEg0_SUE-aYOF5TL6hCEj34Ow23zbcRywL6Mv1zOYtqKYF_jXwk0igJAFtPqVRV_hg-67kkgzk2qatihOQSYG3nw6_u81rFNnYGg';
+        
 	    $title = "Recordatorio de cita";
 	    $body = "Recordatorio de cita";	
         $hora = date("g:i A", strtotime($reserva->horaInicial)

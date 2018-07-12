@@ -15,13 +15,14 @@ class EmailServicios {
         $hora = $reserva->horaInicial;
         $to = "";
         $subject = "";
+        $tiempo = ($reserva->esDinamico == true ? $reserva->duracionDinamica : $reserva->duracion);
+        $precio = ($reserva->esDinamico == true ? $reserva->precioDinamico : $reserva->precio);
+        $servicio = ($reserva->esDinamico == true ? $reserva->servicio.' '.$reserva->descripcion : $reserva->servicio);
         $message = "";
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: <reservas@lospeluqueros.com>' . "\r\n";
         $to = $usuarios['correo'];
-        // echo 'correo';
-        // echo $to;
         $subject="Confirmación de Cita en ".$usuarios['barberia'];
         $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
@@ -497,7 +498,7 @@ class EmailServicios {
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Precio: '.$reserva->precio.'
+                                                           	Precio: '.$precio.'
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -507,12 +508,17 @@ class EmailServicios {
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Servicio: '.$reserva->servicio.'
+                                                           	Servicio: '.$servicio.'
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td valign="top" class="headerContent">
-                                                           	Duración: '.$reserva->duracion.' Minutos
+                                                           	Duración: '.$tiempo.' Minutos
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top" class="headerContent">
+                                                           	Dirección: '.$reserva->detalleDireccion.'
                                                         </td>
                                                     </tr>
                                                 </table>

@@ -63,11 +63,11 @@ class DBReserva {
          if($opcion == 1){
             $sql.= " AND PkIdReserva=".$busqueda;
          } elseif ($opcion == 2) {
-            $sql.= " AND FkIdSucursalBarberiaReserva=".$busqueda;
+            $sql.= " AND FkIdSucursalBarberiaReserva=".$busqueda." ORDER BY HoraInicial";
          } elseif ($opcion == 3) {
-            $sql.= " AND FkIdUsuarioReserva=".$busqueda;
+            $sql.= " AND FkIdUsuarioReserva=".$busqueda." ORDER BY HoraInicial";
          } elseif ($opcion == 4) {
-            $sql.= " AND FkIdServicioReserva=".$busqueda;
+            $sql.= " AND FkIdServicioReserva=".$busqueda." ORDER BY HoraInicial";
         }
         $db = new DB();
         if( $opcion!=1){
@@ -93,7 +93,7 @@ class DBReserva {
                 LEFT JOIN usuarios ub ON ub.PkIdUsuario= r.FkIdUsuarioBarbero AND ub.Estado=1
                 JOIN sucursalbarberia sb ON sb.PkIdSucursalBarberia = r.FkIdSucursalBarberiaReserva WHERE r.Estado=1";
             $sql.= " AND FkIdUsuarioBarbero=".$busqueda;
-            $sql.= " AND r.dia='".$fecha."'";
+            $sql.= " AND r.dia='".$fecha."' ORDER BY HoraInicial;";
 //        echo $sql;
         $db = new DB();
         $row = $db->listar($sql);     
@@ -111,7 +111,7 @@ class DBReserva {
                 JOIN sucursalbarberia sb ON sb.PkIdSucursalBarberia = r.FkIdSucursalBarberiaReserva WHERE r.Estado=1";
             $sql.= " AND r.dia='".$fecha."'";
             $sql.= " AND r.HoraInicial>='".$horaInicial."'";
-            $sql.= " AND r.HoraInicial<='".$horaFinal."'";
+            $sql.= " AND r.HoraInicial<='".$horaFinal."' ORDER BY HoraInicial;";
         $db = new DB();
         $row = $db->listar($sql);     
         $reserva = $this->parseDataList($row);
@@ -128,7 +128,7 @@ class DBReserva {
                 JOIN sucursalbarberia sb ON sb.PkIdSucursalBarberia = r.FkIdSucursalBarberiaReserva WHERE r.Estado=1";
             $sql.= " AND FkIdUsuarioBarbero=".$busqueda;
             $sql.= " AND r.dia>='".$fechaInicial."'";
-            $sql.= " AND r.dia<='".$fechaFinal."'";
+            $sql.= " AND r.dia<='".$fechaFinal."' ORDER BY HoraInicial;";
 //        echo $sql;
         $db = new DB();
         $row = $db->listar($sql);     

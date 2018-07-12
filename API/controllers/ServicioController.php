@@ -40,6 +40,8 @@ $app->post('/servicio/', function() use ($app) {
         $body = $app->request->getBody();
         $postedServicio= json_decode($body);
         $servicio->parseDto($postedServicio->servicio);
+        echo 'ya paso';
+        echo $servicio->esDinamico;
         $descripcion = $app->request->params('descripcion');
         $verificarReg = $dbServicio->obtenerServicio($descripcion,3);
         if(is_null($method)){   

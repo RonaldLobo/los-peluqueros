@@ -42,7 +42,7 @@ class DBReserva {
                 . "EstadoFactura='".$reserva->estadoFactura."', "
                 . "DetalleFactura='".$reserva->detalleFactura."', "
                 . "ComprobantePago='".$reserva->comprobantePago."', "
-                . "TipoPago='".$reserva->tipoPago."'' "
+                . "TipoPago='".$reserva->tipoPago."' "
                 . "WHERE PkIdReserva=".$reserva->id;
         $db->actualizar($sql);
         return $reserva;

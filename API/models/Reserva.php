@@ -29,7 +29,7 @@ class Reserva {
     public $detalleDireccion="";
     public $estadoFactura="";
     public $detalleFactura="";
-    public $comprobante="";
+    public $comprobantePago="";
     public $tipoPago ="";
     
     function getId() {
@@ -119,8 +119,8 @@ class Reserva {
     function getDetalleFactura(){
          return $this->detalleFactura;
     }
-    function getComprobante(){
-         return $this->comprobante;
+    function getComprobantePago(){
+         return $this->comprobantePago;
     }
     function getTipoPago(){
          return $this->tipoPago;
@@ -246,8 +246,8 @@ class Reserva {
         $this->detalleFactura = $detalleFactura;
     }
 
-    function setComprobante($comprobante) {
-        $this->comprobante = $comprobante;
+    function setComprobantePago($comprobantePago) {
+        $this->comprobantePago = $comprobantePago;
     }
 
     function setTipoPago($tipoPago) {
@@ -338,8 +338,8 @@ class Reserva {
         if(isset($reserva->detalleFactura)){
             $this->detalleFactura = $reserva->detalleFactura;
         }
-        if(isset($reserva->comprobante)){
-            $this->comprobante = $reserva->comprobante;
+        if(isset($reserva->comprobantePago)){
+            $this->comprobantePago = $reserva->comprobantePago;
         }
         if(isset($reserva->tipoPago)){
             $this->tipoPago = $reserva->tipoPago;
@@ -375,7 +375,7 @@ class Reserva {
             'esDinamico'=> $this->esDinamico,
             'estadoFactura'=> $this->estadoFactura,
             'detalleFactura'=> $this->detalleFactura,
-            'comprobante'=> $this->comprobante,
+            'comprobantePago'=> $this->comprobantePago,
             'tipoPago'=> $this->tipoPago
             )
         );

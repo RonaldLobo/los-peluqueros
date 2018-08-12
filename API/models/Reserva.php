@@ -27,6 +27,10 @@ class Reserva {
     public $duracionDinamica=0;
     public $esDinamico=false;
     public $detalleDireccion="";
+    public $estadoFactura="";
+    public $detalleFactura="";
+    public $comprobante="";
+    public $tipoPago ="";
     
     function getId() {
         return $this->id;
@@ -110,6 +114,20 @@ class Reserva {
 
     function getDuracionDinamica() {
         return $this->duracionDinamica;
+    }
+
+    function getDetalleFactura(){
+         return $this->detalleFactura;
+    }
+    function getComprobante(){
+         return $this->comprobante;
+    }
+    function getTipoPago(){
+         return $this->tipoPago;
+    }
+    
+    function getEstadoFactura(){
+         return $this->estadoFactura;
     }
 
     function setId($id) {
@@ -220,6 +238,21 @@ class Reserva {
         $this->detalleDireccion = $detalleDireccion;
     }
 
+    function setEstadoFactura($estadoFactura) {
+        $this->estadoFactura = $estadoFactura;
+    }
+
+    function setDetalleFactura($detalleFactura) {
+        $this->detalleFactura = $detalleFactura;
+    }
+
+    function setComprobante($comprobante) {
+        $this->comprobante = $comprobante;
+    }
+
+    function setTipoPago($tipoPago) {
+        $this->tipoPago = $tipoPago;
+    }
     
     
        
@@ -299,6 +332,18 @@ class Reserva {
         if(isset($reserva->detalleDireccion)){
             $this->detalleDireccion = $reserva->detalleDireccion;
         }
+        if(isset($reserva->estadoFactura)){
+            $this->estadoFactura = $reserva->estadoFactura;
+        }
+        if(isset($reserva->detalleFactura)){
+            $this->detalleFactura = $reserva->detalleFactura;
+        }
+        if(isset($reserva->comprobante)){
+            $this->comprobante = $reserva->comprobante;
+        }
+        if(isset($reserva->tipoPago)){
+            $this->tipoPago = $reserva->tipoPago;
+        }
     }
     
      function toJson() {
@@ -327,7 +372,11 @@ class Reserva {
             'precioDinamico'=> $this->precioDinamico,
             'duracionDinamica'=> $this->duracionDinamica,
             'detalleDireccion'=> $this->detalleDireccion,
-            'esDinamico'=> $this->esDinamico
+            'esDinamico'=> $this->esDinamico,
+            'estadoFactura'=> $this->estadoFactura,
+            'detalleFactura'=> $this->detalleFactura,
+            'comprobante'=> $this->comprobante,
+            'tipoPago'=> $this->tipoPago
             )
         );
         return json_encode($data);

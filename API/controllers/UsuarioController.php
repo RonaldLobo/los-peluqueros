@@ -57,6 +57,9 @@ $app->get('/usuario/', function() use ($app) {
                   $nomBD =$verificarReg->usuario;
             }
             if((count($verificarReg) == 0 )|| $usuario->usuario == $nomBD){
+                if(!$postedUser->usuario->contrasenna){
+                    $postedUser->usuario->contrasenna = $verificarReg->contrasenna;
+                }
                 $resultUsuario = $dbUsuario->actualizarUsuario($usuario,$postedUser->usuario->telefono,$postedUser->usuario->correo);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);

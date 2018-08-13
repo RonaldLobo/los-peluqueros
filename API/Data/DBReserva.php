@@ -9,7 +9,7 @@ class DBReserva {
     
     function agregarReserva($reserva){
         $db = new DB();
-        $sql = "INSERT INTO reserva (FkIdSucursalBarberiaReserva,FkIdUsuarioReserva,FkIdUsuarioBarbero,FkIdServicioReserva,Dia,HoraInicial,Estado,Descripcion,PrecioDinamico,DuracionDinamica,EstadoFactura) VALUES ("
+        $sql = "INSERT INTO reserva (FkIdSucursalBarberiaReserva,FkIdUsuarioReserva,FkIdUsuarioBarbero,FkIdServicioReserva,Dia,HoraInicial,Estado,Descripcion,PrecioDinamico,DuracionDinamica,EstadoFactura,TipoPago) VALUES ("
                 .$reserva->idSucursal.","
                 .$reserva->idUsuarioReserva.","
                 .$reserva->idUsuarioBarbero.","
@@ -19,7 +19,7 @@ class DBReserva {
                 .$reserva->estado. ",'"
                 .$reserva->descripcion. "',"
                 .$reserva->precioDinamico. ","
-                .$reserva->duracionDinamica. ", 'R')";
+                .$reserva->duracionDinamica. ", 'R','E')";
         $id = $db->agregar($sql);
         $reserva->id = $id;
         return $reserva;

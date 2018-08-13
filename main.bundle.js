@@ -1368,6 +1368,16 @@ var CitasComponent = (function () {
             _this.selectedCita.estadoFactura = 'R';
         });
     };
+    CitasComponent.prototype.eliminarCita = function () {
+        var _this = this;
+        this.dataService.delete('/reserva/' + this.selectedCita.id)
+            .then(function (response) {
+        }, function (error) {
+            _this.reservas = _this.reservas.filter(function (el) { return (el.id != _this.selectedCita.id); });
+            _this.obtieneCitasBarberia(_this);
+            _this.modalRef.hide();
+        });
+    };
     return CitasComponent;
 }());
 CitasComponent = __decorate([

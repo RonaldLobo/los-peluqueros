@@ -897,6 +897,7 @@ CalendarioInputComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_es__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment_locale_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment_locale_es__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__(9);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarioComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -910,8 +911,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var CalendarioComponent = (function () {
-    function CalendarioComponent() {
+    function CalendarioComponent(authService) {
+        this.authService = authService;
         this.dateSelectedChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* EventEmitter */]();
         this.dt = new Date();
         this.minDate = new Date();
@@ -926,7 +929,12 @@ var CalendarioComponent = (function () {
         this.opened = false;
         (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
         (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
-        (this.minDate = new Date()).setDate(this.minDate.getDate());
+        if (this.authService.isAdminSucursalUser()) {
+            (this.minDate = null);
+        }
+        else {
+            (this.minDate = new Date()).setDate(this.minDate.getDate());
+        }
         (this.dateDisabled = []);
         this.events = [
             { date: this.tomorrow, status: 'full' },
@@ -999,9 +1007,10 @@ CalendarioComponent = __decorate([
         template: __webpack_require__(525),
         styles: [__webpack_require__(426)]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object])
 ], CalendarioComponent);
 
+var _a;
 //# sourceMappingURL=calendario.component.js.map
 
 /***/ }),
@@ -3296,7 +3305,7 @@ var ReservaComponent = (function () {
             console.log(today.getMinutes() > Number(this.modificaHoraToTime(horarioInicio).substring(2, 4)));
             console.log(today.getHours(), Number(this.modificaHoraToTime(horarioInicio).substring(0, 2)));
             console.log(today.getMinutes(), Number(this.modificaHoraToTime(horarioInicio).substring(2, 4)));
-            if (this.dateSelected.getFullYear() + this.dateSelected.getMonth() + this.dateSelected.getDate() == today.getFullYear() + today.getMonth() + today.getDate() &&
+            if (!this.authService.isAdminSucursalUser() && this.dateSelected.getFullYear() + this.dateSelected.getMonth() + this.dateSelected.getDate() == today.getFullYear() + today.getMonth() + today.getDate() &&
                 (today.getHours() >= Number(this.modificaHoraToTime(horarioInicio).substring(0, 2)) &&
                     today.getMinutes() > Number(this.modificaHoraToTime(horarioInicio).substring(2, 4)))) {
                 console.log('entra');

@@ -14,10 +14,30 @@ class Sucursal {
     public $detalleDireccion = '';
     public $estado = '';
     public $nombreBarberia = '';
+    public $cedulaJuridica = '';
+    public $nombreNegocio = '';
+    public $distrito = '';
+    public $canton = '';
+
     public $telefono = array();
     public $correo = array();
        
 
+
+    function getNombreNegocio() {
+        return $this->nombreNegocio;
+    }
+
+    function getCedulaJuridica() {
+        return $this->cedulaJuridica;
+    }
+
+    function getDistrito() {
+        return $this->distrito;
+    }
+      function getCanton {
+        return $this->canton;
+    }
     
     function getId() {
         return $this->id;
@@ -96,6 +116,21 @@ class Sucursal {
     function setNombreBarberia($nombreBarberia) {
         $this->nombreBarberia = $nombreBarberia;
     }
+    function setNombreNegocio($nombreNegocio) {
+        $this->nombreNegocio = $nombreNegocio;
+    }
+
+    function setCedulaJuridica($cedulaJuridica) {
+        $this->cedulaJuridica = $cedulaJuridica;
+    }
+
+    function setDistrito($distrito) {
+        $this->distrito = $distrito;
+    }
+    function setCanton($canton) {
+        $this->canton = $canton;
+    }
+
         
     function parseDto($sucursal) {
         if(isset($sucursal->idCanton)){
@@ -119,6 +154,18 @@ class Sucursal {
         if(isset($sucursal->detalleDireccion)){
             $this->detalleDireccion = $sucursal->detalleDireccion;
         }
+        if(isset($sucursal->nombreNegocio)){
+            $this->nombreNegocio = $sucursal->nombreNegocio;
+        }
+        if(isset($sucursal->cedulaJuridica)){
+            $this->cedulaJuridica = $sucursal->cedulaJuridica;
+        } 
+        if(isset($sucursal->distrito)){
+            $this->distrito = $sucursal->distrito;
+        }
+        if(isset($sucursal->canton)){
+            $this->canton = $sucursal->canton;
+        }
     }
     
     function AgregarTelefono($tel){
@@ -139,7 +186,11 @@ class Sucursal {
             'detalleDireccion'=> $this->detalleDireccion,
             'estado'=> $this->estado,
             'telefono'=>$this->telefono,
-            'correo'=>$this->correo
+            'correo'=>$this->correo,
+            'nombreNegocio'=> $this->nombreNegocio,
+            'cedulaJuridica'=> $this->cedulaJuridica,
+            'canton'=>$this->canton,
+            'distrito'=>$this->distrito
             )
         );
         return json_encode($data);

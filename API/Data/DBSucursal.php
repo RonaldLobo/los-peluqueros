@@ -7,13 +7,17 @@ class DbSucursal {
 
     function agregarSucursal($sucursal,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado,IdFacturaAPI) VALUES ("
+        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado,IdFacturaAPI, CedulaJuridica, NombreNegocio, Distrito, Barrio) VALUES ("
                 .$sucursal->idCanton.","
                 .$sucursal->idBarberia.",'"
                 .$sucursal->descripcion."', '"
                 .$sucursal->detalleDireccion."',"
                 .$sucursal->estado.",'"
-                .$sucursal->idFacturaAPI."')";
+                .$sucursal->idFacturaAPI."','"
+                .$sucursal->cedulaJuridica."','"
+                .$sucursal->nombreNegocio."','"
+                .$sucursal->distrito."',"
+                .$sucursal->canton."')";
             $id = $db->agregar($sql);
             if ($id >0){
                 foreach($telefonos as $tel){
@@ -45,7 +49,11 @@ class DbSucursal {
                 . "Descripcion='".$sucursal->descripcion."',"
                 . "DetalleDireccion ='".$sucursal->detalleDireccion."', "               
                 . "Estado=".$sucursal->estado.", " 
-                . "IdFacturaAPI='".$sucursal->idFacturaAPI."' " 
+                . "IdFacturaAPI='".$sucursal->idFacturaAPI."', " 
+                . "CedulaJuridica='".$sucursal->cedulaJuridica."', " 
+                . "NombreNegocio='".$sucursal->nombreNegocio."', " 
+                . "Distrito='".$sucursal->distrito."', " 
+                . "Canton='".$sucursal->canton."' " 
                 . " WHERE PkIdSucursalBarberia=".$sucursal->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonosucursal WHERE FkIdSucursalBarberiaTelefono=".$sucursal->id;
@@ -78,7 +86,7 @@ class DbSucursal {
     }   
  
     function obtenerSucursal($busqueda, $opcion){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio FROM sucursalbarberia s 
        LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia WHERE s.Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdSucursalBarberia=".$busqueda;
@@ -120,7 +128,7 @@ class DbSucursal {
     }
     
     function listarSucursal(){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio FROM sucursalbarberia s 
         LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia ";
         $db = new DB();
         $rowList = $db->listar($sql);
@@ -190,7 +198,19 @@ class DbSucursal {
         } 
        if(isset($row['IdFacturaAPI'])){
             $sucursal->idFacturaAPI = $row['IdFacturaAPI'];
-        }   
+        } 
+        if(isset($row['NombreNegocio'])){
+            $sucursal->nombreNegocio = $row['NombreNegocio'];
+        }
+        if(isset($row['CedulaJuridica'])){
+            $sucursal->cedulaJuridica = $row['CedulaJuridica'];
+        }  
+        if(isset($row['Distrito'])){
+            $sucursal->distrito = $row['Distrito'];
+        }
+        if(isset($row['Canton'])){
+            $sucursal->canton = $row['Canton'];
+        }        
         $sucursal->telefono = $this->parseRowTelefono($rowTelefono);
         $sucursal->correo = $this->parseRowCorreo($rowCorreo);
         return $sucursal;

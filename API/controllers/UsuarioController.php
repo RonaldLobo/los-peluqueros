@@ -51,13 +51,13 @@ $app->post('/usuario/', function() use ($app) {
                 $app->response->setStatus(200);
                 $app->response->setBody('{"error":"El usuario ya existe, seleccione otro."}');
             }
-        } elseif ($method=='delete') {
+        } elseif ($method =='delete') {
             $idUsuario = $app->request->params('idUsuario');
             $idSucursal = $app->request->params('idSucursal');
             $dbUsuario = new DbUsuario(); 
             $verificarReg = $dbUsuario->verificarUsuarioReserva($idUsuario ,$idSucursal);
             if(count($verificarReg)==0){
-                $dbUsuario->eliminarUsuarioBarberia($id);
+                $dbUsuario->eliminarUsuarioBarberia($idUsuario ,$idSucursal);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);
                 $app->response->setBody("{'status':'success'}");

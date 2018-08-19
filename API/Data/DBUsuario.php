@@ -88,9 +88,9 @@ class DbUsuario {
         $db->actualizar($sql);   
     }
        
-    function eliminarUsuarioBarberia($idUsuario, $idSucursalBarberia){
+    function eliminarUsuarioBarberia($idUsuario){
         $db = new DB();
-        $sql = "UPDATE usuarios SET Estado=0 WHERE FkIdUsuario=".$idUsuario." AND FkIdSucursalBarberia=".$idSucursalBarberia;
+        $sql = "UPDATE usuarios SET Estado=0 WHERE PkIdUsuario=".$idUsuario;
         $db->actualizar($sql);   
     }
 
@@ -136,9 +136,9 @@ class DbUsuario {
 
 
     function verificarUsuarioReserva($idUsuario, $idSucursal){
-        $sql = "SELECT r.FkIdSucursalBarberiaReserva from reserva r inner join usuarios u on u.PkIdUsuario = r.FkIdUsuarioReserva where FkIdSucursalBarberiaReserva != ".$idSucursal." and u.PkIdUsuario= ".$idUsuario;
+        $sql = "SELECT r.PkIdReserva from reserva r where FkIdSucursalBarberiaReserva != ".$idSucursal." and FkIdUsuarioReserva = ".$idUsuario;
         $db = new DB();
-        $row = $db->obtenerUno($sql);
+        $row = $db->listar($sql);
         return $row;
     }
             

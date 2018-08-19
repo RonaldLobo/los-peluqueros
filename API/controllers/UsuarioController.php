@@ -57,7 +57,7 @@ $app->post('/usuario/', function() use ($app) {
             $dbUsuario = new DbUsuario(); 
             $verificarReg = $dbUsuario->verificarUsuarioReserva($idUsuario ,$idSucursal);
             if(count($verificarReg)==0){
-                $dbUsuario->eliminarUsuarioBarberia($idUsuario ,$idSucursal);
+                $dbUsuario->eliminarUsuarioBarberia($idUsuario);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);
                 $app->response->setBody("{'status':'success'}");

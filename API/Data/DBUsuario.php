@@ -90,7 +90,7 @@ class DbUsuario {
        
     function eliminarUsuarioBarberia($idUsuario, $idSucursalBarberia){
         $db = new DB();
-        $sql = "UPDATE usuariosucursalbarberia SET Estado=0 WHERE FkIdUsuario=".$idUsuario." AND FkIdSucursalBarberia=".$idSucursalBarberia;
+        $sql = "UPDATE usuarios SET Estado=0 WHERE FkIdUsuario=".$idUsuario." AND FkIdSucursalBarberia=".$idSucursalBarberia;
         $db->actualizar($sql);   
     }
 

@@ -51,7 +51,7 @@ $app->post('/usuario/', function() use ($app) {
                 $app->response->setStatus(200);
                 $app->response->setBody('{"error":"El usuario ya existe, seleccione otro."}');
             }
-        } elseif ($method =='delete') {
+        } else if ($method =='delete') {
             $idUsuario = $app->request->params('idUsuario');
             $idSucursal = $app->request->params('idSucursal');
             $dbUsuario = new DbUsuario(); 

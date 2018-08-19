@@ -27,7 +27,7 @@ $app->get('/usuario/', function() use ($app) {
     return $app;
 });
 
-    $app->post('/usuario/', function() use ($app) { 
+$app->post('/usuario/', function() use ($app) { 
     $auth = new Auth();
     $authToken = $app->request->headers->get('Authorization');
     $method = $app->request->params('method');
@@ -57,7 +57,7 @@ $app->get('/usuario/', function() use ($app) {
             $dbUsuario = new DbUsuario(); 
             $verificarReg = $dbUsuario->verificarUsuarioReserva($idUsuario ,$idSucursal);
             if(count($verificarReg)==0){
-                $dbUsuario->eliminar($id);
+                $dbUsuario->eliminarUsuarioBarberia($id);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);
                 $app->response->setBody("{'status':'success'}");

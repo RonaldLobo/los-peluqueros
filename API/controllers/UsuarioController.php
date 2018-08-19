@@ -51,7 +51,24 @@ $app->get('/usuario/', function() use ($app) {
                 $app->response->setStatus(200);
                 $app->response->setBody('{"error":"El usuario ya existe, seleccione otro."}');
             }
-        } else{        
+        } elseif ($method=='delete') {
+            $idUsuario = $app->request->params('idUsuario');
+            $idSucursal = $app->request->params('idSucursal');
+            $dbUsuario = new DbUsuario(); 
+            $verificarReg = $dbUsuario->verificarUsuarioReserva($idUsuario ,$idSucursal);
+            if(count($verificarReg)==0){
+                $dbUsuario->eliminar($id);
+                $app->response->headers->set('Content-Type', 'application/json');
+                $app->response->setStatus(200);
+                $app->response->setBody("{'status':'success'}");
+            }else{
+
+                $app->response->headers->set('Content-Type', 'application/json');
+                $app->response->setStatus(200);
+                $app->response->setBody('{"error":"El usuario no se puede Eliminar, porque tiene citas con otras barberias."}');
+            }
+        }else{        
+
             $nomBD ='';
             if (count($verificarReg) >0){
                   $nomBD =$verificarReg->usuario;

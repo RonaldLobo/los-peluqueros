@@ -11,9 +11,9 @@ class DbSucursal {
                 .$sucursal->idCanton.","
                 .$sucursal->idBarberia.",'"
                 .$sucursal->descripcion."', '"
-                .$sucursal->detalleDireccion. "',"
-                .$sucursal->estado. ",'";
-                .$sucursal->idFacturaAPI. "')";
+                .$sucursal->detalleDireccion."',"
+                .$sucursal->estado.",'"
+                .$sucursal->idFacturaAPI."')";
             $id = $db->agregar($sql);
             if ($id >0){
                 foreach($telefonos as $tel){

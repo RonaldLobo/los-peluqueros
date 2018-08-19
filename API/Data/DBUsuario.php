@@ -136,7 +136,7 @@ class DbUsuario {
 
 
     function verificarUsuarioReserva($idUsuario, $idSucursal){
-        $sql = "SELECT r.FkIdSucursalBarberiaReserva from reserva r inner join usuarios u on u.PkIdUsuario = r.FkIdUsuarioReserva where FkIdSucursalBarberiaReserva != ".$idSucursal." and u.PkIdUsuario= ".$idUsuario.;
+        $sql = "SELECT r.FkIdSucursalBarberiaReserva from reserva r inner join usuarios u on u.PkIdUsuario = r.FkIdUsuarioReserva where FkIdSucursalBarberiaReserva != ".$idSucursal." and u.PkIdUsuario= ".$idUsuario;
         $db = new DB();
         $row = $db->obtenerUno($sql);
         return $row;

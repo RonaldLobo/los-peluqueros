@@ -105,7 +105,7 @@ class DbUsuario {
         } elseif ($opcion == 3) {
             $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
         } elseif ($opcion == 4) {
-            $sql .= " FROM usuarios WHERE CONCAT(Nombre, ' ', PrimerApellido,' ', SegundoApellido)  LIKE '%".$busqueda."%'";
+            $sql .= " FROM usuarios WHERE CONCAT(Nombre, ' ', PrimerApellido,' ', SegundoApellido)  LIKE '%".$busqueda."%' and Estado = 1";
         }
         else{
             $sql .= "WHERE Estado = 1";

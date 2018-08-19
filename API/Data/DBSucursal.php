@@ -7,12 +7,13 @@ class DbSucursal {
 
     function agregarSucursal($sucursal,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado) VALUES ("
+        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado,IdFacturaAPI) VALUES ("
                 .$sucursal->idCanton.","
                 .$sucursal->idBarberia.",'"
                 .$sucursal->descripcion."', '"
                 .$sucursal->detalleDireccion. "',"
-                .$sucursal->estado. ")";
+                .$sucursal->estado. ",'";
+                .$sucursal->idFacturaAPI. "')";
             $id = $db->agregar($sql);
             if ($id >0){
                 foreach($telefonos as $tel){
@@ -43,7 +44,8 @@ class DbSucursal {
                 . "FkIdBarberiaSucursalBarberia=".$sucursal->idBarberia.","
                 . "Descripcion='".$sucursal->descripcion."',"
                 . "DetalleDireccion ='".$sucursal->detalleDireccion."', "               
-                . "Estado=".$sucursal->estado
+                . "Estado=".$sucursal->estado.", " 
+                . "IdFacturaAPI='".$sucursal->idFacturaAPI."' " 
                 . " WHERE PkIdSucursalBarberia=".$sucursal->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonosucursal WHERE FkIdSucursalBarberiaTelefono=".$sucursal->id;
@@ -76,7 +78,7 @@ class DbSucursal {
     }   
  
     function obtenerSucursal($busqueda, $opcion){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI FROM sucursalbarberia s 
        LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia WHERE s.Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdSucursalBarberia=".$busqueda;
@@ -185,6 +187,9 @@ class DbSucursal {
         }  
         if(isset($row['NombreBarberia'])){
             $sucursal->nombreBarberia = $row['NombreBarberia'];
+        } 
+       if(isset($row['IdFacturaAPI'])){
+            $sucursal->idFacturaAPI = $row['IdFacturaAPI'];
         }   
         $sucursal->telefono = $this->parseRowTelefono($rowTelefono);
         $sucursal->correo = $this->parseRowCorreo($rowCorreo);

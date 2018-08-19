@@ -139,6 +139,37 @@ $app->delete('/usuario/:id', function($id) use ($app) {
     return $app;
 });
 
+$app->delete('/usuario/', function() use ($app) {
+    $auth = new Auth();
+    $authToken = $app->request->headers->get('Authorization');
+
+
+    if($auth->isAuth($authToken)){
+
+        $idUsuario = $app->request->params('idUsuario');
+        $idSucursal = $app->request->params('idSucursal');
+        $dbUsuario = new DbUsuario(); 
+        $verificarReg = $dbUsuario->verificarUsuarioReserva($idUsuario ,$idSucursal);
+        if(count($verificarReg)==0){
+            $dbUsuario->eliminar($id);
+            $app->response->headers->set('Content-Type', 'application/json');
+            $app->response->setStatus(200);
+            $app->response->setBody("{'status':'success'}");
+        }else{
+
+            $app->response->headers->set('Content-Type', 'application/json');
+            $app->response->setStatus(200);
+            $app->response->setBody('{"error":"El usuario no se puede Eliminar, porque tiene citas con otras barberias."}');
+        }
+    }
+    else{
+        $app->response->headers->set('Content-Type', 'application/json');
+        $app->response->setStatus(401);
+        $app->response->setBody("");
+    }
+    return $app;
+});
+
 
 $app->post('/usuarioTelefono/', function() use ($app) { 
     $auth = new Auth();

@@ -12,6 +12,7 @@ class Usuario {
     public $estado= '';  
     public $rol= ''; 
     public $tiempoBarbero = 0;
+    public $fechaNacimiento = '';
     public $telefono = array();
     public $correo = array();
     public $servicios = array();
@@ -59,6 +60,10 @@ class Usuario {
 
     function getTiempoBarbero() {
         return $this->tiempoBarbero;
+    }
+
+    function getFechaNacimiento() {
+        return $this->fechaNacimiento;
     }
 
     function getTelefono() {
@@ -121,6 +126,10 @@ class Usuario {
         $this->tiempoBarbero = $tiempoBarbero;
     }
 
+    function setFechaNacimiento($fechaNacimiento) {
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+
     function setTelefono($telefono) {
         $this->telefono = $telefono;
     }
@@ -148,12 +157,14 @@ class Usuario {
             'usuario'=> $this->usuario,
             'contrasenna'=> $this->contrasenna,
             'idSucursal'=> $this->idSucursal,
+            'idSucursalBarberia'=> $this->idSucursalBarberia,
             'tipo'=> $this->tipo,
             'estado'=> $this->estado,
             'telefono'=>$this->telefono,
             'correo'=>$this->correo,
             'rol'=>$this->rol,
             'tiempoBarbero'=>$this->tiempoBarbero,
+            'fechaNacimiento'=>$this->fechaNacimiento,
             'telefono'=>$this->telefono,
             'correo'=>$this->correo
             )
@@ -210,7 +221,9 @@ class Usuario {
         if(isset($user->tiempoBarbero)){
             $this->tiempoBarbero = $user->tiempoBarbero;
         }
-        
+        if(isset($user->fechaNacimiento)){
+            $this->fechaNacimiento = $user->fechaNacimiento;
+        }
     }
     
 } 

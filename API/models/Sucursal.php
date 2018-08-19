@@ -9,13 +9,15 @@ class Sucursal {
     public $id = 1;
     public $idCanton = 0;
     public $idBarberia = 0;
+    public $idFacturaAPI = '';
     public $descripcion = '';
     public $detalleDireccion = '';
     public $estado = '';
     public $nombreBarberia = '';
     public $telefono = array();
     public $correo = array();
-        
+       
+
     
     function getId() {
         return $this->id;
@@ -29,6 +31,9 @@ class Sucursal {
         return $this->idBarberia;
     }
 
+    function getIdFacturaAPI() {
+        return $this->idFacturaAPI;
+    } 
     function getDescripcion() {
         return $this->descripcion;
     }
@@ -63,6 +68,10 @@ class Sucursal {
 
     function setIdBarberia($idBarberia) {
         $this->idBarberia = $idBarberia;
+    }
+
+    function setIdFacturaAPI($idFacturaAPI) {
+        $this->idFacturaAPI = $idFacturaAPI;
     }
 
     function setDescripcion($descripcion) {
@@ -101,7 +110,9 @@ class Sucursal {
         if(isset($sucursal->idBarberia)){
             $this->idBarberia = $sucursal->idBarberia;
         }
-        
+        if(isset($sucursal->idFacturaAPI)){
+            $this->idFacturaAPI = $sucursal->idFacturaAPI;
+        } 
         if(isset($sucursal->descripcion)){
             $this->descripcion = $sucursal->descripcion;
         }
@@ -123,6 +134,7 @@ class Sucursal {
             'idCanton' => $this->idCanton,
             'id'=>$this->id,
             'idBarberia'=> $this->idBarberia,
+            'idFacturaAPI'=> $this->idFacturaAPI,
             'descripcion'=> $this->descripcion,
             'detalleDireccion'=> $this->detalleDireccion,
             'estado'=> $this->estado,

@@ -12,7 +12,7 @@ class DbUsuario {
 
     function agregarUsuario($usuario,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero) VALUES ("
+        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento) VALUES ("
                 .$usuario->idSucursal.",'"
                 .$usuario->nombre."', '"
                 .$usuario->apellido1. "', '"
@@ -22,7 +22,8 @@ class DbUsuario {
                 .$usuario->tipo. "',"
                 .$usuario->estado.",'"
                 .$usuario->rol. "',"
-                .$usuario->tiempoBarbero. ")";
+                .$usuario->tiempoBarbero. ",'"
+                .$usuario->fechaNacimiento. "')";
 //            echo $sql;
             $id = $db->agregar($sql);
             if ($id >0){
@@ -87,9 +88,16 @@ class DbUsuario {
         $db->actualizar($sql);   
     }
        
+    function eliminarUsuarioBarberia($idUsuario, $idSucursalBarberia){
+        $db = new DB();
+        $sql = "UPDATE usuariosucursalbarberia SET Estado=0 WHERE FkIdUsuario=".$idUsuario." AND FkIdSucursalBarberia=".$idSucursalBarberia;
+        $db->actualizar($sql);   
+    }
+
+
     function obtenerUsuario($busqueda, $opcion){
         
-        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero";
+        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento";
         if($opcion == 1){
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
         } elseif ($opcion == 2) {
@@ -121,6 +129,14 @@ class DbUsuario {
     
     function obtenerDatosEmail($idUsuario, $idSucursal){
         $sql = "SELECT group_concat(Email) AS correo, (SELECT Descripcion from sucursalbarberia WHERE PkIdSucursalBarberia=".$idSucursal.") AS barberia FROM emailusuario WHERE  FkIdUsuarioEmail= ".$idUsuario." and Estado=1 GROUP BY FkIdUsuarioEmail";
+        $db = new DB();
+        $row = $db->obtenerUno($sql);
+        return $row;
+    }
+
+
+    function verificarUsuarioReserva($idUsuario, $idSucursal){
+        $sql = "SELECT r.FkIdSucursalBarberiaReserva from reserva r inner join usuarios u on u.PkIdUsuario = r.FkIdUsuarioReserva where FkIdSucursalBarberiaReserva != ".$idSucursal." and u.PkIdUsuario= ".$idUsuario.;
         $db = new DB();
         $row = $db->obtenerUno($sql);
         return $row;
@@ -171,7 +187,7 @@ class DbUsuario {
     }
     
     function listarUsuarios(){
-        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero FROM usuarios";
+        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento FROM usuarios";
         $db = new DB();
         $rowList = $db->listar($sql);
         $usuarioList = $this->parseRowAUsuarioList($rowList);
@@ -249,7 +265,9 @@ class DbUsuario {
         if(isset($row['TiempoBarbero'])){
             $user->tiempoBarbero = $row['TiempoBarbero'];
         }  
-        
+        if(isset($row['FechaNacimiento'])){
+            $user->fechaNacimiento = $row['FechaNacimiento'];
+        }  
         $user->telefono = $this->parseRowTelefono($rowTelefono);
         $user->correo = $this->parseRowCorreo($rowCorreo);
         $user->servicios = $rowServicios;

@@ -77,10 +77,10 @@ class Sucursal {
         return $this->distrito;
     }
 
-    function getCanton {
+    function getCanton() {
         return $this->canton;
     }
-    
+
     function setId($id) {
         $this->id = $id;
     }

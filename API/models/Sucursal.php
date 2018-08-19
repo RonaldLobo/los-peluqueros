@@ -24,20 +24,7 @@ class Sucursal {
        
 
 
-    function getNombreNegocio() {
-        return $this->nombreNegocio;
-    }
 
-    function getCedulaJuridica() {
-        return $this->cedulaJuridica;
-    }
-
-    function getDistrito() {
-        return $this->distrito;
-    }
-      function getCanton {
-        return $this->canton;
-    }
     
     function getId() {
         return $this->id;
@@ -76,6 +63,22 @@ class Sucursal {
 
     function getNombreBarberia() {
         return $this->nombreBarberia;
+    }
+    
+    function getNombreNegocio() {
+        return $this->nombreNegocio;
+    }
+
+    function getCedulaJuridica() {
+        return $this->cedulaJuridica;
+    }
+
+    function getDistrito() {
+        return $this->distrito;
+    }
+
+    function getCanton {
+        return $this->canton;
     }
     
     function setId($id) {

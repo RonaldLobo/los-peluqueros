@@ -17,7 +17,8 @@ class Sucursal {
     public $cedulaJuridica = '';
     public $nombreNegocio = '';
     public $distrito = '';
-    public $canton = '';
+    public $barrio = '';
+    public $provincia = 0;
 
     public $telefono = array();
     public $correo = array();
@@ -77,8 +78,12 @@ class Sucursal {
         return $this->distrito;
     }
 
-    function getCanton() {
-        return $this->canton;
+    function getBarrio() {
+        return $this->barrio;
+    }
+
+    function getProvincia() {
+        return $this->provincia;
     }
 
     function setId($id) {
@@ -130,10 +135,12 @@ class Sucursal {
     function setDistrito($distrito) {
         $this->distrito = $distrito;
     }
-    function setCanton($canton) {
-        $this->canton = $canton;
+    function setBarrio($barrio) {
+        $this->barrio = $barrio;
     }
-
+    function setProvincia($provincia) {
+        $this->provincia = $provincia;
+    }
         
     function parseDto($sucursal) {
         if(isset($sucursal->idCanton)){
@@ -166,8 +173,11 @@ class Sucursal {
         if(isset($sucursal->distrito)){
             $this->distrito = $sucursal->distrito;
         }
-        if(isset($sucursal->canton)){
-            $this->canton = $sucursal->canton;
+        if(isset($sucursal->barrio)){
+            $this->barrio = $sucursal->barrio;
+        }
+        if(isset($sucursal->provincia)){
+            $this->provincia = $sucursal->provincia;
         }
     }
     
@@ -192,8 +202,9 @@ class Sucursal {
             'correo'=>$this->correo,
             'nombreNegocio'=> $this->nombreNegocio,
             'cedulaJuridica'=> $this->cedulaJuridica,
-            'canton'=>$this->canton,
-            'distrito'=>$this->distrito
+            'barrio'=>$this->barrio,
+            'distrito'=>$this->distrito,
+            'provincia'=>$this->provincia
             )
         );
         return json_encode($data);

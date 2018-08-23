@@ -213,6 +213,7 @@ class DbSucursal {
         if(isset($row['Barrio'])){
             $sucursal->barrio = $row['Barrio'];
         } 
+        
         if(isset($row['Provincia'])){
             $sucursal->provincia = $row['Provincia'];
         }          

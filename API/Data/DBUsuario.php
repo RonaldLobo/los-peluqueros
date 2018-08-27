@@ -26,7 +26,7 @@ class DbUsuario {
                 .$usuario->fechaNacimiento. "','"
                 .$usuario->cedula. "',"
                 .$usuario->idProvincia. ","
-                .$usuario->IdCanton. ",'"
+                .$usuario->idCanton. ",'"
                 .$usuario->distrito. "','"
                 .$usuario->barrio. "','"
                 .$usuario->detalleDireccion. "')";

@@ -71,7 +71,7 @@ class DbUsuario {
                 . "IdCanton=".$usuario->IdCanton.", "
                 . "Distrito='".$usuario->distrito."', "
                 . "Barrio='".$usuario->barrio."', "
-                . "DetalleDireccion='".$usuario->detalleDireccion."', "
+                . "DetalleDireccion='".$usuario->detalleDireccion."' "
                 . "WHERE PkIdUsuario=".$usuario->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonousuario WHERE FkIdUsuarioTelefono=".$usuario->id;

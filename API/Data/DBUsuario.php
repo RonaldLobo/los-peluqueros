@@ -12,7 +12,7 @@ class DbUsuario {
 
     function agregarUsuario($usuario,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento) VALUES ("
+        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion) VALUES ("
                 .$usuario->idSucursal.",'"
                 .$usuario->nombre."', '"
                 .$usuario->apellido1. "', '"
@@ -23,7 +23,13 @@ class DbUsuario {
                 .$usuario->estado.",'"
                 .$usuario->rol. "',"
                 .$usuario->tiempoBarbero. ",'"
-                .$usuario->fechaNacimiento. "')";
+                .$usuario->fechaNacimiento. "','"
+                .$usuario->cedula. "',"
+                .$usuario->idProvincia. ","
+                .$usuario->IdCanton. ",'"
+                .$usuario->distrito. "','"
+                .$usuario->barrio. "','"
+                .$usuario->detalleDireccion. "')";
 //            echo $sql;
             $id = $db->agregar($sql);
             if ($id >0){
@@ -58,7 +64,14 @@ class DbUsuario {
                 . "Contrasenna='".$usuario->contrasenna."',"
                 . "Estado=".$usuario->estado.","
                 . "Rol='".$usuario->rol."',"
-                . "TiempoBarbero='".$usuario->tiempoBarbero."' "
+                . "TiempoBarbero='".$usuario->tiempoBarbero."', "
+                . "FechaNacimiento='".$usuario->fechaNacimiento."', "
+                . "Cedula='".$usuario->cedula."', "
+                . "IdProvincia=".$usuario->idProvincia.", "
+                . "IdCanton=".$usuario->IdCanton.", "
+                . "Distrito='".$usuario->distrito."', "
+                . "Barrio='".$usuario->barrio."', "
+                . "DetalleDireccion='".$usuario->detalleDireccion."', "
                 . "WHERE PkIdUsuario=".$usuario->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonousuario WHERE FkIdUsuarioTelefono=".$usuario->id;
@@ -97,7 +110,7 @@ class DbUsuario {
 
     function obtenerUsuario($busqueda, $opcion){
         
-        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento";
+        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion";
         if($opcion == 1){
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
         } elseif ($opcion == 2) {
@@ -187,7 +200,7 @@ class DbUsuario {
     }
     
     function listarUsuarios(){
-        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento FROM usuarios";
+        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion FROM usuarios";
         $db = new DB();
         $rowList = $db->listar($sql);
         $usuarioList = $this->parseRowAUsuarioList($rowList);
@@ -268,6 +281,25 @@ class DbUsuario {
         if(isset($row['FechaNacimiento'])){
             $user->fechaNacimiento = $row['FechaNacimiento'];
         }  
+        if(isset($row['Cedula'])){
+            $user->cedula = $row['Cedula'];
+        }
+        if(isset($row['IdProvincia'])){
+            $user->idProvincia = $row['IdProvincia'];
+        }
+        if(isset($row['IdCanton'])){
+            $user->IdCanton = $row['IdCanton'];
+        }
+        if(isset($row['Distrito'])){
+            $user->distrito = $row['Distrito'];
+        }  
+        if(isset($row['Barrio'])){
+            $user->barrio = $row['Barrio'];
+        }  
+        if(isset($row['DetalleDireccion'])){
+            $user->detalleDireccion = $row['DetalleDireccion'];
+        }  
+
         $user->telefono = $this->parseRowTelefono($rowTelefono);
         $user->correo = $this->parseRowCorreo($rowCorreo);
         $user->servicios = $rowServicios;

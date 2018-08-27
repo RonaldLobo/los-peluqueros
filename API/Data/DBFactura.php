@@ -10,7 +10,7 @@ class DBFactura {
 
     function agregarFactura($factura){
         $db = new DB();
-        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Monto,Impuesto,Descuento,Cantidad,Moneda,Codigo,Detalle,TipoTransacion,Estado) VALUES ("
+        $sql = "INSERT INTO factura (s,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,Impuesto,Descuento,Cantidad,Moneda,Codigo,Detalle,TipoTransacion,Estado) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"

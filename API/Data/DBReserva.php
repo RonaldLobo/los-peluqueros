@@ -72,6 +72,8 @@ class DBReserva {
             $sql.= " AND FkIdUsuarioReserva=".$busqueda." ORDER BY HoraInicial";
          } elseif ($opcion == 4) {
             $sql.= " AND FkIdServicioReserva=".$busqueda." ORDER BY HoraInicial";
+        }elseif ($opcion == 5) {
+            $sql.= " AND FkIdSucursalBarberiaReserva=".$busqueda." AND r.EstadoFactura='P' ORDER BY r.Dia desc";
         }
         $db = new DB();
         if( $opcion!=1){

@@ -19,8 +19,12 @@ $app->get('/reserva/', function() use ($app) {
         $fechaFinal = $app->request->params('fechaFinal');
         $idUsuario = $app->request->params('idUsuarioReserva');
         $idUsuarioBarbero = $app->request->params('idUsuarioBarbero');
-        $idServicio = $app->request->params('idServicio');       
-         if (!empty($idSucursal)) {
+        $idServicio = $app->request->params('idServicio');      
+        $estadoFactura = $app->request->params('estadoFactura');  
+
+        if (!empty($estadoFactura)) {
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,5));
+        }  else if (!empty($idSucursal)) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,2));
         }  else  if (!empty($idUsuario)) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idUsuario,3));

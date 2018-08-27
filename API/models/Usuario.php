@@ -17,6 +17,12 @@ class Usuario {
     public $correo = array();
     public $servicios = array();
     public $horarios = array();
+    public $cedula = '';
+    public $idProvincia = 0;
+    public $idCanton = 0;
+    public $distrito = '';
+    public $barrio = '';
+    public $detalleDireccion = '';
        
     function getId() {
         return $this->id;
@@ -80,6 +86,29 @@ class Usuario {
 
     function getHorarios() {
         return $this->horarios;
+    }
+    function getCedula() {
+        return $this->cedula;
+    }
+
+    function getIdProvincia() {
+        return $this->idProvincia;
+    }
+
+    function getIdCanton() {
+        return $this->idCanton;
+    }
+
+    function getDistrito() {
+        return $this->distrito;
+    }
+
+    function getBarrio() {
+        return $this->barrio;
+    }
+
+    function getDetalleDireccion() {
+        return $this->detalleDireccion;
     }
 
     function setId($id) {
@@ -146,6 +175,30 @@ class Usuario {
         $this->horarios = $horarios;
     }
 
+    function setCedula($cedula) {
+        $this->cedula = $cedula;
+    }
+
+    function setIdProvincia($idProvincia) {
+        $this->idProvincia = $idProvincia;
+    }
+
+    function setIdCanton($idCanton) {
+        $this->idCanton = $idCanton;
+    }
+
+    function setDistrito($distrito) {
+        $this->distrito = $distrito;
+    }
+
+    function setBarrio($barrio) {
+        $this->barrio = $barrio;
+    }
+
+    function setDetalleDireccion($detalleDireccion) {
+        $this->detalleDireccion = $detalleDireccion;
+    }
+
        
     function toJson() {
         $data = array(
@@ -166,7 +219,13 @@ class Usuario {
             'tiempoBarbero'=>$this->tiempoBarbero,
             'fechaNacimiento'=>$this->fechaNacimiento,
             'telefono'=>$this->telefono,
-            'correo'=>$this->correo
+            'correo'=>$this->correo,
+            'cedula'=>$this->cedula,
+            'idProvincia'=>$this->idProvincia,
+            'idCanton'=>$this->idCanton,
+            'distrito'=>$this->distrito,
+            'barrio'=>$this->barrio,
+            'detalleDireccion'=>$this->detalleDireccion
             )
         );
         return json_encode($data);
@@ -223,6 +282,24 @@ class Usuario {
         }
         if(isset($user->fechaNacimiento)){
             $this->fechaNacimiento = $user->fechaNacimiento;
+        }
+        if(isset($user->cedula)){
+            $this->cedula = $user->cedula;
+        }
+        if(isset($user->idProvincia)){
+            $this->idProvincia = $user->idProvincia;
+        }
+        if(isset($user->idCanton)){
+            $this->idCanton = $user->idCanton;
+        }
+        if(isset($user->distrito)){
+            $this->distrito = $user->distrito;
+        }
+        if(isset($user->barrio)){
+            $this->barrio = $user->barrio;
+        }
+        if(isset($user->detalleDireccion)){
+            $this->detalleDireccion = $user->detalleDireccion;
         }
     }
     

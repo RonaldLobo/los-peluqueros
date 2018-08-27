@@ -288,7 +288,7 @@ class DbUsuario {
             $user->idProvincia = $row['IdProvincia'];
         }
         if(isset($row['IdCanton'])){
-            $user->IdCanton = $row['IdCanton'];
+            $user->idCanton = $row['IdCanton'];
         }
         if(isset($row['Distrito'])){
             $user->distrito = $row['Distrito'];

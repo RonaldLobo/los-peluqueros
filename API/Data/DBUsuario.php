@@ -68,7 +68,7 @@ class DbUsuario {
                 . "FechaNacimiento='".$usuario->fechaNacimiento."', "
                 . "Cedula='".$usuario->cedula."', "
                 . "IdProvincia=".$usuario->idProvincia.", "
-                . "IdCanton=".$usuario->IdCanton.", "
+                . "IdCanton=".$usuario->idCanton.", "
                 . "Distrito='".$usuario->distrito."', "
                 . "Barrio='".$usuario->barrio."', "
                 . "DetalleDireccion='".$usuario->detalleDireccion."' "

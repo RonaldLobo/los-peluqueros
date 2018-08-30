@@ -1952,62 +1952,42 @@ var CitasComponent = (function () {
     CitasComponent.prototype.updateReserva = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var fact, that;
+            var fact;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.facturacionHacienda()];
-                    case 1:
-                        _a.sent();
-                        console.log('factura hacienda', this.facturaHacienda);
-                        fact = this.facturaHacienda;
-                        that = this;
-                        fact.con = true;
-                        that.facturaService.post('', fact)
-                            .then(function (res) {
-                            console.log('res', res);
-                            fact.con = false;
-                            _this.selectedCita.consecutivo = res.resp.consecutivo;
-                            _this.selectedCita.clave = res.resp.clave;
-                            that.genLetter(function (doc) {
-                                var blob = doc.output("blob");
-                                that.blobToBase64(blob, function (base) {
-                                    var _this = this;
-                                    fact.facturabase = {
-                                        base: base
-                                    };
-                                    that.facturaService.post('', fact)
-                                        .then(function (res) {
-                                        console.log('res', res);
-                                        if (res.respuesta == "aceptado") {
-                                            _this.selectedCita.estadoFactura = 'P';
-                                            _this.dataService.post('/reserva/?method=put', { 'reserva': _this.selectedCita })
-                                                .then(function (response) {
-                                                alert('Información actualizada');
-                                                // alert('Factura Generada');
-                                                _this.cargando = false;
-                                                console.log(response);
-                                            }, function (error) {
-                                                // alert('Factura Generada | Error al actualizar el estado. ' + error);
-                                                _this.cargando = false;
-                                                _this.selectedCita.estadoFactura = 'R';
-                                            });
-                                        }
-                                        if (res.respuesta == 'rechazado') {
-                                            _this.cargando = false;
-                                            alert('Factura Rechazada por el Ministerio de Hacienda, volver a intentar.');
-                                        }
-                                    }, function (err) {
-                                        console.log('error', err);
-                                        _this.cargando = false;
-                                    });
-                                });
-                            });
-                        }, function (err) {
-                            console.log('error', err);
-                            _this.cargando = false;
-                        });
-                        return [2 /*return*/];
-                }
+                //await this.facturacionHacienda();
+                console.log('factura hacienda', this.facturaHacienda);
+                fact = this.facturaHacienda;
+                // var that = this;
+                // fact.con = true;
+                // that.facturaService.post('',fact)
+                // .then(res => {
+                // 	console.log('res',res);
+                // 	fact.con = false;
+                // 	this.selectedCita.consecutivo = res.resp.consecutivo;
+                // 	this.selectedCita.clave = res.resp.clave;
+                // 	that.genLetter(function(doc){
+                // 		var blob = doc.output("blob");
+                //     	that.blobToBase64(blob,function(base){
+                // 			fact.facturabase = {
+                // 				base: base
+                // 			};
+                // 			that.facturaService.post('',fact)
+                // 			.then(res => {
+                // 				console.log('res',res);
+                // 				if(res.respuesta == "aceptado"){
+                this.selectedCita.estadoFactura = 'P';
+                this.dataService.post('/reserva/?method=put', { 'reserva': this.selectedCita })
+                    .then(function (response) {
+                    alert('Información actualizada');
+                    // alert('Factura Generada');
+                    _this.cargando = false;
+                    console.log(response);
+                }, function (error) {
+                    // alert('Factura Generada | Error al actualizar el estado. ' + error);
+                    _this.cargando = false;
+                    _this.selectedCita.estadoFactura = 'R';
+                });
+                return [2 /*return*/];
             });
         });
     };

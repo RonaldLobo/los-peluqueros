@@ -509,10 +509,10 @@ var DataService = (function () {
         this.token = '';
         // public server:string = "http://localhost:82/API/index.php"
         // public server:string = "/API/index.php"
-        this.server = "http://lospeluqueros.com/API/index.php";
+        this.server = "http://los-peluqueros.herokuapp.com/API/index.php";
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
         if (app) {
-            this.server = "http://lospeluqueros.com/API/index.php";
+            this.server = "http://los-peluqueros.herokuapp.com/API/index.php";
         }
     }
     DataService.prototype.search = function (url, element) {

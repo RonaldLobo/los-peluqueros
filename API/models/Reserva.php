@@ -31,6 +31,8 @@ class Reserva {
     public $detalleFactura="";
     public $comprobantePago="";
     public $tipoPago ="";
+    public $clave ="";
+    public $consecutivo ="";
     
     function getId() {
         return $this->id;
@@ -128,6 +130,22 @@ class Reserva {
     
     function getEstadoFactura(){
          return $this->estadoFactura;
+    }
+
+    function getClave(){
+         return $this->clave;
+    }
+
+    function getConsecutivo(){
+         return $this->consecutivo;
+    }
+
+    function setConsecutivo($consecutivo) {
+        $this->consecutivo = $consecutivo;
+    }
+
+    function setClave($clave) {
+        $this->clave = $clave;
     }
 
     function setId($id) {
@@ -344,6 +362,12 @@ class Reserva {
         if(isset($reserva->tipoPago)){
             $this->tipoPago = $reserva->tipoPago;
         }
+        if(isset($reserva->consecutivo)){
+            $this->consecutivo = $reserva->consecutivo;
+        }
+        if(isset($reserva->clave)){
+            $this->clave = $reserva->clave;
+        }
     }
     
      function toJson() {
@@ -376,7 +400,9 @@ class Reserva {
             'estadoFactura'=> $this->estadoFactura,
             'detalleFactura'=> $this->detalleFactura,
             'comprobantePago'=> $this->comprobantePago,
-            'tipoPago'=> $this->tipoPago
+            'tipoPago'=> $this->tipoPago,
+            'consecutivo'=> $this->consecutivo,
+            'clave'=> $this->clave
             )
         );
         return json_encode($data);

@@ -3123,6 +3123,11 @@ var FacturaComponent = (function () {
             }, function (error) {
                 console.log('error', error);
             });
+            that.dataService.get('/sucursal/' + that.authService.loggedUser.idSucursal).then(function (data) {
+                that.sucursal = data[0];
+            }, function (error) {
+                console.log('error', error);
+            });
         }, 2000);
     };
     FacturaComponent.prototype.updateTimeToHora = function (pausas) {

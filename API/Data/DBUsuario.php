@@ -116,7 +116,7 @@ class DbUsuario {
         } elseif ($opcion == 2) {
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND Usuario='".$busqueda."'";
         } elseif ($opcion == 3) {
-            $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND (Rol='BS' OR Rol='B')";
+            $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND Rol LIKE '%B%')";
         } elseif ($opcion == 4) {
             $sql .= ",Contrasenna  FROM usuarios WHERE CONCAT(Nombre, ' ', PrimerApellido,' ', SegundoApellido)  LIKE '%".$busqueda."%' and Estado = 1";
         }

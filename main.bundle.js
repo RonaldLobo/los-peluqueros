@@ -10,8 +10,8 @@ webpackJsonp([1,5],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__data_service__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__window_service__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__push_notification_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ngx_facebook__ = __webpack_require__(114);
@@ -509,10 +509,10 @@ var DataService = (function () {
         this.token = '';
         // public server:string = "http://localhost:82/API/index.php"
         // public server:string = "/API/index.php"
-        this.server = "http://lospeluqueros.com/API/index.php";
+        this.server = "http://los-peluqueros.herokuapp.com/API/index.php";
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
         if (app) {
-            this.server = "http://lospeluqueros.com/API/index.php";
+            this.server = "http://los-peluqueros.herokuapp.com/API/index.php";
         }
     }
     DataService.prototype.search = function (url, element) {
@@ -592,7 +592,7 @@ var _a;
 
 /***/ }),
 
-/***/ 26:
+/***/ 27:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -611,7 +611,7 @@ var Correo = (function () {
 
 /***/ }),
 
-/***/ 27:
+/***/ 28:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -630,7 +630,7 @@ var Telefono = (function () {
 
 /***/ }),
 
-/***/ 28:
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -992,7 +992,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_factura_service__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_shared_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_facebook_login_service__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_push_notification_service__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_ngx_facebook__ = __webpack_require__(114);
@@ -1001,7 +1001,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_ngx_bootstrap_carousel__ = __webpack_require__(487);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_ngx_bootstrap_accordion__ = __webpack_require__(454);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ngx_bootstrap_tabs__ = __webpack_require__(513);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_ngx_bootstrap_datepicker__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_ngx_bootstrap_buttons__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32_ngx_bootstrap_typeahead__ = __webpack_require__(518);
@@ -1543,12 +1543,12 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_factura_service__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_window_service__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_shared_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_usuario__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_correo__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__models_correo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_common__ = __webpack_require__(9);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CitasComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1845,9 +1845,9 @@ var CitasComponent = (function () {
     CitasComponent.prototype.generar = function () {
         var _this = this;
         var barberoId = this.authService.loggedUser.id;
-        console.log('is admin', this.authService.isAdminSucursalUser());
+        //console.log('is admin',this.authService.isAdminSucursalUser());
         if (this.authService.isAdminSucursalUser()) {
-            console.log(this.selectedBarbero);
+            //console.log(this.selectedBarbero);
             barberoId = this.selectedBarbero;
         }
         var resIni = new Date(this.resumenFechaInicial);
@@ -1952,62 +1952,42 @@ var CitasComponent = (function () {
     CitasComponent.prototype.updateReserva = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var fact, that;
+            var fact;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.facturacionHacienda()];
-                    case 1:
-                        _a.sent();
-                        console.log('factura hacienda', this.facturaHacienda);
-                        fact = this.facturaHacienda;
-                        that = this;
-                        fact.con = true;
-                        that.facturaService.post('', fact)
-                            .then(function (res) {
-                            console.log('res', res);
-                            fact.con = false;
-                            _this.selectedCita.consecutivo = res.resp.consecutivo;
-                            _this.selectedCita.clave = res.resp.clave;
-                            that.genLetter(function (doc) {
-                                var blob = doc.output("blob");
-                                that.blobToBase64(blob, function (base) {
-                                    var _this = this;
-                                    fact.facturabase = {
-                                        base: base
-                                    };
-                                    that.facturaService.post('', fact)
-                                        .then(function (res) {
-                                        console.log('res', res);
-                                        if (res.respuesta == "aceptado") {
-                                            _this.selectedCita.estadoFactura = 'P';
-                                            _this.dataService.post('/reserva/?method=put', { 'reserva': _this.selectedCita })
-                                                .then(function (response) {
-                                                alert('Información actualizada');
-                                                // alert('Factura Generada');
-                                                _this.cargando = false;
-                                                console.log(response);
-                                            }, function (error) {
-                                                // alert('Factura Generada | Error al actualizar el estado. ' + error);
-                                                _this.cargando = false;
-                                                _this.selectedCita.estadoFactura = 'R';
-                                            });
-                                        }
-                                        if (res.respuesta == 'rechazado') {
-                                            _this.cargando = false;
-                                            alert('Factura Rechazada por el Ministerio de Hacienda, volver a intentar.');
-                                        }
-                                    }, function (err) {
-                                        console.log('error', err);
-                                        _this.cargando = false;
-                                    });
-                                });
-                            });
-                        }, function (err) {
-                            console.log('error', err);
-                            _this.cargando = false;
-                        });
-                        return [2 /*return*/];
-                }
+                //await this.facturacionHacienda();
+                console.log('factura hacienda', this.facturaHacienda);
+                fact = this.facturaHacienda;
+                // var that = this;
+                // fact.con = true;
+                // that.facturaService.post('',fact)
+                // .then(res => {
+                // 	console.log('res',res);
+                // 	fact.con = false;
+                // 	this.selectedCita.consecutivo = res.resp.consecutivo;
+                // 	this.selectedCita.clave = res.resp.clave;
+                // 	that.genLetter(function(doc){
+                // 		var blob = doc.output("blob");
+                //     	that.blobToBase64(blob,function(base){
+                // 			fact.facturabase = {
+                // 				base: base
+                // 			};
+                // 			that.facturaService.post('',fact)
+                // 			.then(res => {
+                // 				console.log('res',res);
+                // 				if(res.respuesta == "aceptado"){
+                this.selectedCita.estadoFactura = 'P';
+                this.dataService.post('/reserva/?method=put', { 'reserva': this.selectedCita })
+                    .then(function (response) {
+                    alert('Información actualizada');
+                    // alert('Factura Generada');
+                    _this.cargando = false;
+                    console.log(response);
+                }, function (error) {
+                    // alert('Factura Generada | Error al actualizar el estado. ' + error);
+                    _this.cargando = false;
+                    _this.selectedCita.estadoFactura = 'R';
+                });
+                return [2 /*return*/];
             });
         });
     };
@@ -2032,7 +2012,7 @@ var CitasComponent = (function () {
                     case 0: return [4 /*yield*/, this.obtenerDatosBarberia()];
                     case 1:
                         sucursal = _a.sent();
-                        console.log('suc', sucursal);
+                        //console.log('suc',sucursal);
                         this.sucursal = sucursal[0];
                         this.facturaHacienda.factura = {};
                         this.facturaHacienda.cliente = {};
@@ -2265,11 +2245,11 @@ var CitasComponent = (function () {
                 doc.setFontType("normal");
                 doc.text(that.toDecimals(that.selectedCita.precio), 560, 670, 'right');
                 doc.text('Descuento', 400, 690);
-                doc.text(that.toDecimals(that.selectedCita.precio), 560, 690, 'right');
+                doc.text(that.toDecimals(0), 560, 690, 'right');
                 doc.text('Total Neto', 400, 710);
                 doc.text(that.toDecimals(that.selectedCita.precio), 560, 710, 'right');
                 doc.text('Impuestos', 400, 730);
-                doc.text(that.toDecimals(that.selectedCita.precio), 560, 730, 'right');
+                doc.text(that.toDecimals(0), 560, 730, 'right');
                 doc.setFontSize("11");
                 doc.setFontType("bold");
                 doc.text('Total Factura', 400, 750);
@@ -2346,12 +2326,12 @@ var _a, _b, _c, _d, _e, _f, _g, _h;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_usuario__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfiguracionComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2716,11 +2696,12 @@ var ConfiguracionComponent = (function () {
         var _this = this;
         this.barberiaErrores = this.validatorService.validaBarberia(this.nuevaBarberia);
         if (this.barberiaErrores.length == 0) {
-            console.log('modificar Barberia', this.nuevaBarberia);
             this.cargando = true;
             //this.nuevaBarberia.descripcion = this.nuevaBarberia.descripcion.replace("'","\'");
             //this.nuevaBarberia.nombreNegocio = this.nuevaBarberia.nombreNegocio.replace("'","\'");
-            this.nuevaBarberia.descripcion = this.nuevaBarberia.descripcion.replace("'", "\'");
+            //this.nuevaBarberia.descripcion = 	this.nuevaBarberia.descripcion.replace(/[']/g, "/'");;
+            //console.log(this.nuevaBarberia.descripcion, 'kim');
+            //this.nuevaBarberia.descripcion = this.nuevaBarberia.descripcion.replace("'","\'");
             this.dataService.post('/sucursal/?method=PUT', { "sucursal": this.nuevaBarberia })
                 .then(function (response) {
                 var url = '/sucursal/?idBarberia=' + _this.authService.idBarberia;
@@ -2729,7 +2710,6 @@ var ConfiguracionComponent = (function () {
                 }
                 _this.dataService.get(url)
                     .then(function (response) {
-                    console.log('success Sucursales', response);
                     _this.sucursales = response;
                     if (!_this.authService.isAdminSucursalUser()) {
                         _this.sucursales = response.sucursal;
@@ -2738,7 +2718,6 @@ var ConfiguracionComponent = (function () {
                     _this.selectedBarberiaId = _this.nuevaBarberia.id;
                     _this.dataService.get('/usuario/?idSucursal=' + _this.nuevaBarberia.id)
                         .then(function (response) {
-                        console.log('success barberos', response);
                         _this.barberos = response.usuario;
                         _this.nuevoBarbero = Object.assign({}, _this.barberos[0]);
                         if (_this.barberos.length > 0) {
@@ -3068,7 +3047,7 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_shared_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common__ = __webpack_require__(9);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FacturaComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3324,11 +3303,11 @@ var FacturaComponent = (function () {
                 doc.setFontType("normal");
                 doc.text(that.toDecimals(that.selectedFactura.precio), 560, 670, 'right');
                 doc.text('Descuento', 400, 690);
-                doc.text(that.toDecimals(that.selectedFactura.precio), 560, 690, 'right');
+                doc.text(that.toDecimals(0), 560, 690, 'right');
                 doc.text('Total Neto', 400, 710);
                 doc.text(that.toDecimals(that.selectedFactura.precio), 560, 710, 'right');
                 doc.text('Impuestos', 400, 730);
-                doc.text(that.toDecimals(that.selectedFactura.precio), 560, 730, 'right');
+                doc.text(that.toDecimals(0), 560, 730, 'right');
                 doc.setFontSize("11");
                 doc.setFontType("bold");
                 doc.text('Total Factura', 400, 750);
@@ -3392,7 +3371,7 @@ var FacturaComponent = (function () {
             doc.text('Total Neto: ', 35, y + 4, "right");
             doc.text(that.toDecimals(that.selectedFactura.precio), 50, y + 4, "right");
             doc.text('Total Impuestos: ', 35, y + 8, "right");
-            doc.text(that.toDecimals(that.selectedFactura.precio), 50, y + 8, "right");
+            doc.text(that.toDecimals(0), 50, y + 8, "right");
             doc.text('Total: ', 35, y + 12, "right");
             doc.text(that.toDecimals(that.selectedFactura.precio), 50, y + 12, "right");
             // fin total
@@ -3581,10 +3560,10 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_window_service__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_validator_service__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_bootstrap_modal__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_correo__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_validator_service__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_bootstrap_modal__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_correo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_facebook__ = __webpack_require__(114);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4240,10 +4219,10 @@ var _a, _b, _c, _d, _e, _f;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_usuario__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_correo__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_correo__ = __webpack_require__(27);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4372,7 +4351,7 @@ var _a, _b, _c, _d;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(10);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -4471,11 +4450,11 @@ FormatHoraPipe = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_usuario__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_correo__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ngx_bootstrap_modal__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_correo__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_observable_of__ = __webpack_require__(555);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_observable_of__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_lodash__ = __webpack_require__(143);
@@ -5355,14 +5334,15 @@ var SHARED_COMPONENTS = [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_validator_service__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_validator_service__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_usuario__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_telefono__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_correo__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_data_service__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_shared_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_ngx_bootstrap_modal__ = __webpack_require__(24);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsuariosComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -5383,13 +5363,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UsuariosComponent = (function () {
-    function UsuariosComponent(router, dataService, authService, validatorService, sharedService) {
+    function UsuariosComponent(router, dataService, authService, validatorService, sharedService, modalService) {
         this.router = router;
         this.dataService = dataService;
         this.authService = authService;
         this.validatorService = validatorService;
         this.sharedService = sharedService;
+        this.modalService = modalService;
         this.cargando = false;
         this.nuevoUsuario = new __WEBPACK_IMPORTED_MODULE_4__models_usuario__["a" /* Usuario */]();
         this.usuarioErrores = [];
@@ -5436,6 +5418,9 @@ var UsuariosComponent = (function () {
             _this.selectedCanton = _this.selectedProvincia.cantones[0];
             _this.nuevoUsuario.distrito = _this.selectedCanton.distritos[0].codigo;
         });
+    };
+    UsuariosComponent.prototype.openModalPrint = function (template) {
+        this.printRefCompletar = this.modalService.show(template);
     };
     UsuariosComponent.prototype.changeProvincia = function (event) {
         this.selectedCanton = this.selectedProvincia.cantones[0];
@@ -5641,10 +5626,10 @@ UsuariosComponent = __decorate([
         template: __webpack_require__(549),
         styles: [__webpack_require__(446)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_validator_service__["a" /* ValidatorService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_shared_service__["a" /* SharedService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_validator_service__["a" /* ValidatorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_validator_service__["a" /* ValidatorService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_8__services_shared_service__["a" /* SharedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_shared_service__["a" /* SharedService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_10_ngx_bootstrap_modal__["b" /* BsModalService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10_ngx_bootstrap_modal__["b" /* BsModalService */]) === "function" && _f || Object])
 ], UsuariosComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=usuarios.component.js.map
 
 /***/ }),
@@ -6323,7 +6308,7 @@ module.exports = "<div class=\"header-space\">\n</div>\n\n<div class=\"container
 /***/ 539:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-space\">\n</div>\n\n\n<div class=\"container\">\n    \t<div clas=\"col-12\">\n    \t\t<div class=\"module white-back static row\">\n    \t\t\t<div class=\"title reserva col-12\">\n    \t\t\t  <h5>Facturas</h5>\n    \t\t\t</div>\n    \t\t\t<div class=\"col-12 text-center\">\n\t    \t\t    <pagination-controls (pageChange)=\"p = $event\" previousLabel=\"Previo\" nextLabel=\"Siguiente\"></pagination-controls>\n\t    \t\t</div>\n\n\t\t\t\t<ul class=\"col-12 items-list\">\n\t\t\t\t\t<li class=\"item\">\n\t\t\t\t\t\t<div class=\"col-12 row\">\n\t\t\t\t\t\t\t<div class=\"col-sm-3 col-6\">\n\t\t\t\t\t\t\t\t<p>Cliente\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-2 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>Fecha</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-3 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>Estado</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-4 col-6 text-center\">\n\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\tAcciones\n\t\t\t\t\t\t        </p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li *ngFor=\"let factura of facturas | paginate: { itemsPerPage: 10, currentPage: p }; index as i;\" \n\t\t\t\t\t\tclass=\"item\" \n\t\t\t\t\t\t[class.odd]=\"i%2==0\">\n\t\t\t\t\t\t<div class=\"col-12 row\">\n\t\t\t\t\t\t\t<div class=\"col-sm-3 col-6\">\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.idUsuarioBarbero\">\n\t\t\t\t\t\t\t\t\t{{factura.nombreUserReserva +' '+factura.primerApellidoUserReserva + ' '+factura.segundoApellidoUserReserva}}\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t<p *ngIf=\"!factura.idUsuarioBarbero\">\n\t\t\t\t\t\t\t\t\tFactura sin cliente asignado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-2 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t{{factura.dia | date: 'dd/MM/yyyy'}}\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-3 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.estadoFactura == 'R'\">\n\t\t\t\t\t\t\t\t\tRegistrado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.estadoFactura == 'P'\">\n\t\t\t\t\t\t\t\t\tPagado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-4 col-6 text-center\" style=\"padding-top: 4px;\">\n\t\t\t\t\t\t\t\t<button (click)=\"selectedFactura = factura; openModal(facturaModal)\" class=\"btn btn-info\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-expand\" aria-hidden=\"true\"></i> Ver\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<button (click)=\"selectedFactura = factura; openModalPrint(print)\" class=\"btn btn-success\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-print\" aria-hidden=\"true\"></i> Imprimir\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n</div>\n\n\n\n\n<div class=\"cargando\" *ngIf=\"cargando\">\n  <div>\n    <img src=\"assets/images/m2.png\">\n    Cargando...\n  </div>\n</div>\n\n<template #facturaModal>\n\t<div class=\"modal-header\">\n\t    <h4 class=\"modal-title pull-left\">Factura</h4>\n\t    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n\t\t\t<span aria-hidden=\"true\">&times;</span>\n\t\t</button>\n\t</div>\n    <div class=\"modal-body container\">\n    \t<ul class=\"row\">\n          <li class=\"col-5\"><span>Barberia : </span></li>\n          <li class=\"col-7\"><span>{{selectedFactura.sucursal}}</span></li>\n          <li class=\"col-5\" *ngIf=\"authService.isRegularUser()\"><span>Barbero : </span></li>\n          <li class=\"col-7\" *ngIf=\"authService.isRegularUser()\"><span>{{selectedFactura.nombreBarbero}} {{selectedFactura.primerApellidoBarbero}}</span></li>\n          <li class=\"col-5\"><span>Servicio : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{selectedFactura.descripcion}}</span>\n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{selectedFactura.servicio}}</span>\n          </li>\n          <li class=\"col-5\" *ngIf=\"authService.isBarberoUser() || authService.isAdminSucursalUser()\"><span>Cliente : </span></li>\n          <li class=\"col-7\" *ngIf=\"authService.isBarberoUser() || authService.isAdminSucursalUser()\"><span>{{selectedFactura.nombreUserReserva}} {{selectedFactura.primerApellidoUserReserva}}</span></li>\n          <li class=\"col-5\"><span>Duración : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{convertMinsToHrsMins(selectedFactura.duracionDinamica)}}</span>\n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{convertMinsToHrsMins(selectedFactura.duracion)}}</span>\n          </li>\n          <li class=\"col-5\"><span>Fecha : </span></li>\n          <li class=\"col-7\"><span>{{selectedFactura.dia}}</span></li>\n          <li class=\"col-5\"><span>Hora : </span></li>\n          <li class=\"col-7\"><span>{{convierteTiempo(selectedFactura.horaInicialFormat)}}</span></li>\n          <li class=\"col-5\"><span>Precio : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{selectedFactura.precioDinamico}}</span> \n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{selectedFactura.precio}}</span> Colones\n          </li>\n \t\t  <li class=\"col-5\"><span>Estado Factura : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.estadoFactura=='R'\">Registrado</span> \n          \t<span *ngIf=\"selectedFactura.estadoFactura=='P'\">Pagada</span>\n          </li>\n  \t\t  <li class=\"col-5\"><span>Tipo Pago : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.tipoPago=='E'\">Efectivo</span> \n          \t<span *ngIf=\"selectedFactura.tipoPago=='T'\">Tarjeta</span>\n          </li>\n \t\t  <li class=\"col-5\"  *ngIf=\"selectedFactura.tipoPago=='T'\"><span>Comprobante : </span></li>\n          <li class=\"col-7\" *ngIf=\"selectedFactura.tipoPago=='T'\">\n          \t<span>{{selectedFactura.comprobantePago}}</span>\n          </li>\n          <li class=\"col-5\"><span>Detalle Factura : </span></li>\n          <li class=\"col-7\">\n          \t<span>{{selectedFactura.detalleFactura}}</span>\n          </li>\n\n          <li class=\"col-4 centered-content action-modal\" *ngIf=\"selectedFactura.estadoFactura!='P'\">\n          \t<button type=\"button\" class=\"btn btn-danger\" (click)=\"modalRef.hide();openModal(confirmaEliminarCita)\" *ngIf=\"!authService.isRegularUser() || mayorQueHoy(selectedFactura.dia)\">\n\t\t\t\tEliminar\n\t\t\t</button>\n\t\t\t<p *ngIf=\"authService.isRegularUser() && igualQueHoy(selectedFactura.dia)\" style=\"color:red\">\n\t\t\t\tPara eliminar esta cita por favor comuniquese con el barbero.\n\t\t\t</p>\n          </li>\n        </ul>\n    </div>\n\n </template>\n\n\n<ng-template #print>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\" style=\"text-transform: capitalize;\">Imprimir</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"printRefCompletar.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n  \t<div class=\"text-center\">\n  \t\t<p>Seleccione el tipo de factura a imprimir</p>\n  \t</div>\n    <div class=\"col-12\">\n    \t<div class=\"row\" style=\"padding-bottom: 35px;\">\n    \t\t<div class=\"col-5 card\" (click)=\"imprimir('pdv')\">\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\tImpresora punto de venta.\n    \t\t\t</p>\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\t<img src=\"/assets/pdv.png\" style=\"width: 178px;\">\n    \t\t\t</p>\n    \t\t</div>\n    \t\t<div class=\"col-5 offset-2 card\" (click)=\"imprimir('A4')\">\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\tHoja A4\n    \t\t\t</p>\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\t<img src=\"/assets/a4.jpg\" style=\"width: 131px;\">\n    \t\t\t</p>\n    \t\t</div>\n    \t</div>\n    </div>\n  </div>\n</ng-template>"
+module.exports = "<div class=\"header-space\">\n</div>\n\n\n<div class=\"container\">\n    \t<div clas=\"col-12\">\n    \t\t<div class=\"module white-back static row\">\n    \t\t\t<div class=\"title reserva col-12\">\n    \t\t\t  <h5>Facturas</h5>\n    \t\t\t</div>\n    \t\t\t<div class=\"col-12 text-center\">\n\t    \t\t    <pagination-controls (pageChange)=\"p = $event\" previousLabel=\"Previo\" nextLabel=\"Siguiente\"></pagination-controls>\n\t    \t\t</div>\n\n\t\t\t\t<ul class=\"col-12 items-list\">\n\t\t\t\t\t<li class=\"item\">\n\t\t\t\t\t\t<div class=\"col-12 row\">\n\t\t\t\t\t\t\t<div class=\"col-sm-3 col-6\">\n\t\t\t\t\t\t\t\t<p>Cliente\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-2 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>Fecha</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-3 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>Estado</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-4 col-6 text-center\">\n\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\tAcciones\n\t\t\t\t\t\t        </p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li *ngFor=\"let factura of facturas | paginate: { itemsPerPage: 10, currentPage: p }; index as i;\" \n\t\t\t\t\t\tclass=\"item\" \n\t\t\t\t\t\t[class.odd]=\"i%2==0\">\n\t\t\t\t\t\t<div class=\"col-12 row\">\n\t\t\t\t\t\t\t<div class=\"col-sm-3 col-6\">\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.idUsuarioBarbero\">\n\t\t\t\t\t\t\t\t\t{{factura.nombreUserReserva +' '+factura.primerApellidoUserReserva + ' '+factura.segundoApellidoUserReserva}}\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t<p *ngIf=\"!factura.idUsuarioBarbero\">\n\t\t\t\t\t\t\t\t\tFactura sin cliente asignado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-2 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t\t{{factura.dia | date: 'dd/MM/yyyy'}}\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-3 d-none d-sm-block text-center\">\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.estadoFactura == 'R'\">\n\t\t\t\t\t\t\t\t\tRegistrado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t<p *ngIf=\"factura.estadoFactura == 'P'\">\n\t\t\t\t\t\t\t\t\tPagado\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-sm-4 col-6 text-center\" style=\"padding-top: 4px;\">\n\t\t\t\t\t\t\t\t<button (click)=\"selectedFactura = factura; openModal(facturaModal)\" class=\"btn btn-info\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-expand\" aria-hidden=\"true\"></i> Ver\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<button (click)=\"selectedFactura = factura; openModalPrint(print)\" class=\"btn btn-success\">\n\t\t\t\t\t\t\t\t\t<i class=\"fa fa-print\" aria-hidden=\"true\"></i> Imprimir\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</div>\n</div>\n\n\n\n\n<div class=\"cargando\" *ngIf=\"cargando\">\n  <div>\n    <img src=\"assets/images/m2.png\">\n    Cargando...\n  </div>\n</div>\n\n<template #facturaModal>\n\t<div class=\"modal-header\">\n\t    <h4 class=\"modal-title pull-left\">Factura</h4>\n\t    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n\t\t\t<span aria-hidden=\"true\">&times;</span>\n\t\t</button>\n\t</div>\n    <div class=\"modal-body container\">\n    \t<ul class=\"row\">\n          <li class=\"col-5\"><span>Barberia : </span></li>\n          <li class=\"col-7\"><span>{{selectedFactura.sucursal}}</span></li>\n          <li class=\"col-5\" *ngIf=\"authService.isRegularUser()\"><span>Barbero : </span></li>\n          <li class=\"col-7\" *ngIf=\"authService.isRegularUser()\"><span>{{selectedFactura.nombreBarbero}} {{selectedFactura.primerApellidoBarbero}}</span></li>\n          <li class=\"col-5\"><span>Servicio : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{selectedFactura.descripcion}}</span>\n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{selectedFactura.servicio}}</span>\n          </li>\n          <li class=\"col-5\" *ngIf=\"authService.isBarberoUser() || authService.isAdminSucursalUser()\"><span>Cliente : </span></li>\n          <li class=\"col-7\" *ngIf=\"authService.isBarberoUser() || authService.isAdminSucursalUser()\"><span>{{selectedFactura.nombreUserReserva}} {{selectedFactura.primerApellidoUserReserva}}</span></li>\n          <li class=\"col-5\"><span>Duración : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{convertMinsToHrsMins(selectedFactura.duracionDinamica)}}</span>\n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{convertMinsToHrsMins(selectedFactura.duracion)}}</span>\n          </li>\n          <li class=\"col-5\"><span>Fecha : </span></li>\n          <li class=\"col-7\"><span>{{selectedFactura.dia}}</span></li>\n          <li class=\"col-5\"><span>Hora : </span></li>\n          <li class=\"col-7\"><span>{{convierteTiempo(selectedFactura.horaInicialFormat)}}</span></li>\n          <li class=\"col-5\"><span>Precio : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.esDinamico == 1\">{{selectedFactura.precioDinamico}}</span> \n          \t<span *ngIf=\"selectedFactura.esDinamico != 1\">{{selectedFactura.precio}}</span> Colones\n          </li>\n \t\t  <li class=\"col-5\"><span>Estado Factura : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.estadoFactura=='R'\">Registrado</span> \n          \t<span *ngIf=\"selectedFactura.estadoFactura=='P'\">Pagada</span>\n          </li>\n  \t\t  <li class=\"col-5\"><span>Tipo Pago : </span></li>\n          <li class=\"col-7\">\n          \t<span *ngIf=\"selectedFactura.tipoPago=='E'\">Efectivo</span> \n          \t<span *ngIf=\"selectedFactura.tipoPago=='T'\">Tarjeta</span>\n          </li>\n \t\t  <li class=\"col-5\"  *ngIf=\"selectedFactura.tipoPago=='T'\"><span>Comprobante : </span></li>\n          <li class=\"col-7\" *ngIf=\"selectedFactura.tipoPago=='T'\">\n          \t<span>{{selectedFactura.comprobantePago}}</span>\n          </li>\n          <li class=\"col-5\"><span>Detalle Factura : </span></li>\n          <li class=\"col-7\">\n          \t<span>{{selectedFactura.detalleFactura}}</span>\n          </li>\n\n          <li class=\"col-4 centered-content action-modal\" *ngIf=\"selectedFactura.estadoFactura!='P'\">\n          \t<button type=\"button\" class=\"btn btn-danger\" (click)=\"modalRef.hide();openModal(confirmaEliminarCita)\" *ngIf=\"!authService.isRegularUser() || mayorQueHoy(selectedFactura.dia)\">\n\t\t\t\tEliminar\n\t\t\t</button>\n\t\t\t<p *ngIf=\"authService.isRegularUser() && igualQueHoy(selectedFactura.dia)\" style=\"color:red\">\n\t\t\t\tPara eliminar esta cita por favor comuniquese con el barbero.\n\t\t\t</p>\n          </li>\n        </ul>\n    </div>\n\n </template>\n\n\n<ng-template #print>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\" style=\"text-transform: capitalize;\">Imprimir</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"printRefCompletar.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n  \t<div class=\"text-center\">\n  \t\t<p>Seleccione el tipo de factura a imprimir</p>\n  \t</div>\n    <div class=\"col-12\">\n    \t<div class=\"row\" style=\"padding-bottom: 35px;\">\n    \t\t<div class=\"col-5 card\" (click)=\"imprimir('pdv')\">\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\tImpresora punto de venta.\n    \t\t\t</p>\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\t<img src=\"assets/pdv.png\" style=\"width: 178px;\">\n    \t\t\t</p>\n    \t\t</div>\n    \t\t<div class=\"col-5 offset-2 card\" (click)=\"imprimir('A4')\">\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\tHoja A4\n    \t\t\t</p>\n    \t\t\t<p class=\"text-center\">\n    \t\t\t\t<img src=\"assets/a4.jpg\" style=\"width: 131px;\">\n    \t\t\t</p>\n    \t\t</div>\n    \t</div>\n    </div>\n  </div>\n</ng-template>"
 
 /***/ }),
 
@@ -6393,7 +6378,7 @@ module.exports = "<img src=\"assets/images/{{name}}.jpg\" class=\"img-fluid\" (c
 /***/ 549:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-space\">\n</div>\n\n\n<div class=\"container\">\n\t<div clas=\"col-12\">\n\t\t<div class=\"module white-back static row\">\n\t\t\t<div class=\"title reserva col-12\">\n\t\t\t  <h5>Clientes</h5>\n\t\t\t</div>\n\t\t\t<div class=\"row col-12 separador\">\n\t\t\t\t<div class=\"col-4\">\n\t\t\t\t\t<label>Buscar Clientes</label>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t <input class=\"auto-usuario tamComponent\" type=\"text\" name=\"\" placeholder=\"Nombre Apellidos\" [(ngModel)]=\"buscaUsuario\" (ngModelChange)=\"buscaUsuarioChanged()\">\n\t\t\t          <ul>\n\t\t\t            <li *ngFor=\"let usuario of usuarioCita\"> \n\t\t\t              <span class=\"usuarios\" (click)=\"seleccionaUsuarioCita(usuario)\">{{usuario.nombre}} {{usuario.apellido1}} {{usuario.apellido2}} | <span *ngIf=\"usuario.telefono.length > 0\">{{usuario.telefono[0].telefono}}</span>\n\t\t\t              </span>\n\t\t\t            </li>\n\t\t\t          </ul>\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t\t<div class=\"row col-12\">\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Usuario<span class=\"required\" [class.reqerror]=\"validatorService.hasError('usuario',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" name=\"usuario\" class=\"form-control\"  [(ngModel)]=\"nuevoUsuario.usuario\" [class.error-input]=\"validatorService.hasError('usuario',usuarioErrores)\" placeholder=\"juan1990\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Nombre<span class=\"required\" [class.reqerror]=\"validatorService.hasError('nombre',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" name=\"nombre\" class=\"form-control\"  [(ngModel)]=\"nuevoUsuario.nombre\" [class.error-input]=\"validatorService.hasError('nombre',usuarioErrores)\" placeholder=\"Juan\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Apellido 1<span class=\"required\" [class.reqerror]=\"validatorService.hasError('apellido1',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" class=\"form-control\"  name=\"primerApellido\" [(ngModel)]=\"nuevoUsuario.apellido1\" [class.error-input]=\"validatorService.hasError('apellido1',usuarioErrores)\" placeholder=\"Perez\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Apellido 2</label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\"  class=\"form-control\"  name=\"segundoApellido\" [(ngModel)]=\"nuevoUsuario.apellido2\" [class.error-input]=\"validatorService.hasError('apellido2',usuarioErrores)\" placeholder=\"Lopez\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\"></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"button\"  class=\"btn btn-info\" value=\"Buscar Por Nombre\"  name=\"buscarNombre\" (click)=\"buscarPorNombre()\">\n\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t<li *ngFor=\"let cli of posiblesClientes\" (click)=selectCliente(cli)>\n\t\t\t\t\t\t\t\t* {{cli.nombre}} {{cli.apellido1}} {{cli.apellido2}} ced: {{cli.cedula}}\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Cédula</label>\n\t\t\t\t\t<div class=\"col-8\"> \n\t\t\t\t\t\t<input type=\"number\"  class=\"form-control\" maxlength=\"9\" minlength=\"9\" name=\"cedula\" [(ngModel)]=\"nuevoUsuario.cedula\"  >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\"></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"button\"  class=\"btn btn-info\"  value=\"Buscar por Cédula\" name=\"buscarCedula\" (click)=\"buscarPorCedula()\">\n\t\t\t\t\t\t\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Fecha Nacimiento</label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<calendario-input [customClass]=\"'form-control'\" name=\"fechaNacimiento\"  [daterecive]=\"fecha\"  (dateSelectedChange)=\"fechaChanges($event)\"></calendario-input>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Provincia:</label>\n\t        \t\t<div class=\"col-8\">\n\t\t                <select class=\"form-control\" id=\"provincia\" [(ngModel)]=\"selectedProvincia\" (ngModelChange)=\"changeProvincia($event)\">\n\t\t                    <option *ngFor=\"let provincia of provincias;let i = index\" [ngValue]=\"provincia\">{{provincia.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t        \t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Canton:</label>\n\t\t        \t<div class=\"col-8\">\n\t\t        \t     <select class=\"form-control\" id=\"canton\" [(ngModel)]=\"selectedCanton\" (ngModelChange)=\"changeCanton($event)\">\n\t\t                    <option *ngFor=\"let canton of selectedProvincia.cantones\" [ngValue]=\"canton\">{{canton.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t            <div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Distrito:</label>\n\t\t            <!-- <div class=\"col-8\">\n\t\t                <input type=\"text\" class=\"form-control\"  name=\"distrito\" [(ngModel)]=\"nuevoUsuario.distrito\" [class.error]=\"validatorService.hasError('distrito',usuarioErrores)\">\n\t\t            </div> -->\n\t\t            <div class=\"col-8\">\n\t\t        \t     <select class=\"form-control\" id=\"distrito\" [(ngModel)]=\"nuevoUsuario.distrito\">\n\t\t                    <option *ngFor=\"let distrito of selectedCanton.distritos\" [value]=\"distrito.codigo\">{{distrito.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t          <!--   <div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Barrio:</label>\n\t\t            <div class=\"col-8\">\n\t\t                <input type=\"text\" class=\"form-control\"  name=\"barrio\" [(ngModel)]=\"nuevoUsuario.barrio\" [class.error]=\"validatorService.hasError('barrio',usuarioErrores)\">\n\t\t            </div>\n\t\t        </div> -->\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Señas:</label>\n\t\t        \t<div class=\"col-8\">\n\t\t        \t\t<input type=\"text\" class=\"form-control\"  name=\"ubicacion\" [(ngModel)]=\"nuevoUsuario.detalleDireccion\" [class.error]=\"validatorService.hasError('detalleDireccion',usuarioErrores)\">\n\t\t        \t</div>\n\t\t        </div>\n\n\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Correo<span class=\"required\" [class.reqerror]=\"validatorService.hasError('correo',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8 correos\">\n\t\t\t\t\t\t<div class=\"row \">\n\t\t\t\t\t\t\t<div class=\"col-12 nuevo-numero\">\n\t\t\t\t\t\t\t\t<div class=\"input-group mb-2\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"nuevoCorreo\" [class.error-input]=\"validatorService.hasError('correo',usuarioErrores)\" class=\"form-control\">\n\t\t\t\t\t\t\t\t<!--\t<div class=\"input-group mb-2\">-->\n\t\t\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"addCorreo()\"> + </span>\n\t\t\t\t\t\t\t\t<!--\t</div -->\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-12 correo-display contact-item\" *ngFor=\"let correo of nuevoUsuario.correo\">\n\t\t\t\t\t\t\t\t<span class=\"display\">{{correo.correo}} </span>\n\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"removeCorreo(correo)\"> - </span> \n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Telefono<span class=\"required\" [class.reqerror]=\"validatorService.hasError('telefono',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8 telefonos \">\n\t\t\t\t\t\t<div class=\"row \">\n\t\t\t\t\t\t\t<div class=\"col-12 nuevo-numero\">\n\t\t\t\t\t\t\t\t<div class=\"input-group mb-2\">\n\t\t\t\t\t\t        \t<input type=\"number\" [(ngModel)]=\"nuevoTelefono\" [class.error-input]=\"validatorService.hasError('telefono',usuarioErrores)\" class=\"form-control\">\n\t\t\t\t\t\t        \t<!--<div class=\"input-group mb-2\"> -->\n\t\t\t\t\t\t\t\t\t    <span class=\"small-action input-group-text\" (click)=\"addTelefono()\"> + </span>\n\t\t\t\t\t\t\t\t\t<!--</div>-->\n\t\t\t\t\t\t    \t</div>\n\t\t\t\t\t\t\t\t<!-- <input type=\"number\" [(ngModel)]=\"nuevoTelefono\" [class.error-input]=\"validatorService.hasError('telefono',usuarioErrores)\" class=\"form-control\">  -->\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-12 contact-item\" *ngFor=\"let telefono of nuevoUsuario.telefono\">\n\t\t\t\t\t\t\t\t<span class=\"telefono-display\">{{telefono.telefono}} </span>\n\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"removeTelefono(telefono)\"> - </span> \n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-2 entrar\">\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario == false\" class=\"btn btn-primary\" (click)=\"newUser()\">\n\t\t\t\t\t\tRegistrar\n\t\t\t\t\t</button>\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario\" class=\"btn btn-primary\" (click)=\"updateUser()\">\n\t\t\t\t\t\tModificar\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-10 entrar\">\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario\" class=\"btn btn-danger\" (click)=\"deleteUser()\">\n\t\t\t\t\t\tEliminar\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t\t\n\t\t\t\t<div class=\"col-12\" *ngIf=\"nuevoUsuarioError\" style=\"color:red;\">\n\t\t\t\t\t{{authService.errorDisplay}}\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12\" *ngIf=\"validationError\" style=\"color:red;\">\n\t\t\t\t\t{{validationErrorMsg}}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<div class=\"cargando\" *ngIf=\"cargando\">\n  <div>\n    <img src=\"assets/images/m2.png\">\n    Cargando...\n  </div>\n</div>\n"
+module.exports = "<div class=\"header-space\">\n</div>\n\n\n<div class=\"container\">\n\t<div clas=\"col-12\">\n\t\t<div class=\"module white-back static row\">\n\t\t\t<div class=\"title reserva col-12\">\n\t\t\t  <h5>Clientes</h5>\n\t\t\t</div>\n\t\t\t<div class=\"row col-12 separador\">\n\t\t\t\t<div class=\"col-4\">\n\t\t\t\t\t<label>Buscar Clientes</label>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t <input class=\"auto-usuario tamComponent\" type=\"text\" name=\"\" placeholder=\"Nombre Apellidos\" [(ngModel)]=\"buscaUsuario\" (ngModelChange)=\"buscaUsuarioChanged()\">\n\t\t\t          <ul>\n\t\t\t            <li *ngFor=\"let usuario of usuarioCita\"> \n\t\t\t              <span class=\"usuarios\" (click)=\"seleccionaUsuarioCita(usuario)\">{{usuario.nombre}} {{usuario.apellido1}} {{usuario.apellido2}} | <span *ngIf=\"usuario.telefono.length > 0\">{{usuario.telefono[0].telefono}}</span>\n\t\t\t              </span>\n\t\t\t            </li>\n\t\t\t          </ul>\n\t\t\t\t</div>\n\n\t\t\t</div>\n\n\t\t\t<div class=\"row col-12\">\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Usuario<span class=\"required\" [class.reqerror]=\"validatorService.hasError('usuario',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" name=\"usuario\" class=\"form-control\"  [(ngModel)]=\"nuevoUsuario.usuario\" [class.error-input]=\"validatorService.hasError('usuario',usuarioErrores)\" placeholder=\"juan1990\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Nombre<span class=\"required\" [class.reqerror]=\"validatorService.hasError('nombre',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" name=\"nombre\" class=\"form-control\"  [(ngModel)]=\"nuevoUsuario.nombre\" [class.error-input]=\"validatorService.hasError('nombre',usuarioErrores)\" placeholder=\"Juan\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Apellido 1<span class=\"required\" [class.reqerror]=\"validatorService.hasError('apellido1',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\" class=\"form-control\"  name=\"primerApellido\" [(ngModel)]=\"nuevoUsuario.apellido1\" [class.error-input]=\"validatorService.hasError('apellido1',usuarioErrores)\" placeholder=\"Perez\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Apellido 2</label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"text\"  class=\"form-control\"  name=\"segundoApellido\" [(ngModel)]=\"nuevoUsuario.apellido2\" [class.error-input]=\"validatorService.hasError('apellido2',usuarioErrores)\" placeholder=\"Lopez\">\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\"></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"button\"  class=\"btn btn-info\" value=\"Buscar Por Nombre\"  name=\"buscarNombre\" (click)=\"buscarPorNombre()\">\n\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t<li *ngFor=\"let cli of posiblesClientes\" (click)=selectCliente(cli)>\n\t\t\t\t\t\t\t\t* {{cli.nombre}} {{cli.apellido1}} {{cli.apellido2}} ced: {{cli.cedula}}\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Cédula</label>\n\t\t\t\t\t<div class=\"col-8\"> \n\t\t\t\t\t\t<input type=\"number\"  class=\"form-control\" maxlength=\"9\" minlength=\"9\" name=\"cedula\" [(ngModel)]=\"nuevoUsuario.cedula\"  >\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\"></label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<input type=\"button\"  class=\"btn btn-info\"  value=\"Buscar por Cédula\" name=\"buscarCedula\" (click)=\"buscarPorCedula()\">\n\t\t\t\t\t\t\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Fecha Nacimiento</label>\n\t\t\t\t\t<div class=\"col-8\">\n\t\t\t\t\t\t<calendario-input [customClass]=\"'form-control'\" name=\"fechaNacimiento\"  [daterecive]=\"fecha\"  (dateSelectedChange)=\"fechaChanges($event)\"></calendario-input>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Provincia:</label>\n\t        \t\t<div class=\"col-8\">\n\t\t                <select class=\"form-control\" id=\"provincia\" [(ngModel)]=\"selectedProvincia\" (ngModelChange)=\"changeProvincia($event)\">\n\t\t                    <option *ngFor=\"let provincia of provincias;let i = index\" [ngValue]=\"provincia\">{{provincia.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t        \t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Canton:</label>\n\t\t        \t<div class=\"col-8\">\n\t\t        \t     <select class=\"form-control\" id=\"canton\" [(ngModel)]=\"selectedCanton\" (ngModelChange)=\"changeCanton($event)\">\n\t\t                    <option *ngFor=\"let canton of selectedProvincia.cantones\" [ngValue]=\"canton\">{{canton.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t            <div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Distrito:</label>\n\t\t            <!-- <div class=\"col-8\">\n\t\t                <input type=\"text\" class=\"form-control\"  name=\"distrito\" [(ngModel)]=\"nuevoUsuario.distrito\" [class.error]=\"validatorService.hasError('distrito',usuarioErrores)\">\n\t\t            </div> -->\n\t\t            <div class=\"col-8\">\n\t\t        \t     <select class=\"form-control\" id=\"distrito\" [(ngModel)]=\"nuevoUsuario.distrito\">\n\t\t                    <option *ngFor=\"let distrito of selectedCanton.distritos\" [value]=\"distrito.codigo\">{{distrito.nombre}}</option>\n\t\t                </select>\n\t\t        \t</div>\n\t\t        </div>\n\t          <!--   <div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Barrio:</label>\n\t\t            <div class=\"col-8\">\n\t\t                <input type=\"text\" class=\"form-control\"  name=\"barrio\" [(ngModel)]=\"nuevoUsuario.barrio\" [class.error]=\"validatorService.hasError('barrio',usuarioErrores)\">\n\t\t            </div>\n\t\t        </div> -->\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Señas:</label>\n\t\t        \t<div class=\"col-8\">\n\t\t        \t\t<input type=\"text\" class=\"form-control\"  name=\"ubicacion\" [(ngModel)]=\"nuevoUsuario.detalleDireccion\" [class.error]=\"validatorService.hasError('detalleDireccion',usuarioErrores)\">\n\t\t        \t</div>\n\t\t        </div>\n\n\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Correo<span class=\"required\" [class.reqerror]=\"validatorService.hasError('correo',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8 correos\">\n\t\t\t\t\t\t<div class=\"row \">\n\t\t\t\t\t\t\t<div class=\"col-12 nuevo-numero\">\n\t\t\t\t\t\t\t\t<div class=\"input-group mb-2\">\n\t\t\t\t\t\t\t\t\t<input type=\"text\" [(ngModel)]=\"nuevoCorreo\" [class.error-input]=\"validatorService.hasError('correo',usuarioErrores)\" class=\"form-control\">\n\t\t\t\t\t\t\t\t<!--\t<div class=\"input-group mb-2\">-->\n\t\t\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"addCorreo()\"> + </span>\n\t\t\t\t\t\t\t\t<!--\t</div -->\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-12 correo-display contact-item\" *ngFor=\"let correo of nuevoUsuario.correo\">\n\t\t\t\t\t\t\t\t<span class=\"display\">{{correo.correo}} </span>\n\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"removeCorreo(correo)\"> - </span> \n\t\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12 row form-group\">\n\t\t\t\t\t<label class=\"col-4 col-form-label\">Telefono<span class=\"required\" [class.reqerror]=\"validatorService.hasError('telefono',usuarioErrores)\">*</span></label>\n\t\t\t\t\t<div class=\"col-8 telefonos \">\n\t\t\t\t\t\t<div class=\"row \">\n\t\t\t\t\t\t\t<div class=\"col-12 nuevo-numero\">\n\t\t\t\t\t\t\t\t<div class=\"input-group mb-2\">\n\t\t\t\t\t\t        \t<input type=\"number\" [(ngModel)]=\"nuevoTelefono\" [class.error-input]=\"validatorService.hasError('telefono',usuarioErrores)\" class=\"form-control\">\n\t\t\t\t\t\t        \t<!--<div class=\"input-group mb-2\"> -->\n\t\t\t\t\t\t\t\t\t    <span class=\"small-action input-group-text\" (click)=\"addTelefono()\"> + </span>\n\t\t\t\t\t\t\t\t\t<!--</div>-->\n\t\t\t\t\t\t    \t</div>\n\t\t\t\t\t\t\t\t<!-- <input type=\"number\" [(ngModel)]=\"nuevoTelefono\" [class.error-input]=\"validatorService.hasError('telefono',usuarioErrores)\" class=\"form-control\">  -->\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col-12 contact-item\" *ngFor=\"let telefono of nuevoUsuario.telefono\">\n\t\t\t\t\t\t\t\t<span class=\"telefono-display\">{{telefono.telefono}} </span>\n\t\t\t\t\t\t\t\t<span class=\"small-action\" (click)=\"removeTelefono(telefono)\"> - </span> \n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-2 entrar\">\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario == false\" class=\"btn btn-primary\" (click)=\"newUser()\">\n\t\t\t\t\t\tRegistrar\n\t\t\t\t\t</button>\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario\" class=\"btn btn-primary\" (click)=\"updateUser()\">\n\t\t\t\t\t\tModificar\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-10 entrar\">\n\t\t\t\t\t<button type=\"button\" *ngIf=\"encontroUsuario\" class=\"btn btn-danger\" (click)=\"deleteUser()\">\n\t\t\t\t\t\tEliminar\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t\t\t\n\t\t\t\t<div class=\"col-12\" *ngIf=\"nuevoUsuarioError\" style=\"color:red;\">\n\t\t\t\t\t{{authService.errorDisplay}}\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-12\" *ngIf=\"validationError\" style=\"color:red;\">\n\t\t\t\t\t{{validationErrorMsg}}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n<div class=\"cargando\" *ngIf=\"cargando\">\n  <div>\n    <img src=\"assets/images/m2.png\">\n    Cargando...\n  </div>\n</div>\n\n\n\n\n<ng-template #printModificar>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title pull-left\" style=\"text-transform: capitalize;\">Información</h4>\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"printRefCompletar.hide()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n  \t<div class=\"text-center\">\n  \t\t<p>Actualización Exitosa</p>\n  \t</div>\n  </div>\n</ng-template>"
 
 /***/ }),
 

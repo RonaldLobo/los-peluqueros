@@ -1975,6 +1975,8 @@ var CitasComponent = (function () {
                 // 			.then(res => {
                 // 				console.log('res',res);
                 // 				if(res.respuesta == "aceptado"){
+                this.selectedCita.consecutivo = '';
+                this.selectedCita.clave = '';
                 this.selectedCita.estadoFactura = 'P';
                 this.dataService.post('/reserva/?method=put', { 'reserva': this.selectedCita })
                     .then(function (response) {
@@ -4935,6 +4937,8 @@ var ReservaComponent = (function () {
             reserva.dia = this.reservacion.fecha;
             reserva.horaInicial = this.reservacion.hora.hora.getHours() + ":" + this.reservacion.hora.hora.getMinutes() + ":00";
             reserva.estado = 1;
+            reserva.consecutivo = '';
+            reserva.clave = '';
             this.dataService.post('/reserva/', { "reserva": reserva })
                 .then(function (response) {
                 _this.cargando = false;
@@ -4963,6 +4967,8 @@ var ReservaComponent = (function () {
                         reserva.dia = _this.reservacion.fecha;
                         reserva.horaInicial = _this.reservacion.hora.hora.getHours() + ":" + _this.reservacion.hora.hora.getMinutes() + ":00";
                         reserva.estado = 1;
+                        reserva.consecutivo = '';
+                        reserva.clave = '';
                         _this.dataService.post('/reserva/', { "reserva": reserva })
                             .then(function (response) {
                             _this.cargando = false;

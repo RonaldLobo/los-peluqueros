@@ -19,9 +19,9 @@ class DBReserva {
                 .$reserva->estado. ",'"
                 .$reserva->descripcion. "',"
                 .$reserva->precioDinamico. ","
-                .$reserva->duracionDinamica. ", 'R','E',"
-                .$reserva->Clave. ","
-                .$reserva->Consecutivo
+                .$reserva->duracionDinamica. ", 'R','E','"
+                .$reserva->Clave. "','"
+                .$reserva->Consecutivo. "'"
                 .")";
         $id = $db->agregar($sql);
         $reserva->id = $id;

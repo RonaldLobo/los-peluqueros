@@ -11,7 +11,7 @@
         
 	    $title = "Recordatorio de cita";
 	    $body = "Recordatorio de cita";	
-        $hora = date("g:i A", strtotime($reserva->horaInicial)
+        $hora = date("g:i A", strtotime($reserva->horaInicial));
 	    if($hora){
 	    	$body = "Hola ".$reserva->nombreUserReserva." le recordamos su cita a las ".$hora." en ".$reserva->sucursal;	
 	    }

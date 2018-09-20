@@ -33,6 +33,8 @@ class Reserva {
     public $tipoPago ="";
     public $clave ="";
     public $consecutivo ="";
+    public $refresh ="";
+    public $xml ="";
     
     function getId() {
         return $this->id;
@@ -142,6 +144,22 @@ class Reserva {
 
     function setConsecutivo($consecutivo) {
         $this->consecutivo = $consecutivo;
+    }
+
+    function getXml(){
+         return $this->xml;
+    }
+
+    function setXml($xml) {
+        $this->xml = $xml;
+    }
+
+    function getRefresh(){
+         return $this->refresh;
+    }
+
+    function setRefresh($refresh) {
+        $this->refresh = $refresh;
     }
 
     function setClave($clave) {
@@ -368,6 +386,12 @@ class Reserva {
         if(isset($reserva->clave)){
             $this->clave = $reserva->clave;
         }
+        if(isset($reserva->xml)){
+            $this->xml = $reserva->xml;
+        }
+        if(isset($reserva->refresh)){
+            $this->refresh = $reserva->refresh;
+        }
     }
     
      function toJson() {
@@ -402,7 +426,9 @@ class Reserva {
             'comprobantePago'=> $this->comprobantePago,
             'tipoPago'=> $this->tipoPago,
             'consecutivo'=> $this->consecutivo,
-            'clave'=> $this->clave
+            'clave'=> $this->clave,
+            'xml'=> $this->xml,
+            'refresh'=> $this->refresh
             )
         );
         return json_encode($data);

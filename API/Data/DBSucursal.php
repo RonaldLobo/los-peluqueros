@@ -7,7 +7,7 @@ class DbSucursal {
 
     function agregarSucursal($sucursal,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado,IdFacturaAPI, CedulaJuridica, NombreNegocio, Distrito, Barrio,Canton, Provincia) VALUES ("
+        $sql = "INSERT INTO sucursalbarberia (FkIdCantonSucursalBarberia  ,FkIdBarberiaSucursalBarberia,Descripcion,DetalleDireccion,Estado,IdFacturaAPI, CedulaJuridica, NombreNegocio, Distrito, Barrio,Canton,TipoId, Provincia) VALUES ("
                 .$sucursal->idCanton.","
                 .$sucursal->idBarberia.",'"
                 .$sucursal->descripcion."', '"
@@ -19,6 +19,7 @@ class DbSucursal {
                 .$sucursal->distrito."',"
                 .$sucursal->barrio."',"
                 .$sucursal->canton."',"
+                .$sucursal->tipoId."',"
                 .$sucursal->provincia.")";
             $id = $db->agregar($sql);
             if ($id >0){
@@ -57,6 +58,7 @@ class DbSucursal {
                 . "Distrito='".$sucursal->distrito."', " 
                 . "Barrio='".$sucursal->barrio."', " 
                 . "Canton='".$sucursal->canton."', " 
+                . "TipoId='".$sucursal->tipoId."', " 
                 . "Provincia=".$sucursal->provincia." " 
                 . " WHERE PkIdSucursalBarberia=".$sucursal->id;
             if($db->actualizar($sql)) {
@@ -90,7 +92,7 @@ class DbSucursal {
     }   
  
     function obtenerSucursal($busqueda, $opcion){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio,s.Canton, s.Provincia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio,s.Canton,s.TipoId, s.Provincia FROM sucursalbarberia s 
        LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia WHERE s.Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdSucursalBarberia=".$busqueda;
@@ -132,7 +134,7 @@ class DbSucursal {
     }
     
     function listarSucursal(){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio, s.Canton, s.Provincia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio, s.Canton, s.TipoId, s.Provincia FROM sucursalbarberia s 
         LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia ";
         $db = new DB();
         $rowList = $db->listar($sql);
@@ -220,6 +222,9 @@ class DbSucursal {
         } 
         if(isset($row['Provincia'])){
             $sucursal->provincia = $row['Provincia'];
+        }  
+        if(isset($row['TipoId'])){
+            $sucursal->tipoId = $row['TipoId'];
         }          
         $sucursal->telefono = $this->parseRowTelefono($rowTelefono);
         $sucursal->correo = $this->parseRowCorreo($rowCorreo);

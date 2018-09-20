@@ -19,6 +19,7 @@ class Sucursal {
     public $distrito = '';
     public $barrio = '';
     public $canton = '';
+    public $tipoId = '';
     public $provincia = 0;
 
     public $telefono = array();
@@ -89,6 +90,14 @@ class Sucursal {
 
     function setId($id) {
         $this->id = $id;
+    }
+
+    function getTipoId() {
+        return $this->tipoId;
+    }
+
+    function setTipoId($tipoId) {
+        $this->tipoId = $tipoId;
     }
 
     function getCanton() {
@@ -191,6 +200,9 @@ class Sucursal {
         if(isset($sucursal->canton)){
             $this->canton = $sucursal->canton;
         }
+        if(isset($sucursal->tipoId)){
+            $this->tipoId = $sucursal->tipoId;
+        }
     }
     
     function AgregarTelefono($tel){
@@ -217,7 +229,8 @@ class Sucursal {
             'barrio'=>$this->barrio,
             'distrito'=>$this->distrito,
             'provincia'=>$this->provincia,
-            'canton'=>$this->canton
+            'canton'=>$this->canton,
+            'tipoId'=>$this->tipoId
             )
         );
         return json_encode($data);

@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Data/DB.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Inventario.php';
 
-class DBProducto {
+class DBInventario {
  
     
     function agregarInventario($inventario){

@@ -123,7 +123,7 @@ class DBInventario {
             $inventario->impuesto = $row['Impuesto'];
         }
         if(isset($row['Precio'])){
-            $inventario->descripcion = $row['Precio'];
+            $inventario->precio = $row['Precio'];
         }
         if(isset($row['Costo'])){
             $inventario->costo = $row['Costo'];
@@ -136,6 +136,9 @@ class DBInventario {
         }
         if(isset($row['Utilidad'])){
             $inventario->utilidad = $row['Utilidad'];
+        }
+        if(isset($row['Ubicacion'])){
+            $inventario->ubicacion = $row['Ubicacion'];
         }
         if(isset($row['Categoria'])){
             $inventario->categoria = $row['Categoria'];

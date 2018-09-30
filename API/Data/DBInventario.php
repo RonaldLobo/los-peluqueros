@@ -78,16 +78,18 @@ class DBInventario {
         }
 
         $db = new DB();        
-        if($opcion == 0 || $opcion==2){
-            $row = $db->listar($sql);
+        if($opcion == 1){
+            $row = $db->obtenerUno($sql); 
         }else{
-            $row = $db->obtenerUno($sql);            
+            $row = $db->listar($sql);           
         }
         $inventario= array();
-        if(count($row) > 0 && ($opcion==0 || $opcion==2)){            
-             $inventario = $this->parseDataList($row);
-        } elseif (count($row) > 0 && ($opcion==1 || $opcion==3)) {
-             $inventario =  $this->parseRowProducto($row);              
+
+
+        if($opcion==1){      
+            $inventario =  $this->parseRowInventario($row);  
+        } else {
+            $inventario = $this->parseDataList($row);             
         }
         return $inventario;
     }

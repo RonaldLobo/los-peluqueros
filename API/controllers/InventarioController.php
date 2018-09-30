@@ -9,7 +9,7 @@ $app->get('/inventario/', function() use ($app) {
     $auth = new Auth();
     $authToken = $app->request->headers->get('Authorization');
     if($auth->isAuth($authToken)){
-        $dbInventario = new DBProveedor(); 
+        $dbInventario = new DBInventario(); 
         $codigo = $app->request->params('codigo');
         $producto = $app->request->params('producto');;
         $idSucursal = $app->request->params('idSucursal');

@@ -37,6 +37,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/AuthController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ReservarController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ServicioController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/SucursalController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/InventarioController.php';
 
 $app->run();
 ?>

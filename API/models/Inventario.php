@@ -213,6 +213,7 @@ class Inventario {
             'idSucursal' => $this->idSucursal,
             'id'=>$this->id,
             'producto'=>$this->producto,
+            'ubicacion'=>$this->ubicacion,
             'descripcion'=> $this->descripcion,       
             'codigo' => $this->codigo,
             'marca'=>$this->marca,

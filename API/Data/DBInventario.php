@@ -9,7 +9,7 @@ class DBInventario {
     
     function agregarInventario($inventario){
         $db = new DB();
-        $sql = "INSERT INTO inventario (FkIdSucursalBarberia, Producto,Codigo, CantidadDisponible, CantidadMinima, Precio, Costo,Marca, Ubicacion, Descripcion, Descuento, Impuesto, Proveedor, Categoria, Utilidad, Modelo, Descripcion,Estado) VALUES ("
+        $sql = "INSERT INTO inventario (FkIdSucursalBarberia, Producto,Codigo, CantidadDisponible, CantidadMinima, Precio, Costo,Marca, Ubicacion, Descripcion, Descuento, Impuesto, Proveedor, Categoria, Utilidad, Modelo, Estado) VALUES ("
                 .$inventario->idSucursal.",'"
                 .$inventario->producto."','"
                 .$inventario->codigo."',"
@@ -25,8 +25,7 @@ class DBInventario {
                 .$inventario->proveedor."',"
                 .$inventario->categoria.",'"
                 .$inventario->utilidad."','"
-                .$inventario->modelo."','"
-                .$inventario->descripcion."',"
+                .$inventario->modelo."',"
                 .$inventario->estado. ")";
         $id = $db->agregar($sql);
         $inventario->id = $id;

@@ -45,10 +45,6 @@ class Inventario {
         return $this->marca;
     }
 
-    function getModelo() {
-        return $this->modelo;
-    }
-
     function getCantDisponible() {
         return $this->cantDisponible;
     }

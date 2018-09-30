@@ -73,7 +73,10 @@ class DBInventario {
             $sql.= " AND Producto LIKE '%".$busqueda."%' AND FkIdSucursalBarberia=".$busqueda2;
         } elseif ($opcion == 3) {
             $sql.= " AND Codigo LIKE '%".$busqueda."%' AND FkIdSucursalBarberia=".$busqueda2;
+        }elseif ($opcion == 4) {
+            $sql.= " AND FkIdSucursalBarberia=".$busqueda2;
         }
+
         $db = new DB();        
         if($opcion == 0 || $opcion==2){
             $row = $db->listar($sql);

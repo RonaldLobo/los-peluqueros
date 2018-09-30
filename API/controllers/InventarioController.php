@@ -11,16 +11,19 @@ $app->get('/inventario/', function() use ($app) {
     if($auth->isAuth($authToken)){
         $dbInventario = new DBInventario(); 
         $codigo = $app->request->params('codigo');
-        $producto = $app->request->params('producto');;
+        $producto = $app->request->params('producto');
         $idSucursal = $app->request->params('idSucursal');
+        $idInventario = $app->request->params('idInventario');
        
         if (!empty($codigo)){ 
             $inventario = array('inventario' => $dbInventario->obtenerInventario($codigo,$idSucursal ,3));
         } elseif  (!empty($producto)){ 
             $inventario = array('inventario' => $dbInventario->obtenerInventario($producto,$idSucursal ,2));
         }elseif  (!empty($idSucursal)){ 
-            $inventario = array('inventario' => $dbInventario->obtenerInventario($idSucursal,$idSucursal ,1));
-        } else{
+            $inventario = array('inventario' => $dbInventario->obtenerInventario($idSucursal,$idSucursal ,4));
+        }elseif  (!empty($idInventario)){ 
+            $inventario = array('inventario' => $dbInventario->obtenerInventario($idInventario,$idInventario ,1));
+        }else{
             $inventario = array('inventario' => $dbInventario->obtenerInventario("",0,0));
         }
         $jsonArray = json_encode($inventario);

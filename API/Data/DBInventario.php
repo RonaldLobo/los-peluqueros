@@ -65,14 +65,14 @@ class DBInventario {
         $db->actualizar($sql);   
     }
    
-    function obtenerInventario($busqueda, $idInventario, $opcion){
+    function obtenerInventario($busqueda, $busqueda2, $opcion){
         $sql = "SELECT PkIdInventario,FkIdSucursalBarberia,Producto,Codigo,CantidadDisponible,CantidadMinima,Marca,Precio,Costo,Ubicacion,Descripcion,Descuento,Impuesto,Proveedor,Utilidad,Categoria,Modelo, Estado FROM inventario WHERE Estado=1 ";
         if($opcion == 1){
             $sql.= " AND PkIdInventario=".$busqueda;
         } elseif ($opcion == 2) {
-            $sql.= " AND Producto LIKE '%".$busqueda."%' AND PkIdInventario=".$busqueda;
+            $sql.= " AND Producto LIKE '%".$busqueda."%' AND FkIdSucursalBarberia=".$busqueda2;
         } elseif ($opcion == 3) {
-            $sql.= " AND Codigo LIKE '%".$busqueda."%' AND PkIdInventario=".$busqueda;
+            $sql.= " AND Codigo LIKE '%".$busqueda."%' AND FkIdSucursalBarberia=".$busqueda2;
         }
         $db = new DB();        
         if($opcion == 0 || $opcion==2){
@@ -149,7 +149,7 @@ class DBInventario {
     function parseDataList($rowList) {
         $parseDatos = array();
         foreach ($rowList as $row) {
-            array_push($parseDatos, $this->parseRowProducto($row));
+            array_push($parseDatos, $this->parseRowInventario($row));
         }
         return $parseDatos;
     }

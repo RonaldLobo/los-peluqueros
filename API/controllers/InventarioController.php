@@ -50,7 +50,7 @@ $app->post('/inventario/', function() use ($app) {
         $verificarReg = $dbInventario->obtenerInventario($inventario->codigo,$inventario->idSucursal,3);
         if(is_null($method)){      
             if( count($verificarReg) == 0){
-                $result = $dbFactura->agregarInventario($inventario);
+                $result = $dbInventario->agregarInventario($inventario);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);
                 $app->response->setBody($result->toJson());
@@ -68,7 +68,7 @@ $app->post('/inventario/', function() use ($app) {
                   $idSucursalBD =$verificarReg->idSucursal;
             }
             if((count($verificarReg) == 0 )|| ($inventario->codigo == $nomBD && $inventario->idSucursal == $idSucursalBD)){
-               $result = $dbFactura->actualizarInventario($inventario);
+               $result = $dbInventario->actualizarInventario($inventario);
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(200);
                $app->response->setBody($result->toJson());        
@@ -98,7 +98,7 @@ $app->put('/inventario/', function() use ($app) {
         $body = $app->request->getBody();
         $posted = json_decode($body);
         $inventario->parseDto($posted->inventario);
-        $result = $dbFactura->actualizarInventario($inventario);
+        $result = $dbInventario->actualizarInventario($inventario);
         $app->response->headers->set('Content-Type', 'application/json');
         $app->response->setStatus(200);
         $app->response->setBody($result->toJson());

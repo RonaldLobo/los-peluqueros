@@ -212,6 +212,7 @@ class Inventario {
         'inventario' => array(
             'idSucursal' => $this->idSucursal,
             'id'=>$this->id,
+            'producto'=>$this->producto,
             'descripcion'=> $this->descripcion,       
             'codigo' => $this->codigo,
             'marca'=>$this->marca,

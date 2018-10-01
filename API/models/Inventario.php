@@ -162,7 +162,7 @@ class Inventario {
                 $this->id = $inventario->id;
             }
             if(isset($inventario->descripcion)){
-                $this->inventario = $inventario->descripcion;
+                $this->descripcion = $inventario->descripcion;
             }
             if(isset($inventario->producto)){
                 $this->producto = $inventario->producto;
@@ -202,6 +202,9 @@ class Inventario {
             }
             if(isset($inventario->estado)){
                 $this->estado = $inventario->estado;
+            }
+            if(isset($inventario->ubicacion)){
+                $this->ubicacion = $inventario->ubicacion;
             }
             
     }

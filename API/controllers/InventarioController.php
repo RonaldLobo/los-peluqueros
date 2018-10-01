@@ -59,7 +59,7 @@ $app->post('/inventario/', function() use ($app) {
                 $app->response->setBody($result->toJson());
             }else{
                $error = new Error();
-               $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
+               $error->error = 'El código ya se encuentra registrado, seleccione otro';
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(409);
                $app->response->setBody($error->toJson());
@@ -67,8 +67,8 @@ $app->post('/inventario/', function() use ($app) {
         }else{
             $nomBD ='';
             if (count($verificarReg) >0){
-                  $nomBD =$verificarReg->codigo;
-                  $idSucursalBD =$verificarReg->idSucursal;
+                  $nomBD =$verificarReg[0]->codigo;
+                  $idSucursalBD =$verificarReg[0]->idSucursal;
             }
             if((count($verificarReg) == 0 )|| ($inventario->codigo == $nomBD && $inventario->idSucursal == $idSucursalBD)){
                $result = $dbInventario->actualizarInventario($inventario);
@@ -77,7 +77,7 @@ $app->post('/inventario/', function() use ($app) {
                $app->response->setBody($result->toJson());        
             }else{
                $error = new Error();
-               $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
+               $error->error = 'El código ya se encuentra registrado, seleccione otro';
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(409);
                $app->response->setBody($error->toJson());

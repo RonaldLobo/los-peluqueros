@@ -14,8 +14,12 @@ $app->get('/usuario/', function() use ($app) {
     if (!empty($user)){ 
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($user,2));
     } elseif (!empty($idSucursal)) {
-        error_log("tenemos idSucursal", 0);
-        $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($idSucursal,3));
+        error_log("tenemos idSucursal".$idSucursal, 0);
+        try{
+            $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($idSucursal,3));
+        } catch(Exception $e){
+            error_log("seguimos aqui ".$e->getMessage(), 0);
+        }
         error_log("seguimos aqui", 0);
     } elseif (!empty($nombre)) {
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario($nombre,4));

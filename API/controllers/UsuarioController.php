@@ -26,7 +26,9 @@ $app->get('/usuario/', function() use ($app) {
     } else {
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario("",0));
     }
+    error_log("seguimos aqui".count($usuarios), 0);
     $jsonArray = json_encode($usuarios);
+    error_log("seguimos aqui".$jsonArray, 0);
     $app->response->headers->set('Content-Type', 'application/json');
     $app->response->setStatus(200);
     $app->response->setBody($jsonArray);

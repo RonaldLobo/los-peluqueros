@@ -1581,7 +1581,7 @@ var CitasComponent = (function () {
                 });
             }
             if (that.authService.isAdminSucursalUser()) {
-                //that.obtieneCitasBarberia(that);
+                that.obtieneCitasBarberia(that);
             }
             that.sharedService.get('/api/ubicacion').then(function (data) {
                 console.log('that.authService.loggedUser.idProvincia', that.authService.loggedUser.idProvincia);

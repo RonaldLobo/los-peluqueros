@@ -27,7 +27,6 @@ $app->get('/usuario/', function() use ($app) {
         $usuarios = array('usuario' => $dbUsuario->obtenerUsuario("",0));
     }
     error_log("seguimos aqui".count($usuarios), 0);
-    mysql_set_charset('utf8');
     $jsonArray = json_encode($usuarios);
     $error = json_last_error();
     error_log("error".$error, 0);

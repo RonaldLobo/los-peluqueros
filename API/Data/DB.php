@@ -24,7 +24,7 @@ class DB {
         // Create connection
         $this->conn = mysqli_connect($this->servername, $this->username, $this->password, $this->dbName);
       // $pdo = new PDO('mysql:host= servidor; '.$this->dbName.', $usuario, $clave, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES  \'UTF8\''));
-        mysqli_set_charset($this->con, "utf8");
+        mysqli_set_charset($this->conn, "utf8");
         // Check connection
         if (!$this->conn) {
             die("Connection failed: " . mysqli_connect_error());

@@ -125,18 +125,21 @@ class DbUsuario {
         else{
             $sql .= "WHERE Estado = 1";
         }
+        error_log("sql".$sql, 0);
         $db = new DB();     
         if($opcion == 0 || $opcion == 3 || $opcion == 4){
             $row = $db->listar($sql);
         }elseif($opcion == 1 || $opcion == 2){
             $row = $db->obtenerUno($sql);
         }
+        error_log("trae".count($row), 0);
         if(count($row) > 0 && ($opcion==0 || $opcion == 3 || $opcion == 4)){
              $usuario = $this->parseDataList($row);
         }elseif (count($row) > 0 && ($opcion==1 || $opcion==2)) {
              $usuario = $this->parseDataOne($row);
         }
         if(isset($usuario)){
+            error_log("retornando".count($usuario), 0);
             return $usuario;
         }
         return array();
@@ -304,7 +307,7 @@ class DbUsuario {
         if(isset($row['IdFacturador'])){
             $user->idFacturador = $row['IdFacturador'];
         }  
-
+        error_log("parseandolos".$user->cedula, 0);
         $user->telefono = $this->parseRowTelefono($rowTelefono);
         $user->correo = $this->parseRowCorreo($rowCorreo);
         $user->servicios = $rowServicios;

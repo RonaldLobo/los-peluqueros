@@ -23,6 +23,7 @@ class Usuario {
     public $distrito = '';
     public $barrio = '';
     public $detalleDireccion = '';
+    public $idFacturador = '';
        
     function getId() {
         return $this->id;
@@ -109,6 +110,14 @@ class Usuario {
 
     function getDetalleDireccion() {
         return $this->detalleDireccion;
+    }
+
+    function getIdFacturador() {
+        return $this->idFacturador;
+    }
+
+    function setIdFacturador($idFacturador) {
+        $this->idFacturador = $idFacturador;
     }
 
     function setId($id) {
@@ -225,7 +234,8 @@ class Usuario {
             'idCanton'=>$this->idCanton,
             'distrito'=>$this->distrito,
             'barrio'=>$this->barrio,
-            'detalleDireccion'=>$this->detalleDireccion
+            'detalleDireccion'=>$this->detalleDireccion,
+            'idFacturador'=>$this->idFacturador;
             )
         );
         return json_encode($data);
@@ -300,6 +310,9 @@ class Usuario {
         }
         if(isset($user->detalleDireccion)){
             $this->detalleDireccion = $user->detalleDireccion;
+        }
+        if(isset($user->idFacturador)){
+            $this->idFacturador = $user->idFacturador;
         }
     }
     

@@ -12,7 +12,7 @@ class DbUsuario {
 
     function agregarUsuario($usuario,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion) VALUES ("
+        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador) VALUES ("
                 .$usuario->idSucursal.",'"
                 .$usuario->nombre."', '"
                 .$usuario->apellido1. "', '"
@@ -29,7 +29,8 @@ class DbUsuario {
                 .$usuario->idCanton. ",'"
                 .$usuario->distrito. "','"
                 .$usuario->barrio. "','"
-                .$usuario->detalleDireccion. "')";
+                .$usuario->detalleDireccion."','"
+                .$usuario->idFacturador. "')";
 //            echo $sql;
             $id = $db->agregar($sql);
             if ($id >0){
@@ -71,7 +72,8 @@ class DbUsuario {
                 . "IdCanton=".$usuario->idCanton.", "
                 . "Distrito='".$usuario->distrito."', "
                 . "Barrio='".$usuario->barrio."', "
-                . "DetalleDireccion='".$usuario->detalleDireccion."' "
+                . "DetalleDireccion='".$usuario->detalleDireccion."', "
+                . "IdFacturador='".$usuario->idFacturador."' "
                 . "WHERE PkIdUsuario=".$usuario->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonousuario WHERE FkIdUsuarioTelefono=".$usuario->id;
@@ -110,7 +112,7 @@ class DbUsuario {
 
     function obtenerUsuario($busqueda, $opcion){
         
-        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion";
+        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador";
         if($opcion == 1){
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
         } elseif ($opcion == 2) {
@@ -200,7 +202,7 @@ class DbUsuario {
     }
     
     function listarUsuarios(){
-        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion FROM usuarios";
+        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion, IdFacturador FROM usuarios";
         $db = new DB();
         $rowList = $db->listar($sql);
         $usuarioList = $this->parseRowAUsuarioList($rowList);
@@ -298,6 +300,9 @@ class DbUsuario {
         }  
         if(isset($row['DetalleDireccion'])){
             $user->detalleDireccion = $row['DetalleDireccion'];
+        }  
+        if(isset($row['IdFacturador'])){
+            $user->idFacturador = $row['IdFacturador'];
         }  
 
         $user->telefono = $this->parseRowTelefono($rowTelefono);

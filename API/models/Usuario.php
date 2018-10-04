@@ -235,7 +235,7 @@ class Usuario {
             'distrito'=>$this->distrito,
             'barrio'=>$this->barrio,
             'detalleDireccion'=>$this->detalleDireccion,
-            'idFacturador'=>$this->idFacturador;
+            'idFacturador'=>$this->idFacturador
             )
         );
         return json_encode($data);

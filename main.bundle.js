@@ -2070,9 +2070,24 @@ var CitasComponent = (function () {
                         _a.label = 4;
                     case 4:
                         this.facturaHacienda.factura.receptor.id = this.nuevoUsuario.cedula;
-                        this.facturaHacienda.factura.receptor.provincia = this.nuevoUsuario.idProvincia;
-                        this.facturaHacienda.factura.receptor.canton = this.pad(this.nuevoUsuario.idCanton, 2, 0);
-                        this.facturaHacienda.factura.receptor.distrito = this.pad(this.nuevoUsuario.distrito, 2, 0);
+                        if (this.nuevoUsuario.idProvincia && this.nuevoUsuario.idProvincia != 0) {
+                            this.facturaHacienda.factura.receptor.provincia = this.nuevoUsuario.idProvincia;
+                        }
+                        else {
+                            this.facturaHacienda.factura.receptor.provincia = 1;
+                        }
+                        if (this.nuevoUsuario.idCanton && this.nuevoUsuario.idCanton != 0) {
+                            this.facturaHacienda.factura.receptor.canton = this.pad(this.nuevoUsuario.idCanton, 2, 0);
+                        }
+                        else {
+                            this.facturaHacienda.factura.receptor.canton = '01';
+                        }
+                        if (this.nuevoUsuario.distrito && this.nuevoUsuario.distrito != '0') {
+                            this.facturaHacienda.factura.receptor.distrito = this.pad(this.nuevoUsuario.distrito, 2, 0);
+                        }
+                        else {
+                            this.facturaHacienda.factura.receptor.distrito = '01';
+                        }
                         this.facturaHacienda.factura.receptor.barrio = '01';
                         this.facturaHacienda.factura.receptor.senas = 'senas';
                         this.facturaHacienda.factura.receptor.codigoPaisTel = '506';

@@ -28,7 +28,8 @@ $app->get('/usuario/', function() use ($app) {
     }
     error_log("seguimos aqui".count($usuarios), 0);
     $jsonArray = json_encode($usuarios);
-    error_log("seguimos aqui".$jsonArray, 0);
+    $error = json_last_error();
+    error_log("error".$error, 0);
     $app->response->headers->set('Content-Type', 'application/json');
     $app->response->setStatus(200);
     $app->response->setBody($jsonArray);

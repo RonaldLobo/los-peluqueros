@@ -219,7 +219,6 @@ class Usuario {
             'usuario'=> $this->usuario,
             'contrasenna'=> $this->contrasenna,
             'idSucursal'=> $this->idSucursal,
-            'idSucursalBarberia'=> $this->idSucursalBarberia,
             'tipo'=> $this->tipo,
             'estado'=> $this->estado,
             'telefono'=>$this->telefono,

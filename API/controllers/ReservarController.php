@@ -23,19 +23,21 @@ $app->get('/reserva/', function() use ($app) {
         $estadoFactura = $app->request->params('estadoFactura');  
 
         if (!empty($estadoFactura)) {
-            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,5));
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,'',5));
         }  else if (!empty($idSucursal)) {
-            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,2));
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,'',2));
         }  else  if (!empty($idUsuario)) {
-            $reserva = array('reserva' => $dbReserva->obtenerReserva($idUsuario,3));
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idUsuario,'',3));
         }  else  if (!empty($idServicio)) {
-            $reserva = array('reserva' => $dbReserva->obtenerReserva($idServicio,4));
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idServicio,'',4));
         }  else  if (!empty($idUsuarioBarbero) && !empty($fecha)) {
             $reserva = array('reserva' => $dbReserva->obtenerReservaFecha($idUsuarioBarbero,$fecha));
         }  else  if (!empty($fechaFinal) && !empty($fechaInicial) && !empty($idUsuarioBarbero)) {
             $reserva = array('reserva' => $dbReserva->obtenerReservaFechaRango($idUsuarioBarbero,$fechaInicial,$fechaFinal));
-        }  else{
-            $reserva = array('reserva' => $dbReserva->obtenerReserva("",0));
+        }  else  if (!empty($idSucursal) && !empty($fecha)) {
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,$fecha,6));
+        } else{
+            $reserva = array('reserva' => $dbReserva->obtenerReserva('','',0));
         }
         $jsonArray = json_encode($reserva);
         $app->response->headers->set('Content-Type', 'application/json');
@@ -110,7 +112,7 @@ $app->get('/reserva/:id', function($id) use ($app) {
     $authToken = $app->request->headers->get('Authorization');
     if($auth->isAuth($authToken)){
         $dbReserva = new DBReserva(); 
-        $resultSucursal =  array('reserva' => $dbReserva->obtenerReserva($id,1));
+        $resultSucursal =  array('reserva' => $dbReserva->obtenerReserva($id,'',1));
         $jsonArray = json_encode($resultSucursal);
         $app->response->headers->set('Content-Type', 'application/json');
         $app->response->setStatus(200);

@@ -24,6 +24,8 @@ $app->get('/reserva/', function() use ($app) {
 
         if (!empty($estadoFactura)) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,'',5));
+        }else  if (!empty($idSucursal) && !empty($fecha)) {
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,$fecha,6));
         }  else if (!empty($idSucursal)) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,'',2));
         }  else  if (!empty($idUsuario)) {
@@ -34,9 +36,7 @@ $app->get('/reserva/', function() use ($app) {
             $reserva = array('reserva' => $dbReserva->obtenerReservaFecha($idUsuarioBarbero,$fecha));
         }  else  if (!empty($fechaFinal) && !empty($fechaInicial) && !empty($idUsuarioBarbero)) {
             $reserva = array('reserva' => $dbReserva->obtenerReservaFechaRango($idUsuarioBarbero,$fechaInicial,$fechaFinal));
-        }  else  if (!empty($idSucursal) && !empty($fecha)) {
-            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,$fecha,6));
-        } else{
+        }  else{
             $reserva = array('reserva' => $dbReserva->obtenerReserva('','',0));
         }
         $jsonArray = json_encode($reserva);

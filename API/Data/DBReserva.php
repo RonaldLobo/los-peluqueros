@@ -84,7 +84,7 @@ class DBReserva {
         }elseif ($opcion == 5) {
             $sql.= " AND FkIdSucursalBarberiaReserva=".$busqueda." AND r.EstadoFactura='P' ORDER BY r.Dia desc";
         }elseif ($opcion == 6) {
-            $sql.= " AND r.FkIdSucursalBarberiaReserva=".$busqueda." AND r.Dia = '".$busqueda2."' AND r.EstadoFactura='P' ORDER BY r.Dia desc";
+            $sql.= " AND r.FkIdSucursalBarberiaReserva=".$busqueda." AND r.Dia = '".$busqueda2."' ORDER BY r.Dia desc";
         }
         $db = new DB();
         if( $opcion!=1){

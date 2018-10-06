@@ -67,7 +67,7 @@ class DBReserva {
   
     function obtenerReserva($busqueda, $busqueda2, $opcion){
         $sql = "SELECT r.PkIdReserva,r.FkIdSucursalBarberiaReserva,r.FkIdUsuarioReserva,r.FkIdUsuarioBarbero, r.FkIdServicioReserva,r.Dia,r.HoraInicial,r.Estado, r.Descripcion AS DescripcionDinamica, r.DuracionDinamica, r.PrecioDinamico,
-                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, r.Consecutivo,r.Clave,r.Xml,r.Refresh, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
+                s.Descripcion AS Servicio, s.Duracion, s.EsDinamico, s.Precio, r.Consecutivo,r.Clave,r.Xml,r.Refresh, u.Nombre AS NombreUserReserva, u.PrimerApellido AS PrimerApellidoUserReserva, u.SegundoApellido AS SegundoApellidoUserReserva, u.Cedula AS CedulaUserReserva,  ub.Nombre AS NombreBarbero, ub.PrimerApellido AS PrimerApellidoBarbero, ub.SegundoApellido AS SegundoApellidoBarbero,
                 sb.Descripcion AS Sucursal, sb.DetalleDireccion, r.EstadoFactura, r.DetalleFactura, r.ComprobantePago,r.TipoPago
                 FROM reserva r LEFT JOIN servicio s ON s.PkIdServicio= r.FkIdServicioReserva AND s.Estado =1 AND s.FkIdUsuarioServicio=r.FkIdUsuarioBarbero
                 LEFT JOIN usuarios u ON u.PkIdUsuario= r.FkIdUsuarioReserva AND u.Estado=1

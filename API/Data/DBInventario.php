@@ -9,7 +9,7 @@ class DBInventario {
     
     function agregarInventario($inventario){
         $db = new DB();
-        $sql = "INSERT INTO inventario (FkIdSucursalBarberia, Producto,Codigo, CantidadDisponible, CantidadMinima, Precio, Costo,Marca, Ubicacion, Descripcion, Descuento, Impuesto, Proveedor, Categoria, Utilidad, Modelo, Estado) VALUES ("
+        $sql = "INSERT INTO inventario (FkIdSucursalBarberia, Producto,Codigo, CantidadDisponible, CantidadMinima, Precio, Costo,Marca, Ubicacion, Descripcion, Descuento, Impuesto, Proveedor, Categoria, Utilidad, Modelo, Estado, TipoDescuento) VALUES ("
                 .$inventario->idSucursal.",'"
                 .$inventario->producto."','"
                 .$inventario->codigo."',"
@@ -26,7 +26,8 @@ class DBInventario {
                 .$inventario->categoria.",'"
                 .$inventario->utilidad."','"
                 .$inventario->modelo."',"
-                .$inventario->estado. ")";
+                .$inventario->estado. ",'"
+                .$inventario->tipoDescuento. "')";
         $id = $db->agregar($sql);
         $inventario->id = $id;
         return $inventario;
@@ -52,6 +53,7 @@ class DBInventario {
                 . "Utilidad='".$inventario->utilidad."',"
                 . "Categoria=".$inventario->categoria.","
                 . "Modelo='".$inventario->modelo."',"
+                . "TipoDescuento='".$inventario->tipoDescuento."',"
                 . "Estado=".$inventario->estado
                 . " WHERE PkIdInventario=".$inventario->id;
         $db->actualizar($sql);
@@ -65,7 +67,7 @@ class DBInventario {
     }
    
     function obtenerInventario($busqueda, $busqueda2, $opcion){
-        $sql = "SELECT PkIdInventario,FkIdSucursalBarberia,Producto,Codigo,CantidadDisponible,CantidadMinima,Marca,Precio,Costo,Ubicacion,Descripcion,Descuento,Impuesto,Proveedor,Utilidad,Categoria,Modelo, Estado FROM inventario WHERE Estado=1 ";
+        $sql = "SELECT PkIdInventario,FkIdSucursalBarberia,Producto,Codigo,CantidadDisponible,CantidadMinima,Marca,Precio,Costo,Ubicacion,Descripcion,Descuento,Impuesto,Proveedor,Utilidad,Categoria,Modelo, Estado,TipoDescuento FROM inventario WHERE Estado=1 ";
         if($opcion == 1){
             $sql.= " AND PkIdInventario=".$busqueda;
         } elseif ($opcion == 2) {
@@ -148,6 +150,10 @@ class DBInventario {
         }
         if(isset($row['Estado'])){
             $inventario->estado = $row['Estado'];
+        }
+
+        if(isset($row['TipoDescuento'])){
+            $inventario->tipoDescuento = $row['TipoDescuento'];
         }
         return $inventario;
     }

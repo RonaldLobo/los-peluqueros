@@ -20,6 +20,7 @@ class Inventario {
     public $categoria=0; 
     public $modelo="";
     public $estado=0;  
+    public $tipoDescuento ="";
     
     function getId() {
         return $this->id;
@@ -89,6 +90,10 @@ class Inventario {
         return $this->estado;
     }
 
+    function getTipoDescuento() {
+        return $this->tipoDescuento;
+    }
+
     function setId($id) {
         $this->id = $id;
     }
@@ -152,7 +157,9 @@ class Inventario {
     function setEstado($estado) {
         $this->estado = $estado;
     }
-
+    function setTipoDescuento($tipoDescuento) {
+        $this->tipoDescuento = $tipoDescuento;
+    }
 
     function parseDto($inventario) {
             if(isset($inventario->idSucursal)){
@@ -206,6 +213,9 @@ class Inventario {
             if(isset($inventario->ubicacion)){
                 $this->ubicacion = $inventario->ubicacion;
             }
+            if(isset($inventario->tipoDescuento)){
+                $this->tipoDescuento = $inventario->tipoDescuento;
+            }
             
     }
     
@@ -229,7 +239,8 @@ class Inventario {
             'categoria'=> $this->categoria,
             'cantDisponible' => $this->cantDisponible,
             'cantMinima'=>$this->cantMinima,   
-            'estado'=> $this->estado
+            'estado'=> $this->estado,  
+            'tipoDescuento'=> $this->tipoDescuento
             )
         );
         return json_encode($data);

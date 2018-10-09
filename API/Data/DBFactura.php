@@ -8,40 +8,61 @@ class DBFactura {
    
     
 
-    function agregarFactura($factura){
+    function agregarFactura($factura, $detalleFactura){
         $db = new DB();
-        $sql = "INSERT INTO factura (s,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,Impuesto,Descuento,Cantidad,Moneda,Codigo,Detalle,TipoTransacion,Estado) VALUES ("
+        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransacion,Estado, CodigoFactura) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"
                 .$factura->fecha."','"
-                .$factura->monto."','"
-                .$factura->impuesto."','"
-                .$factura->descuento."',"
-                .$factura->cantidad.",'"
-                .$factura->codigo."','"
+                .$factura->total."','"
+                .$factura->totalDescuento."','"
+                .$factura->totalImpuesto."','"
+                .$factura->totalNeto."',"
+                .$factura->moneda.",'"
                 .$factura->detalle."','"
                 .$factura->tipoTransaccion."',"
-                .$factura->estado. ")";
+                .$factura->estado. ",'";
+                .$factura->codigoFactura. "')";
         $id = $db->agregar($sql);
+        if ($id >0){
+            foreach($detalleFactura as $detalle){
+                $sql = "INSERT INTO detalleFactura (FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
+                .$id.",'" .$detalle->producto."','".$detalle->codigo."','".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->total."','".$detalle->unidad."')";
+                $db->agregar($sql);
+           
+            }
+        }
+
+
         $factura->id = $id;
         return $factura;
     }
     
     
-    function actualizarFactura($factura){
+    function actualizarFactura($factura, $detalleFactura){
         $db = new DB();
         $sql = "UPDATE factura SET "
-                . "Monto='".$factura->monto."', "
-                . "Impuesto='".$factura->impuesto."',"
-                . "Descuento='".$factura->descuento."',"
-                . "Cantidad=".$factura->cantidad.","
+                . "Total='".$factura->total."', "
+                . "TotalImpuesto='".$factura->totalImpuesto."',"
+                . "TotalDescuento='".$factura->totalDescuento."',"
+                . "TotalNeto='".$factura->totalNeto."',"
                 . "Moneda=".$factura->Moneda.","
                 . "Detalle='".$factura->detalle."',"
-                . "TipoTransacion='".$factura->tipoTransaccion.","
+                . "TipoTransacion='".$factura->tipoTransaccion."',"
+                . "CodigoFactura='".$factura->codigoFactura."',"
                 . "Estado=".$factura->estado
                 . " WHERE PkIdFactura=".$factura->id;
-        $db->actualizar($sql);
+        if($db->actualizar($sql)) {
+                $sqlClean = "DELETE FROM detalleFactura WHERE FkIdFactura=".$factura->id;
+                $db->actualizar($sqlClean);
+                foreach ($detalleFactura  as $detalle){
+                    $sql = "INSERT INTO detalleFactura (FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
+                        .$id.",'" .$detalle->producto."','".$detalle->codigo."','".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->total."','".$detalle->unidad."')";
+                    $db->agregar($sql);
+                    $detalleFactura->id = $id;
+                }
+            }
         return $factura;
     }
    
@@ -52,13 +73,13 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $opcion){
-        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Monto,Impuesto,Descuento,Cantidad,Moneda,Codigo,Detalle,TipoTransacion,Estado FROM factura WHERE Estado=1";
+        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransacion,Estado, fr.FkIdReservas, fp.FkIdProductos FROM factura f  WHERE Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
-            $sql.= " AND Codigo LIKE '%".$busqueda."%'";
+            $sql.= " AND CodigoFactura LIKE '%".$busqueda."%'";
         } elseif ($opcion == 3) {
-            $sql.= " AND Codigo = '".$busqueda."'";
+            $sql.= " AND CodigoFactura = '".$busqueda."'";
         }elseif ($opcion == 4) {
             $sql.= " AND FkIdUsuarioClienteFactura = ".$busqueda.;
         }elseif ($opcion == 5) {
@@ -84,23 +105,10 @@ class DBFactura {
     }
     
 
- .$factura->idCliente.","
-                .$factura->idCreadoPor.","
-                .$factura->idSucursal.",'"
-                .$factura->fecha."','"
-                .$factura->monto."','"
-                .$factura->impuesto."','"
-                .$factura->descuento."',"
-                .$factura->cantidad.",'"
-                .$factura->codigo."','"
-                .$factura->detalle."','"
-                .$factura->tipoTransaccion."',"
-                .$factura->estado. ")";
-
-    function parseRowFactura($row) {
+    function parseRowFactura($row, $rowDetalleFactura) {
         $factura = new Factura();
-        if(isset($row['PkIdProveedor'])){
-            $factura->id = $row['PkIdProveedor'];
+        if(isset($row['PkIdFactura'])){
+            $factura->id = $row['PkIdFactura'];
         }
         if(isset($row['IdCliente'])){
             $factura->idCliente = $row['IdCliente'];
@@ -114,30 +122,29 @@ class DBFactura {
         if(isset($row['Fecha'])){
             $factura->fecha = $row['Fecha'];
         }
-        if(isset($row['Monto'])){
-            $factura->monto = $row['Monto'];
+        if(isset($row['Total'])){
+            $factura->total = $row['Total'];
         }
-        if(isset($row['Impuesto'])){
-            $factura->impuesto = $row['Impuesto'];
+        if(isset($row['TotalImpuesto'])){
+            $factura->totalImpuesto = $row['TotalImpuesto'];
         }
-        if(isset($row['Descuento'])){
-            $factura->descuento = $row['Descuento'];
+        if(isset($row['TotalDescuento'])){
+            $factura->totalDescuento = $row['TotalDescuento'];
         }
-         if(isset($row['Codigo'])){
-            $factura->codigo = $row['Codigo'];
+         if(isset($row['CodigoFactura'])){
+            $factura->codigoFactura = $row['CodigoFactura'];
         }
-        if(isset($row['Cantidad'])){
-            $factura->cantidad = $row['Cantidad'];
+        if(isset($row['TotalNeto'])){
+            $factura->totalNeto = $row['TotalNeto'];
         }
         if(isset($row['Moneda'])){
             $factura->moneda = $row['Moneda'];
         }
-        if(isset($row['Cantidad'])){
-            $factura->cantidad = $row['Cantidad'];
-        }
         if(isset($row['Estado'])){
             $factura->estado = $row['Estado'];
         }
+
+        $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }
     
@@ -145,13 +152,66 @@ class DBFactura {
     function parseDataList($rowList) {
         $parseDatos = array();
         foreach ($rowList as $row) {
-            array_push($parseDatos, $this->parseRowFactura($row));
+            array_push($parseDatos, $this->parseRowDetalleFactura($row));
         }
         return $parseDatos;
     }
     
   
-       
+           
+    function parseRowDetalleFactura($detalleFactura) {
+        $arrayDetalleFactura = array();
+        foreach ($detalleFactura as $row) {
+            $detalleFactura = new DetalleFactura();
+            if(isset($row['PkIdDetalleFactura'])){
+                $detalleFactura->id = $row['PkIdDetalleFactura'];
+            }
+            if(isset($row['Producto'])){
+                $detalleFactura->producto = $row['Producto'];
+            }
+            if(isset($row['FkIdFactura'])){
+                $detalleFactura->idFactura = $row['FkIdFactura'];
+            }
+            if(isset($row['Codigo'])){
+                $detalleFactura->codigo = $row['Codigo'];
+            }
+            if(isset($row['Precio'])){
+                $detalleFactura->precio = $row['Precio'];
+            }
+            if(isset($row['Cantidad'])){
+                $detalleFactura->cantidad = $row['Cantidad'];
+            }
+            if(isset($row['Impuesto'])){
+                $detalleFactura->impuesto = $row['Impuesto'];
+            }
+            if(isset($row['Descuento'])){
+                $detalleFactura->descuento = $row['Descuento'];
+            }
+            if(isset($row['Total'])){
+                $detalleFactura->total = $row['Total'];
+            }
+            if(isset($row['TipoDescuento'])){
+                $detalleFactura->tipoDescuento = $row['TipoDescuento'];
+            }
+            if(isset($row['RazonDescuento'])){
+                $detalleFactura->razonDescuento = $row['RazonDescuento'];
+            }
+            if(isset($row['Unidad'])){
+                $detalleFactura->unidad = $row['Unidad'];
+            }
+            array_push($arrayDetalleFactura, $detalleFactura);
+        }
+       return $arrayDetalleFactura;
+    }
+
+
+    function obtenerDetalleFactura($id){
+        $sql = "SELECT PkIdDetalleFactura, FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad FROM detalleFactura WHERE FkIdFactura=".$id;
+        $db = new DB();
+        $row = $db->listar($sql);
+        return $row;
+    }
+    
   
    
     

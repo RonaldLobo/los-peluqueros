@@ -10,7 +10,7 @@ class DBFactura {
 
     function agregarFactura($factura, $detalleFactura){
         $db = new DB();
-        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransacion,Estado, CodigoFactura) VALUES ("
+        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransacion,Estado, CodigoFactura,NumComprobante) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"
@@ -23,7 +23,8 @@ class DBFactura {
                 .$factura->detalle."','"
                 .$factura->tipoTransaccion."',"
                 .$factura->estado. ",'";
-                .$factura->codigoFactura. "')";
+                .$factura->codigoFactura. "','";
+                .$factura->numComprobante. "')";
         $id = $db->agregar($sql);
         if ($id >0){
             foreach($detalleFactura as $detalle){
@@ -51,6 +52,7 @@ class DBFactura {
                 . "Detalle='".$factura->detalle."',"
                 . "TipoTransacion='".$factura->tipoTransaccion."',"
                 . "CodigoFactura='".$factura->codigoFactura."',"
+                . "NumComprobante='".$factura->numComprobante."',"
                 . "Estado=".$factura->estado
                 . " WHERE PkIdFactura=".$factura->id;
         if($db->actualizar($sql)) {
@@ -73,7 +75,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $opcion){
-        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransacion,Estado, fr.FkIdReservas, fp.FkIdProductos FROM factura f  WHERE Estado=1";
+        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransacion,Estado,NumComprobante FROM factura f  WHERE Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -142,6 +144,9 @@ class DBFactura {
         }
         if(isset($row['Estado'])){
             $factura->estado = $row['Estado'];
+        }
+        if(isset($row['NumComprobante'])){
+            $factura->numComprobante = $row['NumComprobante'];
         }
 
         $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);

@@ -16,6 +16,7 @@ class Factura {
     public $detalle='';
     public $codigo='';
     public $tipoTransaccion='';
+    public $numComprobante='';
     public $detalleFactura = array();
     
     function getFecha() {
@@ -78,6 +79,10 @@ class Factura {
         return $this->detalleFactura;
     }
 
+    function getNumComprobante(){
+        return $this->numComprobante;
+    }
+
     function setFecha($fecha) {
         $this->fecha = $fecha;
     }
@@ -138,6 +143,9 @@ class Factura {
         $this->detalleFactura = $detalleFactura;
     }
 
+    function setNumComprobante($numComprobante) {
+        $this->numComprobante = $numComprobante;
+    }
 
  function parseDto($factura) {
         if(isset($factura->id)){
@@ -173,9 +181,11 @@ class Factura {
         if(isset($factura->tipoTransaccion)){
             $this->tipoTransaccion = $factura->tipoTransaccion;
         }
-
-        if(isset($factura->cantidad)){
-            $this->cantidad = $factura->cantidad;
+        if(isset($factura->codigo)){
+            $this->codigo = $factura->codigo;
+        }
+        if(isset($factura->numComprobante)){
+            $this->numComprobante = $factura->numComprobante;
         }
     }
     
@@ -199,7 +209,8 @@ class Factura {
             'detalle'=>$this->detalle,
             'codigo'=>$this->codigo,
             'tipoTransaccion'=>$this->tipoTransaccion,
-            'detalleFactura'=>$this->detalleFactura
+            'detalleFactura'=>$this->detalleFactura,
+            'numComprobante'=>$this->numComprobante
             )
         );
         return json_encode($data);

@@ -10,7 +10,7 @@ class DBFactura {
 
     function agregarFactura($factura, $detalleFactura){
         $db = new DB();
-        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransacion,Estado, CodigoFactura,NumComprobante) VALUES ("
+        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura, FkIdReservaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"
@@ -48,7 +48,7 @@ class DBFactura {
                 . "TotalNeto='".$factura->totalNeto."',"
                 . "Moneda=".$factura->Moneda.","
                 . "Detalle='".$factura->detalle."',"
-                . "TipoTransacion='".$factura->tipoTransaccion."',"
+                . "TipoTransaccion='".$factura->tipoTransaccion."',"
                 . "CodigoFactura='".$factura->codigo."',"
                 . "NumComprobante='".$factura->numComprobante."',"
                 . "Estado=".$factura->estado
@@ -73,7 +73,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $opcion){
-        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransacion,Estado,NumComprobante FROM factura f  WHERE Estado=1";
+        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante FROM factura f  WHERE Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -145,6 +145,9 @@ class DBFactura {
         }
         if(isset($row['NumComprobante'])){
             $factura->numComprobante = $row['NumComprobante'];
+        }
+        if(isset($row['TipoTransaccion'])){
+            $factura->tipoTransaccion = $row['TipoTransaccion'];
         }
 
         $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);

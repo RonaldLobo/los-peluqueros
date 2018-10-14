@@ -90,16 +90,16 @@ class DBFactura {
             $sql.= " AND Fecha = '".$busqueda."'";
         } 
         $db = new DB();        
-        if($opcion == 0 || $opcion==2){
-            $row = $db->listar($sql);
+        if($opcion == 1 || $opcion == 3){
+            $row = $db->obtenerUno($sql);  
         }else{
-            $row = $db->obtenerUno($sql);            
+            $row = $db->listar($sql);       
         }
         $factura= array();
-        if(count($row) > 0 && ($opcion==0 || $opcion==2)){            
-             $factura = $this->parseDataList($row);
-        } elseif (count($row) > 0 && ($opcion==1 || $opcion==3)) {
-             $factura =  $this->parseRowFactura($row);              
+        if(count($row) > 0 && ($opcion==1 || $opcion==3)){    
+            $factura =  $this->parseRowFactura($row);  
+        } elseif (count($row) > 0) {
+            $factura = $this->parseDataList($row);         
         }
         return $factura;
     }

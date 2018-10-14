@@ -81,11 +81,11 @@ class DBFactura {
         } elseif ($opcion == 3) {
             $sql.= " AND CodigoFactura = '".$busqueda."'";
         }elseif ($opcion == 4) {
-            $sql.= " AND FkIdUsuarioClienteFactura = ".$busqueda.;
+            $sql.= " AND FkIdUsuarioClienteFactura = ".$busqueda;
         }elseif ($opcion == 5) {
-            $sql.= " AND FkIdUsuarioCreadoFactura = ".$busqueda.;
+            $sql.= " AND FkIdUsuarioCreadoFactura = ".$busqueda;
         }elseif ($opcion == 6) {
-            $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda.;
+            $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda;
         }elseif ($opcion == 7) {
             $sql.= " AND Fecha = '".$busqueda."'";
         } 

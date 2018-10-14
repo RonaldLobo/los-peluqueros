@@ -23,7 +23,7 @@ class DBFactura {
                 .$factura->detalle."','"
                 .$factura->tipoTransaccion."',"
                 .$factura->estado. ",'";
-                .$factura->codigoFactura. "','";
+                .$factura->codigoFactura. "','"
                 .$factura->numComprobante. "')";
         $id = $db->agregar($sql);
         if ($id >0){

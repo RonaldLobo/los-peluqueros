@@ -16,6 +16,7 @@ class Factura {
     public $detalle='';
     public $codigo='';
     public $tipoTransaccion='';
+    public $detalleFactura = array();
     
     function getFecha() {
         return $this->fecha;
@@ -54,23 +55,27 @@ class Factura {
     }
 
     function getCantidad() {
-        return $this-> cantidad;
+        return $this->cantidad;
     }
 
     function getCodigo() {
-        return $this-> codigo;
+        return $this->codigo;
     }
 
     function getMoneda() {
-        return $this-> moneda;
+        return $this->moneda;
     }
 
     function getDetalle() {
-        return $this-> detalle;
+        return $this->detalle;
     }
 
     function getTipoTransaccion() {
         return $this-> tipoTransaccion;
+    }
+
+    function getDetalleFactura(){
+        return $this->detalleFactura;
     }
 
     function setFecha($fecha) {
@@ -129,6 +134,10 @@ class Factura {
         $this->cantidad = $cantidad;
     }
 
+    function setDetalleFactura($detalleFactura) {
+        $this->detalleFactura = $detalleFactura;
+    }
+
 
  function parseDto($factura) {
         if(isset($factura->id)){
@@ -170,4 +179,33 @@ class Factura {
         }
     }
     
+ 
+
+
+    function toJson() {
+        $data = array(
+        'factura' => array(
+            'fecha' => $this->fecha,
+            'id'=>$this->id,
+            'estado'=> $this->estado,
+            'idCliente'=> $this->idCliente,
+            'idCreadoPor'=> $this->idCreadoPor,
+            'idSucursal'=> $this->idSucursal,
+            'monto'=> $this->monto,
+            'impuesto'=> $this->impuesto,
+            'descuento'=> $this->descuento,
+            'cantidad'=>$this->cantidad,
+            'moneda'=>$this->moneda,
+            'detalle'=>$this->detalle,
+            'codigo'=>$this->codigo,
+            'tipoTransaccion'=>$this->tipoTransaccion,
+            'detalleFactura'=>$this->detalleFactura
+            )
+        );
+        return json_encode($data);
+    }
+    
+    function AgregarDetalleFactura($detalleFact){
+        array_push($this->detalleFactura, $detalleFact);
+    }
 }

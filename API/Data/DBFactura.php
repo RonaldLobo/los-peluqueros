@@ -34,8 +34,6 @@ class DBFactura {
            
             }
         }
-
-
         $factura->id = $id;
         return $factura;
     }

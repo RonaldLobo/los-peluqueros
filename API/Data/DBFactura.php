@@ -22,8 +22,8 @@ class DBFactura {
                 .$factura->moneda.",'"
                 .$factura->detalle."','"
                 .$factura->tipoTransaccion."',"
-                .$factura->estado. ",'";
-                .$factura->codigoFactura. "','"
+                .$factura->estado. ",'"
+                .$factura->codigo. "','"
                 .$factura->numComprobante. "')";
         $id = $db->agregar($sql);
         if ($id >0){
@@ -49,7 +49,7 @@ class DBFactura {
                 . "Moneda=".$factura->Moneda.","
                 . "Detalle='".$factura->detalle."',"
                 . "TipoTransacion='".$factura->tipoTransaccion."',"
-                . "CodigoFactura='".$factura->codigoFactura."',"
+                . "CodigoFactura='".$factura->codigo."',"
                 . "NumComprobante='".$factura->numComprobante."',"
                 . "Estado=".$factura->estado
                 . " WHERE PkIdFactura=".$factura->id;

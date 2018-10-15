@@ -51,6 +51,7 @@ class DBFactura {
                 . "TipoTransaccion='".$factura->tipoTransaccion."',"
                 . "CodigoFactura='".$factura->codigo."',"
                 . "NumComprobante='".$factura->numComprobante."',"
+                . "Moneda=".$factura->moneda.","
                 . "Estado=".$factura->estado
                 . " WHERE PkIdFactura=".$factura->id;
         if($db->actualizar($sql)) {
@@ -132,7 +133,7 @@ class DBFactura {
             $factura->totalDescuento = $row['TotalDescuento'];
         }
          if(isset($row['CodigoFactura'])){
-            $factura->codigoFactura = $row['CodigoFactura'];
+            $factura->codigo = $row['CodigoFactura'];
         }
         if(isset($row['TotalNeto'])){
             $factura->totalNeto = $row['TotalNeto'];
@@ -148,6 +149,9 @@ class DBFactura {
         }
         if(isset($row['TipoTransaccion'])){
             $factura->tipoTransaccion = $row['TipoTransaccion'];
+        }
+        if(isset($row['Detalle'])){
+            $factura->detalle = $row['Detalle'];
         }
 
         $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);

@@ -8,15 +8,17 @@ class Factura {
     public $idCliente=0;
     public $idCreadoPor=0;
     public $idSucursal=0;
-    public $monto=0;
-    public $impuesto=0;
-    public $descuento=0;
+    public $total=0;
+    public $totalImpuesto=0;
+    public $totalDescuento=0;
+    public $totalNeto=0;
     public $cantidad=0;
     public $moneda=0;
     public $detalle='';
     public $codigo='';
     public $tipoTransaccion='';
     public $numComprobante='';
+    public $detalle='';
     public $detalleFactura = array();
     
     function getFecha() {
@@ -43,16 +45,20 @@ class Factura {
         return $this->idSucursal;
     }
 
-    function getMonto() {
-        return $this->monto;
+    function getTotal() {
+        return $this->total;
     }
 
-    function getImpuesto() {
-        return $this->impuesto;
+    function getTotalImpuesto() {
+        return $this->totalImpuesto;
     }
 
-    function getDescuento() {
-        return $this->descuento;
+    function getTotalDescuento() {
+        return $this->totalDescuento;
+    }
+
+    function getTotalNeto() {
+        return $this->totalNeto;
     }
 
     function getCantidad() {
@@ -107,16 +113,20 @@ class Factura {
         $this->idCreadoPor = $idCreadoPor;
     }
 
-     function setMonto($monto) {
-        $this->monto = $monto;
+     function setTotal($total) {
+        $this->total = $total;
     }
 
-     function setImpuesto($impuesto) {
-        $this->impuesto = $impuesto;
+    function setTotalImpuesto($totalImpuesto) {
+        $this->totalImpuesto = $totalImpuesto;
     }
 
-     function setDescuento($descuento) {
-        $this->descuento = $descuento;
+    function setTotalDescuento($totalDescuento) {
+        $this->totalDescuento = $totalDescuento;
+    }
+
+    function setTotalNeto($totalNeto) {
+        $this->totalNeto = $totalNeto;
     }
 
      function setMoneda($moneda) {
@@ -147,6 +157,10 @@ class Factura {
         $this->numComprobante = $numComprobante;
     }
 
+    function setDetalle($detalle) {
+        $this->detalle = $detalle;
+    }
+
  function parseDto($factura) {
         if(isset($factura->id)){
             $this->id = $factura->id;
@@ -166,14 +180,17 @@ class Factura {
          if(isset($factura->moneda)){
             $this->moneda = $factura->moneda;
         }
-        if(isset($factura->monto)){
-            $this->monto = $factura->monto;
+        if(isset($factura->total)){
+            $this->total = $factura->total;
         }
-        if(isset($factura->descuento)){
-            $this->descuento = $factura->descuento;
+        if(isset($factura->totalDescuento)){
+            $this->totalDescuento = $factura->totalDescuento;
         }
-        if(isset($factura->impuesto)){
-            $this->impuesto = $factura->impuesto;
+        if(isset($factura->totalImpuesto)){
+            $this->totalImpuesto = $factura->totalImpuesto;
+        }
+        if(isset($factura->totalNeto)){
+            $this->totalNeto = $factura->totalNeto;
         }
         if(isset($factura->detalle)){
             $this->detalle = $factura->detalle;
@@ -186,6 +203,9 @@ class Factura {
         }
         if(isset($factura->numComprobante)){
             $this->numComprobante = $factura->numComprobante;
+        }     
+        if(isset($factura->fecha)){
+            $this->fecha = $factura->fecha;
         }
     }
     
@@ -201,9 +221,10 @@ class Factura {
             'idCliente'=> $this->idCliente,
             'idCreadoPor'=> $this->idCreadoPor,
             'idSucursal'=> $this->idSucursal,
-            'monto'=> $this->monto,
-            'impuesto'=> $this->impuesto,
-            'descuento'=> $this->descuento,
+            'total'=> $this->total,
+            'totalImpuesto'=> $this->totalImpuesto,
+            'totalDescuento'=> $this->totalDescuento,
+            'totalNeto'=> $this->totalNeto,
             'cantidad'=>$this->cantidad,
             'moneda'=>$this->moneda,
             'detalle'=>$this->detalle,

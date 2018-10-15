@@ -29,7 +29,7 @@ class DBFactura {
         if ($id >0){
             foreach($detalleFactura as $detalle){
                 $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
-                .$id."," $detalle->idServicio.",'".$detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
+                .$id.",".$detalle->idServicio.",'".$detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
                 $db->agregar($sql);
            
             }

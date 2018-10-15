@@ -18,8 +18,8 @@ class DBFactura {
                 .$factura->total."','"
                 .$factura->totalDescuento."','"
                 .$factura->totalImpuesto."','"
-                .$factura->totalNeto."',"
-                .$factura->moneda.",'"
+                .$factura->totalNeto."','"
+                .$factura->moneda."','"
                 .$factura->detalle."','"
                 .$factura->tipoTransaccion."',"
                 .$factura->estado. ",'"
@@ -28,8 +28,8 @@ class DBFactura {
         $id = $db->agregar($sql);
         if ($id >0){
             foreach($detalleFactura as $detalle){
-                $sql = "INSERT INTO detalleFactura (FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
-                .$id.",'" .$detalle->producto."','".$detalle->codigo."','".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->total."','".$detalle->unidad."')";
+                $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
+                .$id."," $detalle->idServicio.",'".$detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
                 $db->agregar($sql);
            
             }
@@ -46,7 +46,7 @@ class DBFactura {
                 . "TotalImpuesto='".$factura->totalImpuesto."',"
                 . "TotalDescuento='".$factura->totalDescuento."',"
                 . "TotalNeto='".$factura->totalNeto."',"
-                . "Moneda=".$factura->Moneda.","
+                . "Moneda='".$factura->Moneda."',"
                 . "Detalle='".$factura->detalle."',"
                 . "TipoTransaccion='".$factura->tipoTransaccion."',"
                 . "CodigoFactura='".$factura->codigo."',"
@@ -58,8 +58,8 @@ class DBFactura {
                 $sqlClean = "DELETE FROM detalleFactura WHERE FkIdFactura=".$factura->id;
                 $db->actualizar($sqlClean);
                 foreach ($detalleFactura  as $detalle){
-                    $sql = "INSERT INTO detalleFactura (FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
-                        .$id.",'" .$detalle->producto."','".$detalle->codigo."','".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->total."','".$detalle->unidad."')";
+                    $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
+                        .$id.",".$detalle->idServicio.",'" .$detalle->producto."','".$detalle->codigo."','".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->total."','".$detalle->unidad."')";
                     $db->agregar($sql);
                     $detalleFactura->id = $id;
                 }
@@ -182,6 +182,9 @@ class DBFactura {
             if(isset($row['FkIdFactura'])){
                 $detalleFactura->idFactura = $row['FkIdFactura'];
             }
+            if(isset($row['FkIdServicio'])){
+                $detalleFactura->idServicio = $row['FkIdServicio'];
+            }
             if(isset($row['Codigo'])){
                 $detalleFactura->codigo = $row['Codigo'];
             }
@@ -216,7 +219,7 @@ class DBFactura {
 
 
     function obtenerDetalleFactura($id){
-        $sql = "SELECT PkIdDetalleFactura, FkIdFactura  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad FROM detalleFactura WHERE FkIdFactura=".$id;
+        $sql = "SELECT PkIdDetalleFactura, FkIdFactura,FkIdServicio  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad FROM detalleFactura WHERE FkIdFactura=".$id;
         $db = new DB();
         $row = $db->listar($sql);
         return $row;

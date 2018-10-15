@@ -1,18 +1,19 @@
 <?php
 
 class DetalleFactura {
-    public $id;
-    public $idFactura;
-    public $producto;
-    public $codigo;
-    public $precio;
-    public $cantidad;
-    public $impuesto;
-    public $total;
-    public $descuento;
-    public $tipoDescuento;
-    public $razonDescuento;
-    public $unidad;
+    public $id = 0;
+    public $idFactura = 0;
+    public $idServicio = 0;
+    public $producto = '';
+    public $codigo = '';
+    public $precio = 0;
+    public $cantidad = 0;
+    public $impuesto = 0;
+    public $total = 0;
+    public $descuento = 0;
+    public $tipoDescuento = '';
+    public $razonDescuento = '';
+    public $unidad = '';
     public $detalleFactura = array();
             
     function getProducto() {
@@ -23,6 +24,9 @@ class DetalleFactura {
     }
     function getIdFactura() {
         return $this->idFactura;
+    }
+    function getIdServicio() {
+        return $this->idServicio;
     }
     function getCodigo() {
         return $this->codigo;
@@ -61,6 +65,9 @@ class DetalleFactura {
     function setId($id) {
         $this->id = $id;
     }
+    function setIdServicio($idServicio) {
+        $this->idServicio = $idServicio;
+    }   
     function setIdFactura($idFactura) {
         $this->idFactura = $idFactura;
     }   
@@ -99,6 +106,9 @@ class DetalleFactura {
     function parseDto($detalleFactura) {
         if(isset($detalleFactura->id)){
             $this->id = $detalleFactura->id;
+        }
+        if(isset($detalleFactura->idServicio)){
+            $this->idServicio = $detalleFactura->idServicio;
         }
         if(isset($detalleFactura->producto)){
             $this->producto = $detalleFactura->producto;
@@ -145,6 +155,7 @@ class DetalleFactura {
             'producto' => $this->producto,
             'id'=>$this->id,
             'idFactura'=> $this->idFactura,
+            'idServicio'=> $this->idServicio,
             'precio'=> $this->precio,
             'codigo'=> $this->codigo,
             'cantidad'=> $this->cantidad,

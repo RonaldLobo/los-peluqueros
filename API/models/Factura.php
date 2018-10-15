@@ -156,9 +156,7 @@ class Factura {
         $this->numComprobante = $numComprobante;
     }
 
-    function setDetalle($detalle) {
-        $this->detalle = $detalle;
-    }
+   
 
  function parseDto($factura) {
         if(isset($factura->id)){

@@ -18,7 +18,6 @@ class Factura {
     public $codigo='';
     public $tipoTransaccion='';
     public $numComprobante='';
-    public $detalle='';
     public $detalleFactura = array();
     
     function getFecha() {

@@ -10,6 +10,11 @@ class DBFactura {
 
     function agregarFactura($factura, $detalleFactura){
         $db = new DB();
+
+        if ($factura->idCliente == ''){
+            $factura->idCliente = null; 
+        }
+
         $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
@@ -29,7 +34,13 @@ class DBFactura {
         if ($id >0){
             foreach($detalleFactura as $detalle){
                 $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
-                .$id.",".$detalle->idServicio.",'".$detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
+                    .$id.",";
+                if($detalle->idServicio != ''){
+                  $sql.=  $detalle->idServicio.",'"
+                }else{
+                     $sql.=  "null,'"
+                }
+                $sql.=  $detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
                 $db->agregar($sql);
            
             }

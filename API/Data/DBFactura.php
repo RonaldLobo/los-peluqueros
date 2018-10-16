@@ -157,15 +157,7 @@ class DBFactura {
         $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }
-    
- 
-    function parseDataList($rowList) {
-        $parseDatos = array();
-        foreach ($rowList as $row) {
-            array_push($parseDatos, $this->parseRowDetalleFactura($row));
-        }
-        return $parseDatos;
-    }
+
     
   
            

@@ -98,7 +98,7 @@ class DBFactura {
         }
         $factura= array();
         if(count($row) > 0 && ($opcion==1 || $opcion==3)){    
-            $factura =  $this->parseRowFactura($row);  
+            $factura =  $this->parseDataOne($row);  
         } elseif (count($row) > 0) {
             $factura = $this->parseDataList($row);         
         }
@@ -225,6 +225,20 @@ class DBFactura {
         return $row;
     }
     
+
+    function parseDataList($rowList) {
+        $parseDatos = array();
+        foreach ($rowList as $row) {
+            $detalleFactura= $this->obtenerDetalleFactura($row["PkIdFactura"]);
+            array_push($parseDatos, $this->parseRowFactura($row, $detalleFactura));
+        }
+        return $parseDatos;
+    }
+    
+     function parseDataOne($row) {
+        $detalleFactura= $this->obtenerDetalleFactura($row["PkIdFactura"]);
+        return $this->parseRowFactura($row, $detalleFactura); 
+    }
   
    
     

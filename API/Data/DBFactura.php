@@ -33,12 +33,11 @@ class DBFactura {
         $id = $db->agregar($sql);
         if ($id >0){
             foreach($detalleFactura as $detalle){
-                $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES ("
-                    .$id.",";
+                $sql = "INSERT INTO detalleFactura (FkIdFactura , FkIdServicio ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad) VALUES (".$id.",";
                 if($detalle->idServicio != ''){
-                  $sql.=  $detalle->idServicio.",'"
+                  $sql.=  $detalle->idServicio.",'";
                 }else{
-                     $sql.=  "null,'"
+                     $sql.=  "null,'";
                 }
                 $sql.=  $detalle->producto."','".$detalle->codigo."',".$detalle->cantidad.",'".$detalle->precio."','".$detalle->impuesto."','".$detalle->descuento."','".$detalle->tipoDescuento."','".$detalle->razonDescuento."','".$detalle->unidad."')";
                 $db->agregar($sql);

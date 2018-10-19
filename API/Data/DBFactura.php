@@ -3,6 +3,7 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Data/DB.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Factura.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/DetalleFactura.php';
 
 class DBFactura {
    

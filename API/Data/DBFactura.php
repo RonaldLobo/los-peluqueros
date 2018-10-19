@@ -171,9 +171,9 @@ class DBFactura {
     
   
            
-    function parseRowDetalleFactura($detalleFactura) {
+    function parseRowDetalleFactura($rowDetalleFactura) {
         $arrayDetalleFactura = array();
-        foreach ($detalleFactura as $row) {
+        foreach ($rowDetalleFactura as $row) {
             $detalleFactura = new DetalleFactura();
             if(isset($row['PkIdDetalleFactura'])){
                 $detalleFactura->id = $row['PkIdDetalleFactura'];

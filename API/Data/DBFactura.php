@@ -27,8 +27,8 @@ class DBFactura {
                 .$factura->totalNeto."','"
                 .$factura->moneda."','"
                 .$factura->detalle."','"
-                .$factura->tipoTransaccion."',"
-                .$factura->estado. ",'"
+                .$factura->tipoTransaccion."','"
+                .$factura->estado. "','"
                 .$factura->codigo. "','"
                 .$factura->numComprobante. "')";
         $id = $db->agregar($sql);
@@ -63,7 +63,7 @@ class DBFactura {
                 . "CodigoFactura='".$factura->codigo."',"
                 . "NumComprobante='".$factura->numComprobante."',"
                 . "Moneda=".$factura->moneda.","
-                . "Estado=".$factura->estado
+                . "Estado='".$factura->estado."'"
                 . " WHERE PkIdFactura=".$factura->id;
         if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM detalleFactura WHERE FkIdFactura=".$factura->id;

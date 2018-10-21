@@ -4,7 +4,7 @@ class Factura {
 
     public $fecha ='';    
     public $id =0;
-    public $estado=0;
+    public $estado='';
     public $idCliente = null;
     public $idCreadoPor=0;
     public $idSucursal=0;

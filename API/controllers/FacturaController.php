@@ -65,7 +65,7 @@ $app->post('/factura/', function() use ($app) {
              //  $app->response->headers->set('Content-Type', 'application/json');
              //  $app->response->setStatus(409);
              //  $app->response->setBody($error->toJson());
-            }
+            //}
         }else{
            // $nomBD ='';
            // if (count($verificarReg) >0){
@@ -82,7 +82,7 @@ $app->post('/factura/', function() use ($app) {
            //    $app->response->headers->set('Content-Type', 'application/json');
            //    $app->response->setStatus(409);
            //    $app->response->setBody($error->toJson());
-            }
+          //  }
         }       
     }
     else{

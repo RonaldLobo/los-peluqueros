@@ -52,36 +52,36 @@ $app->post('/factura/', function() use ($app) {
         $body = $app->request->getBody();
         $posted = json_decode($body);
         $factura->parseDto($posted->factura);
-        $verificarReg = $dbFactura->obtenerFactura($factura->codigo,3);
+        //$verificarReg = $dbFactura->obtenerFactura($factura->codigo,3);
         if(is_null($method)){      
-            if( count($verificarReg) == 0){
+          //  if( count($verificarReg) == 0){
                 $result = $dbFactura->agregarFactura($factura,$posted->factura->detalleFactura);
                 $app->response->headers->set('Content-Type', 'application/json');
                 $app->response->setStatus(200);
                 $app->response->setBody($result->toJson());
-            }else{
-               $error = new Error();
-               $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
-               $app->response->headers->set('Content-Type', 'application/json');
-               $app->response->setStatus(409);
-               $app->response->setBody($error->toJson());
+           // }else{
+             //  $error = new Error();
+             //  $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
+             //  $app->response->headers->set('Content-Type', 'application/json');
+             //  $app->response->setStatus(409);
+             //  $app->response->setBody($error->toJson());
             }
         }else{
-            $nomBD ='';
-            if (count($verificarReg) >0){
-                  $nomBD =$verificarReg->codigo;
-            }
-            if((count($verificarReg) == 0 )|| $factura->codigo == $nomBD){
+           // $nomBD ='';
+           // if (count($verificarReg) >0){
+            //      $nomBD =$verificarReg->codigo;
+           // }
+           // if((count($verificarReg) == 0 )|| $factura->codigo == $nomBD){
                $result = $dbFactura->actualizarFactura($factura,$posted->factura->detalleFactura);
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(200);
                $app->response->setBody($result->toJson());        
-            }else{
-               $error = new Error();
-               $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
-               $app->response->headers->set('Content-Type', 'application/json');
-               $app->response->setStatus(409);
-               $app->response->setBody($error->toJson());
+           // }else{
+           //    $error = new Error();
+           //    $error->error = 'La Factura ya se encuentra registrado, seleccione otro';
+           //    $app->response->headers->set('Content-Type', 'application/json');
+           //    $app->response->setStatus(409);
+           //    $app->response->setBody($error->toJson());
             }
         }       
     }

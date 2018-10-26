@@ -18,6 +18,10 @@ class Factura {
     public $codigo='';
     public $tipoTransaccion='';
     public $numComprobante='';
+    public $clave ='';
+    public $consecutivo='';
+    public $xml='';
+    public $refresh='';
     public $detalleFactura = array();
     
     function getFecha() {
@@ -88,6 +92,22 @@ class Factura {
         return $this->numComprobante;
     }
 
+    function getClave(){
+        return $this->clave;
+    }
+
+    function getConsecutivo(){
+        return $this->consecutivo;
+    }
+
+    function getXml(){
+        return $this->xml;
+    }
+
+    function getRefresh(){
+        return $this->refresh;
+    }
+
     function setFecha($fecha) {
         $this->fecha = $fecha;
     }
@@ -156,7 +176,20 @@ class Factura {
         $this->numComprobante = $numComprobante;
     }
 
-   
+    function setClave($clave) {
+        $this->clave = $clave;
+    }
+    function setConsecutivo($consecutivo) {
+        $this->consecutivo = $consecutivo;
+    }
+
+    function setXml($xml) {
+        $this->xml = $xml;
+    }
+
+    function setRefresh($refresh) {
+        $this->refresh = $refresh;
+    }
 
  function parseDto($factura) {
         if(isset($factura->id)){
@@ -204,6 +237,18 @@ class Factura {
         if(isset($factura->fecha)){
             $this->fecha = $factura->fecha;
         }
+        if(isset($factura->clave)){
+            $this->clave = $factura->clave;
+        }
+        if(isset($factura->consecutivo)){
+            $this->consecutivo = $factura->consecutivo;
+        }
+        if(isset($factura->xml)){
+            $this->xml = $factura->xml;
+        }
+        if(isset($factura->refresh)){
+            $this->refresh = $factura->refresh;
+        }  
     }
     
  
@@ -228,7 +273,11 @@ class Factura {
             'codigo'=>$this->codigo,
             'tipoTransaccion'=>$this->tipoTransaccion,
             'detalleFactura'=>$this->detalleFactura,
-            'numComprobante'=>$this->numComprobante
+            'numComprobante'=>$this->numComprobante,
+            'clave'=>$this->clave,
+            'consecutivo'=>$this->consecutivo,
+            'xml'=>$this->xml,
+            'refresh'=>$this->refresh
             )
         );
         return json_encode($data);

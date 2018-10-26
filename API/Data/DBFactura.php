@@ -16,7 +16,7 @@ class DBFactura {
             $factura->idCliente = null; 
         }
 
-        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante) VALUES ("
+        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante, Clave, Consecutivo, Xml, Refresh) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"
@@ -30,7 +30,11 @@ class DBFactura {
                 .$factura->tipoTransaccion."','"
                 .$factura->estado. "','"
                 .$factura->codigo. "','"
-                .$factura->numComprobante. "')";
+                .$factura->numComprobante. "','"
+                .$factura->clave. "','"
+                .$factura->consecutivo. "','"
+                .$factura->xml. "','"
+                .$factura->refresh. "')";
         $id = $db->agregar($sql);
         if ($id >0){
             foreach($detalleFactura as $detalle){
@@ -64,6 +68,10 @@ class DBFactura {
                 . "NumComprobante='".$factura->numComprobante."',"
                 . "Moneda=".$factura->moneda.","
                 . "Estado='".$factura->estado."'"
+                . "Clave='".$factura->clave."'," 
+                . "Consecutivo='".$factura->consecutivo."',"  
+                . "Xml='".$factura->xml."'," 
+                . "Refresh='".$factura->refresh."'"
                 . " WHERE PkIdFactura=".$factura->id;
         if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM detalleFactura WHERE FkIdFactura=".$factura->id;
@@ -85,7 +93,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $opcion){
-        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante FROM factura f  WHERE Estado=1";
+        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante, Clave, Consecutivo, Xml, Refresh FROM factura f  WHERE Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -164,7 +172,18 @@ class DBFactura {
         if(isset($row['Detalle'])){
             $factura->detalle = $row['Detalle'];
         }
-
+        if(isset($row['Clave'])){
+            $factura->clave = $row['Clave'];
+        }
+        if(isset($row['Consecutivo'])){
+            $factura->consecutivo = $row['Consecutivo'];
+        }
+        if(isset($row['Xml'])){
+            $factura->xml = $row['Xml'];
+        }
+        if(isset($row['Refresh'])){
+            $factura->refresh = $row['Refresh'];
+        }               
         $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }

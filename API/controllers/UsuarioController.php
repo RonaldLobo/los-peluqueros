@@ -84,7 +84,7 @@ $app->post('/usuario/', function() use ($app) {
             }
             if((count($verificarReg) == 0 )|| $usuario->usuario == $nomBD){
                 if($usuario->contrasenna == ""){
-                    $usuario->contrasenna = $verificarReg[0]->contrasenna;
+                    $usuario->contrasenna = $verificarReg->contrasenna;
                 }
                 $resultUsuario = $dbUsuario->actualizarUsuario($usuario,$postedUser->usuario->telefono,$postedUser->usuario->correo);
                 $app->response->headers->set('Content-Type', 'application/json');

@@ -14,19 +14,22 @@ $app->get('/factura/', function() use ($app) {
         $idCliente = $app->request->params('idCliente');
         $idCreadoPor = $app->request->params('idCreadoPor');
         $idSucursal = $app->request->params('idSucursal');
+        $estado = $app->request->params('estado');
         $fecha = $app->request->params('fecha');
         if (!empty($codigo)){ 
-            $factura = array('factura' => $dbFactura->obtenerFactura($codigo,2));
+            $factura = array('factura' => $dbFactura->obtenerFactura($codigo,"",2));
         } elseif  (!empty($idCliente)){ 
-            $factura = array('factura' => $dbFactura->obtenerFactura($idCliente,4));
+            $factura = array('factura' => $dbFactura->obtenerFactura($idCliente,"",4));
         }elseif  (!empty($idCreadoPor)){ 
-            $factura = array('factura' => $dbFactura->obtenerFactura($idCreadoPor,5));
+            $factura = array('factura' => $dbFactura->obtenerFactura($idCreadoPor,"",5));
         }elseif  (!empty($idSucursal)){ 
-            $factura = array('factura' => $dbFactura->obtenerFactura($idSucursal,6));
+            $factura = array('factura' => $dbFactura->obtenerFactura($idSucursal, $estado,8));
+        }elseif  (!empty($idSucursal)){ 
+            $factura = array('factura' => $dbFactura->obtenerFactura($idSucursal,"",6));
         }elseif  (!empty($fecha)){ 
-            $factura = array('factura' => $dbFactura->obtenerFactura($fecha,7));
+            $factura = array('factura' => $dbFactura->obtenerFactura($fecha,"",7));
         } else{
-            $factura = array('factura' => $dbFactura->obtenerFactura("",0));
+            $factura = array('factura' => $dbFactura->obtenerFactura("","",0));
         }
         $jsonArray = json_encode($factura);
         $app->response->headers->set('Content-Type', 'application/json');
@@ -120,7 +123,7 @@ $app->get('/factura/:id', function($id) use ($app) {
     $authToken = $app->request->headers->get('Authorization');
     if($auth->isAuth($authToken)){
         $dbFactura = new DBFactura(); 
-        $result = array('factura' => $dbFactura->obtenerFactura($id,1));
+        $result = array('factura' => $dbFactura->obtenerFactura($id,"",1));
         $jsonArray = json_encode($result);
         $app->response->headers->set('Content-Type', 'application/json');
         $app->response->setStatus(200);

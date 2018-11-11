@@ -92,7 +92,7 @@ class DBFactura {
         $db->actualizar($sql);   
     }
    
-    function obtenerFactura($busqueda, $opcion){
+    function obtenerFactura($busqueda, $busqueda2, $opcion){
         $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante, Clave, Consecutivo, Xml, Refresh FROM factura f  WHERE Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdFactura=".$busqueda;
@@ -108,7 +108,9 @@ class DBFactura {
             $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda;
         }elseif ($opcion == 7) {
             $sql.= " AND Fecha = '".$busqueda."'";
-        } 
+        } elseif ($opcion == 8) {
+            $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
+        }
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){
             $row = $db->obtenerUno($sql);  

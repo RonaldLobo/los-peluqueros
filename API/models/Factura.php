@@ -241,9 +241,6 @@ class Factura {
         $this->segundoApellidoBarbero = $segundoApellidoBarbero;
     }
 
-    function setRefresh($refresh) {
-        $this->refresh = $refresh;
-    }
 
 
  function parseDto($factura) {

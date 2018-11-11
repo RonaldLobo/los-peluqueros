@@ -9,7 +9,7 @@ $app->get('/factura/', function() use ($app) {
     $auth = new Auth();
     $authToken = $app->request->headers->get('Authorization');
     if($auth->isAuth($authToken)){
-        $dbFactura = new DBProveedor(); 
+        $dbFactura = new DBFactura(); 
         $codigo = $app->request->params('codigo');
         $idCliente = $app->request->params('idCliente');
         $idCreadoPor = $app->request->params('idCreadoPor');

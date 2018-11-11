@@ -109,7 +109,7 @@ class DBFactura {
         }elseif ($opcion == 7) {
             $sql.= "  Fecha = '".$busqueda."'";
         } elseif ($opcion == 8) {
-            $sql.= " s FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
+            $sql.= " FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
         }
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){

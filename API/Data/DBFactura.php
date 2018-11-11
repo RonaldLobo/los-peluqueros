@@ -109,7 +109,7 @@ class DBFactura {
         }elseif ($opcion == 7) {
             $sql.= "  Fecha = '".$busqueda."'";
         } elseif ($opcion == 8) {
-            $sql.= "  FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
+            $sql.= " s FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
         }
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){
@@ -186,7 +186,7 @@ class DBFactura {
         if(isset($row['Refresh'])){
             $factura->refresh = $row['Refresh'];
         }               
-        $factura->productos = $this->parseRowDetalleFactura($rowDetalleFactura);
+        $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }
 

@@ -93,23 +93,23 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $busqueda2, $opcion){
-        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante, Clave, Consecutivo, Xml, Refresh FROM factura f  WHERE Estado=1";
+        $sql = "SELECT PkIdFactura,FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha,Total,TotalImpuesto,TotalDescuento,TotalNeto,Moneda,CodigoFactura,Detalle,TipoTransaccion,Estado,NumComprobante, Clave, Consecutivo, Xml, Refresh FROM factura f  WHERE ";
         if($opcion == 1){
-            $sql.= " AND PkIdFactura=".$busqueda;
+            $sql.= "  PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
-            $sql.= " AND CodigoFactura LIKE '%".$busqueda."%'";
+            $sql.= "  CodigoFactura LIKE '%".$busqueda."%'";
         } elseif ($opcion == 3) {
-            $sql.= " AND CodigoFactura = '".$busqueda."'";
+            $sql.= "  CodigoFactura = '".$busqueda."'";
         }elseif ($opcion == 4) {
-            $sql.= " AND FkIdUsuarioClienteFactura = ".$busqueda;
+            $sql.= "  FkIdUsuarioClienteFactura = ".$busqueda;
         }elseif ($opcion == 5) {
-            $sql.= " AND FkIdUsuarioCreadoFactura = ".$busqueda;
+            $sql.= "  FkIdUsuarioCreadoFactura = ".$busqueda;
         }elseif ($opcion == 6) {
-            $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda;
+            $sql.= "  FkIdSucursalBarberiaFactura = ".$busqueda;
         }elseif ($opcion == 7) {
-            $sql.= " AND Fecha = '".$busqueda."'";
+            $sql.= "  Fecha = '".$busqueda."'";
         } elseif ($opcion == 8) {
-            $sql.= " AND FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
+            $sql.= "  FkIdSucursalBarberiaFactura = ".$busqueda." AND Estado = '".$busqueda2."'";
         }
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){

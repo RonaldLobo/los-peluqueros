@@ -21,13 +21,11 @@ class Sucursal {
     public $canton = '';
     public $tipoId = '';
     public $provincia = 0;
-
+    public $logo = '';
+    public $logoAncho = 0;
     public $telefono = array();
     public $correo = array();
        
-
-
-
     
     function getId() {
         return $this->id;
@@ -102,6 +100,22 @@ class Sucursal {
 
     function getCanton() {
         return $this->canton;
+    }
+
+    function getLogo() {
+        return $this->logo;
+    }
+
+    function getLogoAncho() {
+        return $this->logoAncho;
+    }
+
+    function setLogo($logo) {
+        $this->logo = $logo;
+    }
+
+    function setLogoAncho($logoAncho) {
+        $this->logoAncho = $logoAncho;
     }
 
     function setCanton($canton) {
@@ -203,6 +217,12 @@ class Sucursal {
         if(isset($sucursal->tipoId)){
             $this->tipoId = $sucursal->tipoId;
         }
+        if(isset($sucursal->logo)){
+            $this->logo = $sucursal->logo;
+        }
+        if(isset($sucursal->logoAncho)){
+            $this->logoAncho = $sucursal->logoAncho;
+        }
     }
     
     function AgregarTelefono($tel){
@@ -230,7 +250,9 @@ class Sucursal {
             'distrito'=>$this->distrito,
             'provincia'=>$this->provincia,
             'canton'=>$this->canton,
-            'tipoId'=>$this->tipoId
+            'tipoId'=>$this->tipoId,
+            'logo'=>$this->logo,
+            'logoAncho'=>$this->logoAncho
             )
         );
         return json_encode($data);

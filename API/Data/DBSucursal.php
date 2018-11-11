@@ -92,7 +92,7 @@ class DbSucursal {
     }   
  
     function obtenerSucursal($busqueda, $opcion){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio,s.Canton,s.TipoId, s.Provincia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, b.Nombre AS NombreBarberia, s.IdFacturaAPI, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio,s.Canton,s.TipoId, s.Provincia, s.Logo, s.LogoAncho FROM sucursalbarberia s 
        LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia WHERE s.Estado=1";
         if($opcion == 1){
             $sql.= " AND PkIdSucursalBarberia=".$busqueda;
@@ -134,7 +134,7 @@ class DbSucursal {
     }
     
     function listarSucursal(){
-        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio, s.Canton, s.TipoId, s.Provincia FROM sucursalbarberia s 
+        $sql = "SELECT s.PkIdSucursalBarberia,s.FkIdCantonSucursalBarberia ,s.FkIdBarberiaSucursalBarberia,s.Descripcion,s.DetalleDireccion,s.Estado, B.Nombre AS NombreBarberia, s.CedulaJuridica, s.NombreNegocio, s.Distrito, s.Barrio, s.Canton, s.TipoId, s.Provincia, s.Logo, s.LogoAncho FROM sucursalbarberia s 
         LEFT JOIN barberia b ON s.FkIdBarberiaSucursalBarberia = b.PkIdBarberia ";
         $db = new DB();
         $rowList = $db->listar($sql);
@@ -225,7 +225,13 @@ class DbSucursal {
         }  
         if(isset($row['TipoId'])){
             $sucursal->tipoId = $row['TipoId'];
-        }          
+        } 
+        if(isset($row['Logo'])){
+            $sucursal->logo = $row['Logo'];
+        }   
+        if(isset($row['LogoAncho'])){
+            $sucursal->logoAncho = $row['LogoAncho'];
+        }            
         $sucursal->telefono = $this->parseRowTelefono($rowTelefono);
         $sucursal->correo = $this->parseRowCorreo($rowCorreo);
         return $sucursal;

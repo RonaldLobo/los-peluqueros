@@ -22,7 +22,33 @@ class Factura {
     public $consecutivo='';
     public $xml='';
     public $refresh='';
+    public $nombreUserReserva='';
+    public $primerApellidoUserReserva='';
+    public $segundoApellidoUserReserva='';
+    public $nombreBarbero='';
+    public $primerApellidoBarbero='';
+    public $segundoApellidoBarbero=''; 
     public $detalleFactura = array();
+
+    
+    function getNombreUserReserva() {
+        return $this->nombreUserReserva;
+    }      
+    function getPrimerApellidoUserReserva() {
+        return $this->primerApellidoUserReserva;
+    }      
+    function getSegundoApellidoUserReserva() {
+        return $this->segundoApellidoUserReserva;
+    }      
+    function getNombreBarbero() {
+        return $this->nombreBarbero;
+    }      
+    function getPrimerApellidoBarbero() {
+        return $this->primerApellidoBarbero;
+    }      
+    function getSegundoApellidoBarbero() {
+        return $this->segundoApellidoBarbero;
+    }      
     
     function getFecha() {
         return $this->fecha;
@@ -191,6 +217,35 @@ class Factura {
         $this->refresh = $refresh;
     }
 
+    function setNombreUserReserva($nombreUserReserva) {
+        $this->nombreUserReserva = $nombreUserReserva;
+    }
+
+    function setPprimerApellidoUserReserva($primerApellidoUserReserva) {
+        $this->primerApellidoUserReserva = $primerApellidoUserReserva;
+    }
+
+    function setSegundoApellidoUserReserva($segundoApellidoUserReserva) {
+        $this->segundoApellidoUserReserva = $segundoApellidoUserReserva;
+    }
+
+    function setNombreBarbero($nombreBarbero) {
+        $this->nombreBarbero = $nombreBarbero;
+    }
+
+    function setPrimerApellidoBarbero($primerApellidoBarbero) {
+        $this->primerApellidoBarbero = $primerApellidoBarbero;
+    }
+
+    function setSsegundoApellidoBarbero($segundoApellidoBarbero) {
+        $this->segundoApellidoBarbero = $segundoApellidoBarbero;
+    }
+
+    function setRefresh($refresh) {
+        $this->refresh = $refresh;
+    }
+
+
  function parseDto($factura) {
         if(isset($factura->id)){
             $this->id = $factura->id;
@@ -249,10 +304,26 @@ class Factura {
         if(isset($factura->refresh)){
             $this->refresh = $factura->refresh;
         }  
+        if(isset($factura->nombreUserReserva)){
+            $this->nombreUserReserva = $factura->nombreUserReserva;
+        }  
+        if(isset($factura->primerApellidoUserReserva)){
+            $this->primerApellidoUserReserva = $factura->primerApellidoUserReserva;
+        }  
+        if(isset($factura->segundoApellidoUserReserva)){
+            $this->segundoApellidoUserReserva = $factura->segundoApellidoUserReserva;
+        }  
+        if(isset($factura->nombreBarbero)){
+            $this->nombreBarbero = $factura->nombreBarbero;
+        }  
+        if(isset($factura->primerApellidoBarbero)){
+            $this->primerApellidoBarbero = $factura->primerApellidoBarbero;
+        }  
+        if(isset($factura->segundoApellidoBarbero)){
+            $this->segundoApellidoBarbero = $factura->segundoApellidoBarbero;
+        }  
     }
     
- 
-
 
     function toJson() {
         $data = array(
@@ -277,7 +348,13 @@ class Factura {
             'clave'=>$this->clave,
             'consecutivo'=>$this->consecutivo,
             'xml'=>$this->xml,
-            'refresh'=>$this->refresh
+            'refresh'=>$this->refresh,
+            'nombreUserReserva'=>$this->nombreUserReserva,
+            'primerApellidoUserReserva'=>$this->primerApellidoUserReserva,
+            'segundoApellidoUserReserva'=>$this->segundoApellidoUserReserva,
+            'nombreBarbero'=>$this->nombreBarbero,
+            'primerApellidoBarbero'=>$this->primerApellidoBarbero,
+            'segundoApellidoBarbero'=>$this->segundoApellidoBarbero
             )
         );
         return json_encode($data);

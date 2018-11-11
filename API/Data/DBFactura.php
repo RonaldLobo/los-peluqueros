@@ -93,7 +93,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $busqueda2, $opcion){
-        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = u.PkIdUsuario WHERE ";
+        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
         if($opcion == 1){
             $sql.= "  PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -185,7 +185,25 @@ class DBFactura {
         }
         if(isset($row['Refresh'])){
             $factura->refresh = $row['Refresh'];
-        }               
+        }  
+        if(isset($row['nombreUserReserva'])){
+            $factura->nombreUserReserva = $row['nombreUserReserva'];
+        }  
+        if(isset($row['primerApellidoUserReserva'])){
+            $factura->primerApellidoUserReserva = $row['primerApellidoUserReserva'];
+        }
+        if(isset($row['segundoApellidoBarbero'])){
+            $factura->segundoApellidoUserReserva = $row['segundoApellidoUserReserva'];
+        }
+        if(isset($row['nombreBarbero'])){
+            $factura->nombreBarbero = $row['nombreBarbero'];
+        }
+        if(isset($row['primerApellidoBarbero'])){
+            $factura->primerApellidoBarbero = $row['primerApellidoBarbero'];
+        }
+        if(isset($row['segundoApellidoBarbero'])){
+            $factura->segundoApellidoBarbero = $row['segundoApellidoBarbero'];
+        }                
         $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }

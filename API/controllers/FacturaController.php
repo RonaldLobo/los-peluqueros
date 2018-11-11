@@ -22,7 +22,7 @@ $app->get('/factura/', function() use ($app) {
             $factura = array('factura' => $dbFactura->obtenerFactura($idCliente,"",4));
         }elseif  (!empty($idCreadoPor)){ 
             $factura = array('factura' => $dbFactura->obtenerFactura($idCreadoPor,"",5));
-        }elseif  (!empty($idSucursal)){ 
+        }elseif  (!empty($idSucursal) && !empty($estado)){ 
             $factura = array('factura' => $dbFactura->obtenerFactura($idSucursal, $estado,8));
         }elseif  (!empty($idSucursal)){ 
             $factura = array('factura' => $dbFactura->obtenerFactura($idSucursal,"",6));

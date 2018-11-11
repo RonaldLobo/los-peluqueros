@@ -93,7 +93,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $busqueda2, $opcion){
-        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero FROM factura f LEFT JOIN heroku_208a4cea4743441.Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = u.PkIdUsuario WHERE ";
+        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = u.PkIdUsuario WHERE ";
         if($opcion == 1){
             $sql.= "  PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {

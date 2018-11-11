@@ -11,6 +11,7 @@ class DetalleFactura {
     public $impuesto = 0;
     public $total = 0;
     public $descuento = 0;
+    public $duracion = 0;
     public $tipoDescuento = '';
     public $razonDescuento = '';
     public $unidad = '';
@@ -58,6 +59,9 @@ class DetalleFactura {
     function getDetalleFactura() {
         return $this->detalleFactura;
     }
+    function getDuracion() {
+        return $this->duracion;
+    }
 
     function setProducto($producto) {
         $this->producto = $producto;
@@ -98,7 +102,9 @@ class DetalleFactura {
     function setUnidad($unidad) {
         $this->unidad = $unidad;
     }
-
+    function setDuracion($duracion) {
+        $this->duracion = $duracion;
+    }
    function setDetalleFactura($detalleFactura) {
         $this->detalleFactura = $detalleFactura;
     }
@@ -143,6 +149,9 @@ class DetalleFactura {
         if(isset($detalleFactura->unidad)){
             $this->unidad = $detalleFactura->unidad;
         }
+        if(isset($detalleFactura->duracion)){
+            $this->duracion = $detalleFactura->duracion;
+        }
     }
 
     function AgregarDetalleFactura($detalle){
@@ -167,6 +176,7 @@ class DetalleFactura {
             'razonDescuento'=> $this->razonDescuento,
             'unidad'=> $this->unidad,
             'detalleFactura'=> $this->detalleFactura,
+            'duracion'=> $this->duracion
 
             )
         );

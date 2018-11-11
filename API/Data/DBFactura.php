@@ -254,6 +254,9 @@ class DBFactura {
             if(isset($row['Unidad'])){
                 $detalleFactura->unidad = $row['Unidad'];
             }
+            if(isset($row['Duracion'])){
+                $detalleFactura->duracion = $row['Duracion'];
+            }
             array_push($arrayDetalleFactura, $detalleFactura);
         }
        return $arrayDetalleFactura;
@@ -261,7 +264,7 @@ class DBFactura {
 
 
     function obtenerDetalleFactura($id){
-        $sql = "SELECT PkIdDetalleFactura, FkIdFactura,FkIdServicio  ,Producto, Codigo, Cantidad, Precio, Impuesto, Descuento, TipoDescuento, RazonDescuento, Total, Unidad FROM detalleFactura WHERE FkIdFactura=".$id;
+        $sql = "SELECT f.PkIdDetalleFactura, f.FkIdFactura, f.FkIdServicio  ,f.Producto, f.Codigo, f.Cantidad, f.Precio, f.Impuesto, f.Descuento, f.TipoDescuento, f.RazonDescuento, f.Total, f.Unidad, s.Duracion  FROM detalleFactura f  INNER JOIN Servicio s ON s.PkIdServicio = f.FkIdServicio WHERE FkIdFactura=".$id;
         $db = new DB();
         $row = $db->listar($sql);
         return $row;

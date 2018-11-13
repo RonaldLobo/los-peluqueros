@@ -5,6 +5,7 @@ class DetalleFactura {
     public $idFactura = 0;
     public $idServicio = 0;
     public $producto = '';
+    public $detalle = '';
     public $codigo = '';
     public $precio = 0;
     public $cantidad = 0;
@@ -62,7 +63,9 @@ class DetalleFactura {
     function getDuracion() {
         return $this->duracion;
     }
-
+    function getDetalle() {
+        return $this->detalle;
+    }
     function setProducto($producto) {
         $this->producto = $producto;
     }
@@ -109,6 +112,10 @@ class DetalleFactura {
         $this->detalleFactura = $detalleFactura;
     }
 
+    function setDetalle($detalle) {
+        $this->detalle = $detalle;
+    }
+
     function parseDto($detalleFactura) {
         if(isset($detalleFactura->id)){
             $this->id = $detalleFactura->id;
@@ -152,6 +159,9 @@ class DetalleFactura {
         if(isset($detalleFactura->duracion)){
             $this->duracion = $detalleFactura->duracion;
         }
+        if(isset($detalleFactura->detalle)){
+            $this->detalle = $detalleFactura->detalle;
+        }
     }
 
     function AgregarDetalleFactura($detalle){
@@ -171,6 +181,7 @@ class DetalleFactura {
             'idFactura'=> $this->idFactura,
             'impuesto'=> $this->impuesto,
             'descuento'=> $this->descuento,
+            'detalle'=> $this->detalle,
             'total'=> $this->total,
             'tipoDescuento'=> $this->tipoDescuento,
             'razonDescuento'=> $this->razonDescuento,

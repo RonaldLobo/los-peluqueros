@@ -203,7 +203,7 @@ class DBFactura {
         }
         if(isset($row['segundoApellidoBarbero'])){
             $factura->segundoApellidoBarbero = $row['segundoApellidoBarbero'];
-        }                
+        }                      
         $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }

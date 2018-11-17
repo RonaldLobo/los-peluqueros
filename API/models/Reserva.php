@@ -35,7 +35,9 @@ class Reserva {
     public $consecutivo ="";
     public $refresh ="";
     public $xml ="";
-    
+    public $cedulaUserReserva="";
+    public $cedulaBarbero=""; 
+
     function getId() {
         return $this->id;
     }
@@ -141,6 +143,15 @@ class Reserva {
     function getConsecutivo(){
          return $this->consecutivo;
     }
+
+    function getCedulaBarbero(){
+         return $this->cedulaBarbero;
+    }
+
+    function getCedulaUserReserva(){
+         return $this->cedulaUserReserva;
+    }
+
 
     function setConsecutivo($consecutivo) {
         $this->consecutivo = $consecutivo;
@@ -290,7 +301,14 @@ class Reserva {
         $this->tipoPago = $tipoPago;
     }
     
-    
+    function setCedulaUserReserva($cedulaUserReserva) {
+        $this->cedulaUserReserva = $cedulaUserReserva;
+    }
+
+    function setCedulaBarbero($cedulaBarbero) {
+        $this->cedulaBarbero = $cedulaBarbero;
+    }
+     
        
     function parseDto($reserva) {
         if(isset($reserva->idSucursal)){
@@ -392,6 +410,12 @@ class Reserva {
         if(isset($reserva->refresh)){
             $this->refresh = $reserva->refresh;
         }
+        if(isset($reserva->cedulaBarbero)){
+            $this->cedulaBarbero = $reserva->cedulaBarbero;
+        }
+        if(isset($reserva->cedulaUserReserva)){
+            $this->cedulaUserReserva = $reserva->cedulaUserReserva;
+        }
     }
     
      function toJson() {
@@ -428,7 +452,9 @@ class Reserva {
             'consecutivo'=> $this->consecutivo,
             'clave'=> $this->clave,
             'xml'=> $this->xml,
-            'refresh'=> $this->refresh
+            'refresh'=> $this->refresh,
+            'cedulaUserReserva'=> $this->cedulaUserReserva,
+            'cedulaBarbero'=> $this->cedulaBarbero
             )
         );
         return json_encode($data);

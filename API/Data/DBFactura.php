@@ -204,11 +204,11 @@ class DBFactura {
         if(isset($row['segundoApellidoBarbero'])){
             $factura->segundoApellidoBarbero = $row['segundoApellidoBarbero'];
         }       
-        if(isset($row['cedulaBarbero'])){
-            $factura->cedulaBarbero = $row['cedulaBarbero'];
+        if(isset($row['CedulaBarbero'])){
+            $factura->cedulaBarbero = $row['CedulaBarbero'];
         }
-        if(isset($row['cedulaUser'])){
-            $factura->cedulaUser = $row['cedulaUser'];
+        if(isset($row['CedulaUser'])){
+            $factura->cedulaUser = $row['CedulaUser'];
         }                      
         $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;

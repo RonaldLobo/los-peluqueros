@@ -255,7 +255,7 @@ class DBReserva {
             $reserva->cedulaUserReserva = $row['CedulaUserReserva'];
         }
         if(isset($row['CedulaBarbero'])){
-            $reserva-cedulaBarbero = $row['CedulaBarbero'];
+            $reserva->cedulaBarbero = $row['CedulaBarbero'];
         }
         return $reserva;
     }

@@ -28,6 +28,8 @@ class Factura {
     public $nombreBarbero='';
     public $primerApellidoBarbero='';
     public $segundoApellidoBarbero=''; 
+    public $cedulaUser='';
+    public $cedulaBarbero=''; 
     public $detalleFactura = array();
 
     
@@ -132,6 +134,14 @@ class Factura {
 
     function getRefresh(){
         return $this->refresh;
+    }
+
+    function getCedulaBarbero(){
+        return $this->cedulaBarbero;
+    }
+
+    function getCedulaUser(){
+        return $this->cedulaUser;
     }
 
     function setFecha($fecha) {
@@ -241,6 +251,13 @@ class Factura {
         $this->segundoApellidoBarbero = $segundoApellidoBarbero;
     }
 
+    function setCedulaUser($cedulaUser) {
+        $this->cedulaUser = $cedulaUser;
+    }
+
+    function setCedulaBarbero($cedulaBarbero) {
+        $this->cedulaBarbero = $cedulaBarbero;
+    }
 
 
  function parseDto($factura) {
@@ -319,6 +336,12 @@ class Factura {
         if(isset($factura->segundoApellidoBarbero)){
             $this->segundoApellidoBarbero = $factura->segundoApellidoBarbero;
         }  
+        if(isset($factura->cedulaBarbero)){
+            $this->cedulaBarbero = $factura->cedulaBarbero;
+        }  
+        if(isset($factura->cedulaUser)){
+            $this->cedulaUser = $factura->cedulaUser;
+        }  
     }
     
 
@@ -351,7 +374,9 @@ class Factura {
             'segundoApellidoUserReserva'=>$this->segundoApellidoUserReserva,
             'nombreBarbero'=>$this->nombreBarbero,
             'primerApellidoBarbero'=>$this->primerApellidoBarbero,
-            'segundoApellidoBarbero'=>$this->segundoApellidoBarbero
+            'segundoApellidoBarbero'=>$this->segundoApellidoBarbero,
+            'cedulaBarbero'=>$this->cedulaBarbero,
+            'cedulaUser'=>$this->cedulaUser
             )
         );
         return json_encode($data);

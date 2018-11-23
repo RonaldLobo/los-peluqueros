@@ -49,6 +49,7 @@ $app->post('/factura/', function() use ($app) {
     $auth = new Auth();
     $authToken = $app->request->headers->get('Authorization');
     $method = $app->request->params('method');
+    $tipoUpdate= $app->request->params('tipoUpdate');
     if($auth->isAuth($authToken)){
         $factura = new Factura(); 
         $dbFactura = new DBFactura(); 
@@ -75,10 +76,18 @@ $app->post('/factura/', function() use ($app) {
             //      $nomBD =$verificarReg->codigo;
            // }
            // if((count($verificarReg) == 0 )|| $factura->codigo == $nomBD){
+            if(is_null($method)){
                $result = $dbFactura->actualizarFactura($factura,$posted->factura->detalleFactura);
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(200);
-               $app->response->setBody($result->toJson());        
+               $app->response->setBody($result->toJson()); 
+            }else{
+               $result = $dbFactura->actualizarEstadoFactura($factura);
+               $app->response->headers->set('Content-Type', 'application/json');
+               $app->response->setStatus(200);
+               $app->response->setBody($result->toJson()); 
+            }
+                      
            // }else{
            //    $error = new Error();
            //    $error->error = 'La Factura ya se encuentra registrado, seleccione otro';

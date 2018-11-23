@@ -44,6 +44,7 @@ $app->post('/inventario/', function() use ($app) {
     $auth = new Auth();
     $authToken = $app->request->headers->get('Authorization');
     $method = $app->request->params('method');
+    $tipoUpdate = $app->request->params('tipoUpdate');
     if($auth->isAuth($authToken)){
         $inventario = new Inventario(); 
         $dbInventario = new DBInventario(); 
@@ -66,21 +67,28 @@ $app->post('/inventario/', function() use ($app) {
             }
         }else{
             $nomBD ='';
-            if (count($verificarReg) >0){
-                  $nomBD =$verificarReg[0]->codigo;
-                  $idSucursalBD =$verificarReg[0]->idSucursal;
-            }
-            if((count($verificarReg) == 0 )|| ($inventario->codigo == $nomBD && $inventario->idSucursal == $idSucursalBD)){
-               $result = $dbInventario->actualizarInventario($inventario);
-               $app->response->headers->set('Content-Type', 'application/json');
-               $app->response->setStatus(200);
-               $app->response->setBody($result->toJson());        
+            if ($tipoUpdate == 'C'){
+                 $result = $dbInventario->actualizarCantidad($inventario.id);
+                 $app->response->headers->set('Content-Type', 'application/json');
+                 $app->response->setStatus(200);
+                 $app->response->setBody($result->toJson());  
             }else{
-               $error = new Error();
-               $error->error = 'El código ya se encuentra registrado, seleccione otro';
-               $app->response->headers->set('Content-Type', 'application/json');
-               $app->response->setStatus(409);
-               $app->response->setBody($error->toJson());
+                if (count($verificarReg) >0){
+                      $nomBD =$verificarReg[0]->codigo;
+                      $idSucursalBD =$verificarReg[0]->idSucursal;
+                }
+                if((count($verificarReg) == 0 )|| ($inventario->codigo == $nomBD && $inventario->idSucursal == $idSucursalBD)){
+                   $result = $dbInventario->actualizarInventario($inventario);
+                   $app->response->headers->set('Content-Type', 'application/json');
+                   $app->response->setStatus(200);
+                   $app->response->setBody($result->toJson());        
+                }else{
+                   $error = new Error();
+                   $error->error = 'El código ya se encuentra registrado, seleccione otro';
+                   $app->response->headers->set('Content-Type', 'application/json');
+                   $app->response->setStatus(409);
+                   $app->response->setBody($error->toJson());
+                }
             }
         }       
     }

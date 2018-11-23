@@ -67,6 +67,13 @@ class DBInventario {
         $sql = "UPDATE inventario SET Estado=0 WHERE PkIdInventario=".$id;
         $db->actualizar($sql);   
     }
+
+
+    function actualizarCantidad($id){
+        $db = new DB();
+        $sql = "UPDATE inventario SET Cantidad= Cantidad - 1 WHERE PkIdInventario=".$id;
+        $db->actualizar($sql);   
+    }
    
     function obtenerInventario($busqueda, $busqueda2, $opcion){
         $sql = "SELECT PkIdInventario,FkIdSucursalBarberia,Producto,Codigo,CantidadDisponible,CantidadMinima,Marca,Precio,Costo,Ubicacion,Descripcion,Descuento,Impuesto,Proveedor,Utilidad,Categoria,Modelo, Estado,TipoDescuento,Unidad FROM inventario WHERE Estado=1 ";

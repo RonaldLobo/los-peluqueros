@@ -93,7 +93,7 @@ class DBFactura {
                 . "Estado='".$factura->estado."'," . "Xml='".$factura->xml."'," 
                 . "Refresh='".$factura->refresh."'"
                 . " WHERE PkIdFactura=".$factura->id;
-        $db->actualizar($sql)
+        $db->actualizar($sql);
         return $factura;
     }
    

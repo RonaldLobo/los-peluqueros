@@ -122,7 +122,7 @@ class DBFactura {
         } elseif ($opcion == 8) {
             $sql.= " FkIdSucursalBarberiaFactura = ".$busqueda." AND f.Estado = '".$busqueda2."'";
         }
-        $sql.= " ORDER BY f.Fecha DESC "
+        $sql.= " ORDER BY f.Fecha DESC ";
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){
             $row = $db->obtenerUno($sql);  

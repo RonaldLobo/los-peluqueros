@@ -19,7 +19,7 @@ class DBReserva {
                 .$reserva->estado. ",'"
                 .$reserva->descripcion. "',"
                 .$reserva->precioDinamico. ","
-                .$reserva->duracionDinamica. ", 'R','E','"
+                .$reserva->duracionDinamica. ", 'R','01','"
                 .$reserva->clave. "','"
                 .$reserva->xml. "','"
                 .$reserva->refresh. "','"
@@ -85,6 +85,8 @@ class DBReserva {
             $sql.= " AND FkIdSucursalBarberiaReserva=".$busqueda." AND r.EstadoFactura='P' ORDER BY r.Dia desc";
         }elseif ($opcion == 6) {
             $sql.= " AND r.FkIdSucursalBarberiaReserva=".$busqueda." AND r.Dia = '".$busqueda2."' ORDER BY r.Dia desc";
+        }elseif ($opcion == 7) {
+            $sql.= " AND r.FkIdSucursalBarberiaReserva=".$busqueda." AND u.Nombre like '%".$busqueda2."%' ORDER BY r.Dia desc";
         }
         $db = new DB();
         if( $opcion!=1){

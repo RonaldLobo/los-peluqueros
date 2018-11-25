@@ -32,6 +32,8 @@ $app->get('/reserva/', function() use ($app) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idUsuario,'',3));
         }  else  if (!empty($idServicio)) {
             $reserva = array('reserva' => $dbReserva->obtenerReserva($idServicio,'',4));
+        }else  if (!empty($idSucursal) && !empty($idUsuario)) {
+            $reserva = array('reserva' => $dbReserva->obtenerReserva($idSucursal,$idUsuario,7));
         }  else  if (!empty($idUsuarioBarbero) && !empty($fecha)) {
             $reserva = array('reserva' => $dbReserva->obtenerReservaFecha($idUsuarioBarbero,$fecha));
         }  else  if (!empty($fechaFinal) && !empty($fechaInicial) && !empty($idUsuarioBarbero)) {

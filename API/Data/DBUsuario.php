@@ -30,7 +30,8 @@ class DbUsuario {
                 .$usuario->distrito. "','"
                 .$usuario->barrio. "','"
                 .$usuario->detalleDireccion."','"
-                .$usuario->idFacturador. "')";
+                .$usuario->idFacturador. "','"
+                .$usuario->tipoCedula. "')";
 //            echo $sql;
             $id = $db->agregar($sql);
             if ($id >0){

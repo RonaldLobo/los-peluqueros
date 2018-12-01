@@ -12,7 +12,7 @@ class DbUsuario {
 
     function agregarUsuario($usuario,$telefonos,$correos){
         $db = new DB();
-        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador) VALUES ("
+        $sql = "INSERT INTO usuarios (FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Contrasenna,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador, TipoCedula) VALUES ("
                 .$usuario->idSucursal.",'"
                 .$usuario->nombre."', '"
                 .$usuario->apellido1. "', '"
@@ -73,7 +73,8 @@ class DbUsuario {
                 . "Distrito='".$usuario->distrito."', "
                 . "Barrio='".$usuario->barrio."', "
                 . "DetalleDireccion='".$usuario->detalleDireccion."', "
-                . "IdFacturador='".$usuario->idFacturador."' "
+                . "IdFacturador='".$usuario->idFacturador."' , "
+                . "TipoCedula='".$usuario->tipoCedula."' "
                 . "WHERE PkIdUsuario=".$usuario->id;
             if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM telefonousuario WHERE FkIdUsuarioTelefono=".$usuario->id;
@@ -112,7 +113,7 @@ class DbUsuario {
 
     function obtenerUsuario($busqueda, $opcion){
         
-        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador";
+        $sql = "SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre,PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero, FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion,IdFacturador, TipoCedula";
         if($opcion == 1){
             $sql .= ",Contrasenna FROM usuarios WHERE Estado = 1 AND PkIdUsuario=".$busqueda;
         } elseif ($opcion == 2) {
@@ -205,7 +206,7 @@ class DbUsuario {
     }
     
     function listarUsuarios(){
-        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion, IdFacturador FROM usuarios";
+        $sql = "SELECT SELECT PkIdUsuario,FkIdSucursalBarberiaUsuario,Nombre, PrimerApellido, SegundoApellido,Usuario,Tipo,Estado,Rol,TiempoBarbero,FechaNacimiento, Cedula, IdProvincia, IdCanton, Distrito, Barrio, DetalleDireccion, IdFacturador, TipoCedula FROM usuarios";
         $db = new DB();
         $rowList = $db->listar($sql);
         $usuarioList = $this->parseRowAUsuarioList($rowList);
@@ -306,7 +307,10 @@ class DbUsuario {
         }  
         if(isset($row['IdFacturador'])){
             $user->idFacturador = $row['IdFacturador'];
-        }  
+        } 
+        if(isset($row['TipoCedula'])){
+            $user->tipoCedula = $row['TipoCedula'];
+        }   
         error_log("parseandolos".$user->cedula, 0);
         $user->telefono = $this->parseRowTelefono($rowTelefono);
         $user->correo = $this->parseRowCorreo($rowCorreo);

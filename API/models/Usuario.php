@@ -24,6 +24,7 @@ class Usuario {
     public $barrio = '';
     public $detalleDireccion = '';
     public $idFacturador = '';
+    public $tipoCedula = '';
        
     function getId() {
         return $this->id;
@@ -114,6 +115,10 @@ class Usuario {
 
     function getIdFacturador() {
         return $this->idFacturador;
+    }
+
+    function getTipoCedula() {
+        return $this->tipoCedula;
     }
 
     function setIdFacturador($idFacturador) {
@@ -208,6 +213,9 @@ class Usuario {
         $this->detalleDireccion = $detalleDireccion;
     }
 
+    function setTipoCedula($tipoCedula) {
+        $this->tipoCedula = $tipoCedula;
+    }
        
     function toJson() {
         $data = array(
@@ -234,7 +242,8 @@ class Usuario {
             'distrito'=>$this->distrito,
             'barrio'=>$this->barrio,
             'detalleDireccion'=>$this->detalleDireccion,
-            'idFacturador'=>$this->idFacturador
+            'idFacturador'=>$this->idFacturador,
+            'tipoCedula'=>$this->tipoCedula
             )
         );
         return json_encode($data);
@@ -312,6 +321,9 @@ class Usuario {
         }
         if(isset($user->idFacturador)){
             $this->idFacturador = $user->idFacturador;
+        }
+        if(isset($user->tipoCedula)){
+            $this->tipoCedula = $user->tipoCedula;
         }
     }
     

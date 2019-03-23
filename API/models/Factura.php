@@ -198,9 +198,6 @@ class Factura {
         return $this->cedulaUser;
     }
 
-    function getIdFacturadorBarbero(){
-        return $this->idFacturadorBarbero;
-    }
 
     function setFecha($fecha) {
         $this->fecha = $fecha;

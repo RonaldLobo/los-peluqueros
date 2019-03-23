@@ -12,27 +12,27 @@
 		$factura = array('factura' => $dbFactura->obtenerInfoFactura('E', 8));
 
 
-  		for (int i = $facturas.length - 1; i >= 0; i--) {
+  		for ($i = $facturas.length - 1; $i >= 0; $i--) {
 
-	  error_log('factura'.$facturas[i], 0);
+	  error_log('factura'.$facturas[$i], 0);
 	
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
-		    $response   = $restClient->post('api/facturador',$facturas[i]);
-		    $fact = createFact($facturas[i]);
+		    $response   = $restClient->post('api/facturador',$facturas[$i]);
+		    $fact = createFact($facturas[$i]);
 			$fact->conrealizada = true;
 			$fact->facturabase = {
-				base: facturas[i].base
+				base: facturas[$i].base
 			};
 
 	  error_log('respuesta'.response.respuesta, 0);
 
 		    if(response.respuesta == "aceptado"){
-				$facturas[i].estado = 'P';
+				$facturas[$i].estado = 'P';
 			} else if(response.error == "recibido"){
-				$facturas[i].estado = 'E';
-				$facturas[i].refresh = res.refreshToken
+				$facturas[$i].estado = 'E';
+				$facturas[$i].refresh = res.refreshToken
 			} else {
-				$facturas[i].estado = 'R';//Rechazada
+				$facturas[$i].estado = 'R';//Rechazada
 			}
 
 			$respuesta = $dbFactura->actualizarEstadoFactura($fac);

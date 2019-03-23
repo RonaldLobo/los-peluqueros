@@ -34,7 +34,7 @@ class DBFactura {
                 .$factura->clave. "','"
                 .$factura->consecutivo. "','"
                 .$factura->xml. "','"
-                .$factura->refresh. "','";
+                .$factura->refresh. "','"
                 .$factura->base. "')";
         $id = $db->agregar($sql);
         if ($id >0){

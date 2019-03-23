@@ -14,7 +14,7 @@
 
   		for (int i = $facturas.length - 1; i >= 0; i--) {
 
-  			echo "factura: " + $facturas[i];
+	  error_log('factura'.$facturas[i], 0);
 	
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $response   = $restClient->post('api/facturador',$facturas[i]);
@@ -24,7 +24,7 @@
 				base: facturas[i].base
 			};
 
-  			echo "respuesta: " + response.respuesta;
+	  error_log('respuesta'.response.respuesta, 0);
 
 		    if(response.respuesta == "aceptado"){
 				$facturas[i].estado = 'P';
@@ -46,6 +46,12 @@
 
 
     function createFact($factura) {
+    	if($factura->cedulaUser==0){
+    		$receptor=>'true';
+		}else{
+			$receptor=>'false';
+		}
+
         $data = array(
         'factura' => array(
             'nombreComercial' => $factura->nombreNegocio,
@@ -68,11 +74,7 @@
         	'cliente' => array(
         		'id'=>$factura->idFacturadorBarbero;
         	),
-    		if($factura->cedulaUser==0){
-    			'omitirReceptor'=>'true',
-    		}else{
-    			'omitirReceptor'=>'false',
-    		}
+    		'omitirReceptor'=>$receptor,
     		'receptor' => array(
         		'email'=>$factura->correoUsuario;
         	),

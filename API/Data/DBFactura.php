@@ -16,7 +16,7 @@ class DBFactura {
             $factura->idCliente = null; 
         }
 
-        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante, Clave, Consecutivo, Xml, Refresh) VALUES ("
+        $sql = "INSERT INTO factura (FkIdUsuarioClienteFactura,FkIdUsuarioCreadoFactura,FkIdSucursalBarberiaFactura,Fecha, Total,TotalImpuesto,TotalDescuento, TotalNeto ,Moneda,Detalle,TipoTransaccion,Estado, CodigoFactura,NumComprobante, Clave, Consecutivo, Xml, Refresh, Base) VALUES ("
                 .$factura->idCliente.","
                 .$factura->idCreadoPor.","
                 .$factura->idSucursal.",'"
@@ -34,7 +34,8 @@ class DBFactura {
                 .$factura->clave. "','"
                 .$factura->consecutivo. "','"
                 .$factura->xml. "','"
-                .$factura->refresh. "')";
+                .$factura->refresh. "','";
+                .$factura->base. "')";
         $id = $db->agregar($sql);
         if ($id >0){
             foreach($detalleFactura as $detalle){
@@ -71,7 +72,8 @@ class DBFactura {
                 . "Clave='".$factura->clave."'," 
                 . "Consecutivo='".$factura->consecutivo."',"  
                 . "Xml='".$factura->xml."'," 
-                . "Refresh='".$factura->refresh."'"
+                . "Refresh='".$factura->refresh."',"
+                . "Base='".$factura->base."'"
                 . " WHERE PkIdFactura=".$factura->id;
         if($db->actualizar($sql)) {
                 $sqlClean = "DELETE FROM detalleFactura WHERE FkIdFactura=".$factura->id;
@@ -104,7 +106,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $busqueda2, $opcion){
-        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
+        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, f.Base, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
         if($opcion == 1){
             $sql.= "  PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -144,7 +146,7 @@ class DBFactura {
 
 
     function obtenerInfoFactura($busqueda,  $opcion){
-        $sql = " SELECT f.PkIdFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero, CONCAT( ub.Nombre , ' ' , ub.PrimerApellido  ,' ' ,ub.SegundoApellido) as NombreCompletoBarbero,CASE WHEN u.Nombre = 'generico' THEN u.Nombre else CONCAT( u.Nombre , ' ' , u.PrimerApellido  ,' ' ,u.SegundoApellido) end as NombreCompletoUsuario,s.Provincia AS ProvinciaSucursal,s.Canton as CantonSucursal,s.Distrito as DistritoSucursal,s.Canton as CantonSucursal,s.Barrio as BarrioSucursal, s.NombreNegocio,s.TipoId, (SELECT   Telefono  FROM  telefonosucursal ts WHERE ts.FkIdSucursalBarberiaTelefono = s.PkIdSucursalBarberia  limit  1 ) as TelefonoSucursal, (SELECT   Email  FROM  emailsucursal es WHERE es.FkIdSucursalBarberiaEmail = s.PkIdSucursalBarberia  limit  1 ) as CorreoSucursal, (SELECT   Email  FROM  emailusuario eu WHERE eu.FkIdUsuarioEmail = u.PkIdUsuario limit  1 ) as CorreoUsuario 
+        $sql = " SELECT f.PkIdFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh,f.Base, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero, CONCAT( ub.Nombre , ' ' , ub.PrimerApellido  ,' ' ,ub.SegundoApellido) as NombreCompletoBarbero,CASE WHEN u.Nombre = 'generico' THEN u.Nombre else CONCAT( u.Nombre , ' ' , u.PrimerApellido  ,' ' ,u.SegundoApellido) end as NombreCompletoUsuario,s.Provincia AS ProvinciaSucursal,s.Canton as CantonSucursal,s.Distrito as DistritoSucursal,s.Canton as CantonSucursal,s.Barrio as BarrioSucursal, s.NombreNegocio,s.TipoId, (SELECT   Telefono  FROM  telefonosucursal ts WHERE ts.FkIdSucursalBarberiaTelefono = s.PkIdSucursalBarberia  limit  1 ) as TelefonoSucursal, (SELECT   Email  FROM  emailsucursal es WHERE es.FkIdSucursalBarberiaEmail = s.PkIdSucursalBarberia  limit  1 ) as CorreoSucursal, (SELECT   Email  FROM  emailusuario eu WHERE eu.FkIdUsuarioEmail = u.PkIdUsuario limit  1 ) as CorreoUsuario 
             FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
         if($opcion == 1){
             $sql.= "  PkIdFactura=".$busqueda;
@@ -302,6 +304,9 @@ class DBFactura {
         } 
         if(isset($row['CorreoUsuario'])){
             $factura->correoUsuario = $row['CorreoUsuario'];
+        }  
+        if(isset($row['Base'])){
+            $factura->base = $row['Base'];
         }    
 
         $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);

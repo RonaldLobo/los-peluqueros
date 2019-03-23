@@ -20,9 +20,7 @@
 		    $response   = $restClient->post('api/facturador',$facturas[$i]);
 		    $fact = createFact($facturas[$i]);
 			$fact->conrealizada = true;
-			$fact->facturabase = {
-				base: facturas[$i].base
-			};
+			$fact->facturabase =  facturas[$i].base;
 
 	  error_log('respuesta'.response.respuesta, 0);
 

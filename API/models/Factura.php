@@ -32,6 +32,7 @@ class Factura {
     public $cedulaBarbero=''; 
     public $detalleFactura = array();
     public $idFacturadorBarbero = '';
+    public $base = '';
 
 
     public $nombreCompletoBarbero ='';
@@ -198,6 +199,10 @@ class Factura {
         return $this->cedulaUser;
     }
 
+    function getBase(){
+        return $this->base;
+    }
+
 
     function setFecha($fecha) {
         $this->fecha = $fecha;
@@ -354,7 +359,9 @@ class Factura {
     function setBarrioSucursal($barrioSucursal) {
         $this->barrioSucursal = $barrioSucursal;
     }
-
+    function setBase($base) {
+        $this->base = $base;
+    }
 
 
 
@@ -418,6 +425,9 @@ class Factura {
         if(isset($factura->refresh)){
             $this->refresh = $factura->refresh;
         }  
+        if(isset($factura->base)){
+            $this->base = $factura->base;
+        }
         if(isset($factura->nombreUserReserva)){
             $this->nombreUserReserva = $factura->nombreUserReserva;
         }  
@@ -510,6 +520,7 @@ class Factura {
             'consecutivo'=>$this->consecutivo,
             'xml'=>$this->xml,
             'refresh'=>$this->refresh,
+            'base'=>$this->base,
             'nombreUserReserva'=>$this->nombreUserReserva,
             'primerApellidoUserReserva'=>$this->primerApellidoUserReserva,
             'segundoApellidoUserReserva'=>$this->segundoApellidoUserReserva,

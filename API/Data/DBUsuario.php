@@ -123,6 +123,8 @@ class DbUsuario {
             $sql .= " FROM usuarios WHERE Estado = 1 AND FkIdSucursalBarberiaUsuario=".$busqueda." AND Rol LIKE '%B%'";
         } elseif ($opcion == 4) {
             $sql .= ",Contrasenna  FROM usuarios WHERE CONCAT(Nombre, ' ', PrimerApellido,' ', SegundoApellido)  LIKE '%".$busqueda."%' and Estado = 1";
+        } elseif ($opcion == 5) {
+            $sql .= " FROM usuarios WHERE Estado = 1 AND Cedula=".$busqueda;
         }
         else{
             $sql .= "WHERE Estado = 1";

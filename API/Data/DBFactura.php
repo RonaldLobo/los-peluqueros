@@ -104,7 +104,7 @@ class DBFactura {
     }
    
     function obtenerFactura($busqueda, $busqueda2, $opcion){
-        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
+        $sql = " SELECT f.PkIdFactura, f.FkIdUsuarioClienteFactura, f.FkIdUsuarioCreadoFactura, f.FkIdSucursalBarberiaFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, u.Nombre AS nombreUserReserva , u.PrimerApellido AS primerApellidoUserReserva,u.SegundoApellido AS segundoApellidoUserReserva, ub.Nombre AS nombreBarbero , ub.PrimerApellido AS primerApellidoBarbero, ub.SegundoApellido AS segundoApellidoBarbero, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
         if($opcion == 1){
             $sql.= "  PkIdFactura=".$busqueda;
         } elseif ($opcion == 2) {
@@ -121,6 +121,8 @@ class DBFactura {
             $sql.= "  f.Fecha = '".$busqueda."'";
         } elseif ($opcion == 8) {
             $sql.= " FkIdSucursalBarberiaFactura = ".$busqueda." AND f.Estado = '".$busqueda2."'";
+        }elseif ($opcion == 9) {
+            $sql.= "  f.Estado = '".$busqueda2."'";
         }
         $sql.= " ORDER BY f.Fecha DESC ";
         $db = new DB();        
@@ -139,6 +141,44 @@ class DBFactura {
     }
     
 
+
+
+    function obtenerInfoFactura($busqueda,  $opcion){
+        $sql = " SELECT f.PkIdFactura, f.Fecha,f.Total,f.TotalImpuesto,f.TotalDescuento,f.TotalNeto,f.Moneda,f.CodigoFactura,f.Detalle,f.TipoTransaccion,f.Estado,f.NumComprobante, f.Clave, f.Consecutivo, f.Xml, f.Refresh, ub.Cedula as CedulaBarbero, u.Cedula AS CedulaUser, ub.IdFacturador as IdFacturadorBarbero, CONCAT( ub.Nombre , ' ' , ub.PrimerApellido  ,' ' ,ub.SegundoApellido) as NombreCompletoBarbero,CASE WHEN u.Nombre = 'generico' THEN u.Nombre else CONCAT( u.Nombre , ' ' , u.PrimerApellido  ,' ' ,u.SegundoApellido) end as NombreCompletoUsuario,s.Provincia AS ProvinciaSucursal,s.Canton as CantonSucursal,s.Distrito as DistritoSucursal,s.Canton as CantonSucursal,s.Barrio as BarrioSucursal, s.NombreNegocio,s.TipoId, (SELECT   Telefono  FROM  telefonosucursal ts WHERE ts.FkIdSucursalBarberiaTelefono = s.PkIdSucursalBarberia  limit  1 ) as TelefonoSucursal, (SELECT   Email  FROM  emailsucursal es WHERE es.FkIdSucursalBarberiaEmail = s.PkIdSucursalBarberia  limit  1 ) as CorreoSucursal, (SELECT   Email  FROM  emailusuario eu WHERE eu.FkIdUsuarioEmail = u.PkIdUsuario limit  1 ) as CorreoUsuario 
+            FROM factura f LEFT JOIN Usuarios u on f.FkIdUsuarioClienteFactura = u.PkIdUsuario LEFT JOIN Usuarios ub on f.FkIdUsuarioCreadoFactura = ub.PkIdUsuario WHERE ";
+        if($opcion == 1){
+            $sql.= "  PkIdFactura=".$busqueda;
+        } elseif ($opcion == 2) {
+            $sql.= "  CodigoFactura LIKE '%".$busqueda."%'";
+        } elseif ($opcion == 3) {
+            $sql.= "  CodigoFactura = '".$busqueda."'";
+        }elseif ($opcion == 4) {
+            $sql.= "  FkIdUsuarioClienteFactura = ".$busqueda;
+        }elseif ($opcion == 5) {
+            $sql.= "  FkIdUsuarioCreadoFactura = ".$busqueda;
+        }elseif ($opcion == 6) {
+            $sql.= "  FkIdSucursalBarberiaFactura = ".$busqueda;
+        }elseif ($opcion == 7) {
+            $sql.= "  f.Fecha = '".$busqueda."'";
+        }elseif ($opcion == 8) {
+            $sql.= "  f.Estado = '".$busqueda2."'";
+        }
+        $sql.= " ORDER BY f.Fecha DESC ";
+        $db = new DB();        
+        if($opcion == 1 || $opcion == 3){
+            $row = $db->obtenerUno($sql);  
+        }else{
+            $row = $db->listar($sql);       
+        }
+        $factura= array();
+        if(count($row) > 0 && ($opcion==1 || $opcion==3)){    
+            $factura =  $this->parseDataOne($row);  
+        } elseif (count($row) > 0) {
+            $factura = $this->parseDataList($row);         
+        }
+        return $factura;
+    }
+    
     function parseRowFactura($row, $rowDetalleFactura) {
         $factura = new Factura();
         if(isset($row['PkIdFactura'])){
@@ -221,7 +261,49 @@ class DBFactura {
         }
         if(isset($row['CedulaUser'])){
             $factura->cedulaUser = $row['CedulaUser'];
-        }                      
+        }  
+        if(isset($row['IdFacturadorBarbero'])){
+            $factura->idFacturadorBarbero = $row['IdFacturadorBarbero'];
+        }     
+
+        if(isset($row['NombreCompletoBarbero'])){
+            $factura->nombreCompletoBarbero = $row['NombreCompletoBarbero'];
+        }
+        if(isset($row['NombreCompletoUsuario'])){
+            $factura->nombreCompletoUsuario = $row['NombreCompletoUsuario'];
+        }  
+        if(isset($row['ProvinciaSucursal'])){
+            $factura->provinciaSucursal = $row['ProvinciaSucursal'];
+        }  
+        if(isset($row['CantonSucursal'])){
+            $factura->cantonSucursal = $row['cantonSucursal'];
+        }
+
+        if(isset($row['DistritoSucursal'])){
+            $factura->distritoSucursal = $row['DistritoSucursal'];
+        }
+        if(isset($row['BarrioSucursal'])){
+            $factura->barrioSucursal = $row['BarrioSucursal'];
+        }
+        if(isset($row['DetalleDireccionSucursal'])){
+            $factura->detalleDireccionSucursal = $row['DetalleDireccionSucursal'];
+        }
+        if(isset($row['NombreNegocio'])){
+            $factura->nombreNegocio = $row['NombreNegocio'];
+        }     
+        if(isset($row['TipoId'])){
+            $factura->tipoId = $row['TipoId'];
+        }
+        if(isset($row['TelefonoSucursal'])){
+            $factura->telefonoSucursal = $row['TelefonoSucursal'];
+        }  
+        if(isset($row['CorreoSucursal'])){
+            $factura->correoSucursal = $row['CorreoSucursal'];
+        } 
+        if(isset($row['CorreoUsuario'])){
+            $factura->correoUsuario = $row['CorreoUsuario'];
+        }    
+
         $factura->detalleFactura = $this->parseRowDetalleFactura($rowDetalleFactura);
         return $factura;
     }

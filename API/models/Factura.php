@@ -31,7 +31,57 @@ class Factura {
     public $cedulaUser='';
     public $cedulaBarbero=''; 
     public $detalleFactura = array();
+    public $idFacturadorBarbero = '';
 
+
+    public $nombreCompletoBarbero ='';
+    public $nombreCompletoUsuario ='';
+    public $provinciaSucursal ='';
+    public $cantonSucursal ='';
+    public $distritoSucursal ='';
+    public $detalleDireccionSucursal ='';
+    public $nombreNegocio ='';
+    public $tipoId ='';
+    public $telefonoSucursal ='';
+    public $correoSucursal ='';
+    public $correoUsuario ='';
+
+
+
+
+    function getNombreCompletoBarbero() {
+        return $this->nombreCompletoBarbero;
+    } 
+    function getNombreCompletoUsuario() {
+        return $this->nombreCompletoUsuario;
+    } 
+    function getProvinciaSucursal() {
+        return $this->provinciaSucursal;
+    } 
+    function getCantonSucursal() {
+        return $this->cantonSucursal;
+    } 
+    function getDistritoSucursal() {
+        return $this->distritoSucursal;
+    } 
+    function getDetalleDireccionSucursal() {
+        return $this->detalleDireccionSucursal;
+    } 
+    function getNombreNegocio() {
+        return $this->nombreNegocio;
+    } 
+    function getTipoId() {
+        return $this->tipoId;
+    } 
+    function getTelefonoSucursal() {
+        return $this->telefonoSucursal;
+    } 
+    function getCorreoSucursal() {
+        return $this->correoSucursal;
+    } 
+    function getCorreoUsuario() {
+        return $this->correoUsuario;
+    }
     
     function getNombreUserReserva() {
         return $this->nombreUserReserva;
@@ -48,9 +98,13 @@ class Factura {
     function getPrimerApellidoBarbero() {
         return $this->primerApellidoBarbero;
     }      
-    function getSegundoApellidoBarbero() {
-        return $this->segundoApellidoBarbero;
+    function getBarrioSucursal() {
+        return $this->barrioSucursal;
     }      
+
+    function getIdFacturadorBarbero(){
+        return $this->idFacturadorBarbero;
+    }
     
     function getFecha() {
         return $this->fecha;
@@ -142,6 +196,10 @@ class Factura {
 
     function getCedulaUser(){
         return $this->cedulaUser;
+    }
+
+    function getIdFacturadorBarbero(){
+        return $this->idFacturadorBarbero;
     }
 
     function setFecha($fecha) {
@@ -259,6 +317,51 @@ class Factura {
         $this->cedulaBarbero = $cedulaBarbero;
     }
 
+    function setIdFacturadorBarbero($idFacturadorBarbero){
+        $this->idFacturadorBarbero = $idFacturadorBarbero;
+    }
+
+    function setNombreCompletoBarbero($nombreCompletoBarbero) {
+        $this->nombreCompletoBarbero = $nombreCompletoBarbero;
+    }
+    function setNombreCompletoUsuario($nombreCompletoUsuario) {
+        $this->nombreCompletoUsuario = $nombreCompletoUsuario;
+    }
+    function setProvinciaSucursal($provinciaSucursal) {
+        $this->provinciaSucursal = $provinciaSucursal;
+    }
+    function setCantonSucursal($cantonSucursal) {
+        $this->cantonSucursal = $cantonSucursal;
+    }
+    function setDistritoSucursal($distritoSucursal) {
+        $this->distritoSucursal = $distritoSucursal;
+    }
+    function setDetalleDireccionSucursal($detalleDireccionSucursal) {
+        $this->detalleDireccionSucursal = $detalleDireccionSucursal;
+    }
+    function setNombreNegocio($nombreNegocio) {
+        $this->nombreNegocio = $nombreNegocio;
+    }
+    function setTipoId($tipoId) {
+        $this->tipoId = $tipoId;
+    }
+    function setTelefonoSucursal($telefonoSucursal) {
+        $this->telefonoSucursal = $telefonoSucursal;
+    }
+    function setCorreoSucursal($correoSucursal) {
+        $this->correoSucursal = $correoSucursal;
+    }
+    function setCorreoUsuario($correoUsuario) {
+        $this->correoUsuario = $correoUsuario;
+    }
+    function setBarrioSucursal($barrioSucursal) {
+        $this->barrioSucursal = $barrioSucursal;
+    }
+
+
+
+
+
 
  function parseDto($factura) {
         if(isset($factura->id)){
@@ -342,8 +445,49 @@ class Factura {
         if(isset($factura->cedulaUser)){
             $this->cedulaUser = $factura->cedulaUser;
         }  
+        if(isset($factura->idFacturadorBarbero)){
+            $this->idFacturadorBarbero = $factura->idFacturadorBarbero;
+        }   
+        if(isset($factura->nombreCompletoBarbero)){
+            $this->nombreCompletoBarbero = $factura->nombreCompletoBarbero;
+        }  
+        if(isset($factura->nombreCompletoUsuario)){
+            $this->nombreCompletoUsuario = $factura->nombreCompletoUsuario;
+        }  
+        if(isset($factura->provinciaSucursal)){
+            $this->provinciaSucursal = $factura->provinciaSucursal;
+        }  
+        if(isset($factura->cantonSucursal)){
+            $this->cantonSucursal = $factura->cantonSucursal;
+        }  
+        if(isset($factura->distritoSucursal)){
+            $this->distritoSucursal = $factura->distritoSucursal;
+        }  
+        if(isset($factura->detalleDireccionSucursal)){
+            $this->detalleDireccionSucursal = $factura->detalleDireccionSucursal;
+        }  
+        if(isset($factura->nombreNegocio)){
+            $this->nombreNegocio = $factura->nombreNegocio;
+        }  
+        if(isset($factura->tipoId)){
+            $this->tipoId = $factura->tipoId;
+        }  
+        if(isset($factura->telefonoSucursal)){
+            $this->telefonoSucursal = $factura->telefonoSucursal;
+        }  
+        if(isset($factura->correoSucursal)){
+            $this->correoSucursal = $factura->correoSucursal;
+        }  
+        if(isset($factura->correoUsuario)){
+            $this->correoUsuario = $factura->correoUsuario;
+        }    
+        if(isset($factura->barrioSucursal)){
+            $this->barrioSucursal = $factura->barrioSucursal;
+        }
     }
     
+
+
 
     function toJson() {
         $data = array(
@@ -376,7 +520,20 @@ class Factura {
             'primerApellidoBarbero'=>$this->primerApellidoBarbero,
             'segundoApellidoBarbero'=>$this->segundoApellidoBarbero,
             'cedulaBarbero'=>$this->cedulaBarbero,
-            'cedulaUser'=>$this->cedulaUser
+            'cedulaUser'=>$this->cedulaUser,
+            'idFacturadorBarbero'=>$this->idFacturadorBarbero,
+            'nombreCompletoBarbero'=>$this->nombreCompletoBarbero,
+            'nombreCompletoUsuario'=>$this->nombreCompletoUsuario,
+            'provinciaSucursal'=>$this->provinciaSucursal,
+            'cantonSucursal'=>$this->cantonSucursal,
+            'distritoSucursal'=>$this->distritoSucursal,
+            'barrioSucursal'=>$this->barrioSucursal,
+            'detalleDireccionSucursal'=>$this->detalleDireccionSucursal,
+            'nombreNegocio'=>$this->nombreNegocio,
+            'tipoId'=>$this->tipoId,
+            'telefonoSucursal'=>$this->telefonoSucursal,
+            'correoSucursal'=>$this->correoSucursal,
+            'correoUsuario'=>$this->correoUsuario
             )
         );
         return json_encode($data);
@@ -386,3 +543,6 @@ class Factura {
         array_push($this->detalleFactura, $detalleFact);
     }
 }
+
+
+

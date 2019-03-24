@@ -46,7 +46,7 @@ class Factura {
     public $telefonoSucursal ='';
     public $correoSucursal ='';
     public $correoUsuario ='';
-
+    public $barrioSucursal = '';
 
 
 

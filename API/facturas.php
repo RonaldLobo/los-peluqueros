@@ -61,7 +61,7 @@
 	            'canton'=> $factura->cantonSucursal,
 	            'distrito'=> $factura->distritoSucursal,
 	            'barrio'=> $factura->barrioSucursal,
-	            'senas'=> $factura->,detalleDireccionSucursal
+	            'senas'=> $factura->detalleDireccionSucursal,
 	            'codigoPaisTel'=>'506',
 	            'tel'=>$factura->telefonoSucursal,
 	            'codigoPaisFax'=>'',
@@ -73,12 +73,12 @@
         	),
     		'omitirReceptor'=>$receptor,
     		'receptor' => array(
-        		'email'=>$factura->correoUsuario;
+        		'email'=>$factura->correoUsuario
         	),
-    		'refreshToken'=>$factura->refresh;
-    		'clave'=>$factura->clave;
-    		'xml'=>$factura->xml;
-    		'consecutivo'=>$factura->consecutivo;
+    		'refreshToken'=>$factura->refresh,
+    		'clave'=>$factura->clave,
+    		'xml'=>$factura->xml,
+    		'consecutivo'=>$factura->consecutivo
 
             )
         );

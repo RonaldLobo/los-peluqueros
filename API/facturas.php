@@ -3,7 +3,7 @@
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Factura.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Data/DBFactura.php';
-    require_once("pestJson.php");
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Servicios/pestJson.php';
 
 
     $app->get('/factura/', function() use ($app) 

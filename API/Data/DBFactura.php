@@ -98,6 +98,15 @@ class DBFactura {
         $db->actualizar($sql);
         return $factura;
     }
+
+    function actualizarBaseFactura($factura){
+        $db = new DB();
+        $sql = "UPDATE factura SET "
+                .  "Base='".$factura->base."'" 
+                . " WHERE PkIdFactura=".$factura->id;
+        $db->actualizar($sql);
+        return $factura;
+    }
    
     function eliminar($id){
         $db = new DB();

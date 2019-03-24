@@ -81,7 +81,7 @@ $app->post('/factura/', function() use ($app) {
                $app->response->headers->set('Content-Type', 'application/json');
                $app->response->setStatus(200);
                $app->response->setBody($result->toJson()); 
-            else if($method=='modBase'){
+            }else if($method =='modBase'){
 
               $result = $dbFactura->actualizarBaseFactura($factura);
                $app->response->headers->set('Content-Type', 'application/json');

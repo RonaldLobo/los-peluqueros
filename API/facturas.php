@@ -19,14 +19,14 @@
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $fact = createFact($facturas[$i]);
 			$fact->conrealizada = true;
-			$fact->facturabase =  facturas[$i]->base;
+			$fact->facturabase = $facturas[$i]->base;
 
 		    $response = $restClient->post('api/facturador',$fact);
-			error_log('respuesta'.response.respuesta, 0);
+			error_log('respuesta'.$response->respuesta, 0);
 
-		    if(response.respuesta == "aceptado"){
+		    if($response.respuesta == "aceptado"){
 				$facturas[$i]->estado = 'P';
-			} else if(response.error == "recibido"){
+			} else if($response.error == "recibido"){
 				$facturas[$i]->estado = 'E';
 			} else {
 				$facturas[$i]->estado = 'R';//Rechazada

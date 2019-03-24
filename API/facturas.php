@@ -20,17 +20,16 @@
 		    $response   = $restClient->post('api/facturador',$facturas[$i]);
 		    $fact = createFact($facturas[$i]);
 			$fact->conrealizada = true;
-			$fact->facturabase =  facturas[$i].base;
+			$fact->facturabase =  facturas[$i]->base;
 
 	  error_log('respuesta'.response.respuesta, 0);
 
 		    if(response.respuesta == "aceptado"){
-				$facturas[$i].estado = 'P';
+				$facturas[$i]->estado = 'P';
 			} else if(response.error == "recibido"){
-				$facturas[$i].estado = 'E';
-				$facturas[$i].refresh = res.refreshToken
+				$facturas[$i]->estado = 'E';
 			} else {
-				$facturas[$i].estado = 'R';//Rechazada
+				$facturas[$i]->estado = 'R';//Rechazada
 			}
 
 			$respuesta = $dbFactura->actualizarEstadoFactura($fac);
@@ -45,9 +44,9 @@
 
     function createFact($factura) {
     	if($factura->cedulaUser==0){
-    		$receptor=>'true';
+    		$receptor = 'true';
 		}else{
-			$receptor=>'false';
+			$receptor = 'false';
 		}
 
         $data = array(

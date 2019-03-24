@@ -69,7 +69,7 @@
 	            'email'=>$factura->correoSucursal
         	),
         	'cliente' => array(
-        		'id'=>$factura->idFacturadorBarbero;
+        		'id'=>$factura->idFacturadorBarbero
         	),
     		'omitirReceptor'=>$receptor,
     		'receptor' => array(

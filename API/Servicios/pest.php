@@ -343,8 +343,10 @@ class Pest
             $curl_opts = $this->curl_opts;
             error_log('URL -----------'.$url, 0);
             $curl_opts[CURLOPT_CUSTOMREQUEST] = 'POST';
-            if (!is_array($data)) $headers[] = 'Content-Length: ' . strlen($data);
-            $curl_opts[CURLOPT_HTTPHEADER] = $this->prepHeaders($headers);
+            $headers = array()
+            if (!is_array($data)) array_push($headers,'Content-Length: ' . strlen($data));
+            array_push($headers,'Content-Type: application/json');
+            $curl_opts[CURLOPT_HTTPHEADER] = $headers;
             $curl_opts[CURLOPT_POSTFIELDS] = $data;
             $curl = $this->prepRequest($curl_opts, $url);
             $body = $this->doRequest($curl);

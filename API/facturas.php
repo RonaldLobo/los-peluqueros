@@ -6,43 +6,11 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Servicios/pestJson.php';
 
 
-    $app->get('/factura/', function() use ($app) 
-    {
-    	$dbFactura = new DBFactura(); 
-		$factura = array('factura' => $dbFactura->obtenerInfoFactura('E', 8));
+    
+	$dbFactura = new DBFactura(); 
+	$factura = array('factura' => $dbFactura->obtenerInfoFactura('E', 8));
 
-
-  		for ($i = $facturas.length - 1; $i >= 0; $i--) {
-
-	  error_log('factura'.$facturas[$i], 0);
-	
-		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
-		    $fact = createFact($facturas[$i]);
-			$fact->conrealizada = true;
-			$fact->facturabase = $facturas[$i]->base;
-
-		    $response = $restClient->post('api/facturador',$fact);
-			error_log('respuesta'.$response->respuesta, 0);
-
-		    if($response.respuesta == "aceptado"){
-				$facturas[$i]->estado = 'P';
-			} else if($response.error == "recibido"){
-				$facturas[$i]->estado = 'E';
-			} else {
-				$facturas[$i]->estado = 'R';//Rechazada
-			}
-
-			$respuesta = $dbFactura->actualizarEstadoFactura($facturas[$i]);
-			$jsonArray = json_encode($respuesta);
-	        $app->response->headers->set('Content-Type', 'application/json');
-	        $app->response->setStatus(200);
-	        $app->response->setBody($jsonArray);
-		}
-    });
-
-
-
-    function createFact($factura) {
+	function createFact($factura) {
     	if($factura->cedulaUser==0){
     		$receptor = 'true';
 		}else{
@@ -84,6 +52,37 @@
         );
         return $data;
     }
+
+	for ($i = $facturas.length - 1; $i >= 0; $i--) {
+
+		error_log('factura'.$facturas[$i], 0);
+
+	 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
+	    $fact = createFact($facturas[$i]);
+		$fact->conrealizada = true;
+		$fact->facturabase = $facturas[$i]->base;
+
+	    $response = $restClient->post('api/facturador',$fact);
+		error_log('respuesta'.$response->respuesta, 0);
+
+	    if($response.respuesta == "aceptado"){
+			$facturas[$i]->estado = 'P';
+		} else if($response.error == "recibido"){
+			$facturas[$i]->estado = 'E';
+		} else {
+			$facturas[$i]->estado = 'R';//Rechazada
+		}
+
+		$respuesta = $dbFactura->actualizarEstadoFactura($facturas[$i]);
+		$jsonArray = json_encode($respuesta);
+	    $app->response->headers->set('Content-Type', 'application/json');
+	    $app->response->setStatus(200);
+	    $app->response->setBody($jsonArray);
+	}
+
+
+
+    
     
 
 

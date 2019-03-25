@@ -290,7 +290,7 @@ class DBFactura {
             $factura->provinciaSucursal = $row['ProvinciaSucursal'];
         }  
         if(isset($row['CantonSucursal'])){
-            $factura->cantonSucursal = $row['cantonSucursal'];
+            $factura->cantonSucursal = $row['CantonSucursal'];
         }
 
         if(isset($row['DistritoSucursal'])){

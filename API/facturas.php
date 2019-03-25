@@ -53,8 +53,9 @@
 	        return $data;
 	    }
 	    error_log("En el job 2", 0);
+	    error_log("facturas".$facturas.length, 0);
 		for ($i = $facturas.length - 1; $i >= 0; $i--) {
-			
+
 			error_log('factura'.$facturas[$i], 0);
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');

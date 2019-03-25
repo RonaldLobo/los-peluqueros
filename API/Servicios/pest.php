@@ -338,15 +338,20 @@ class Pest
      */
     public function post($url, $data, $headers = array())
     {
-        $data = $this->prepData($data);
-        $curl_opts = $this->curl_opts;
-        $curl_opts[CURLOPT_CUSTOMREQUEST] = 'POST';
-        if (!is_array($data)) $headers[] = 'Content-Length: ' . strlen($data);
-        $curl_opts[CURLOPT_HTTPHEADER] = $this->prepHeaders($headers);
-        $curl_opts[CURLOPT_POSTFIELDS] = $data;
-        $curl = $this->prepRequest($curl_opts, $url);
-        $body = $this->doRequest($curl);
-        $body = $this->processBody($body);
+        try{
+            $data = $this->prepData($data);
+            $curl_opts = $this->curl_opts;
+            $curl_opts[CURLOPT_CUSTOMREQUEST] = 'POST';
+            if (!is_array($data)) $headers[] = 'Content-Length: ' . strlen($data);
+            $curl_opts[CURLOPT_HTTPHEADER] = $this->prepHeaders($headers);
+            $curl_opts[CURLOPT_POSTFIELDS] = $data;
+            $curl = $this->prepRequest($curl_opts, $url);
+            $body = $this->doRequest($curl);
+            $body = $this->processBody($body);
+        } catch(Exception $e){
+
+            error_log('aquiiiii columbia'.$e->getMessage(), 0);
+        }
         return $body;
     }
     /**

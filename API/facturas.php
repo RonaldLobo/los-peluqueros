@@ -79,9 +79,9 @@
 		    $app->response->setStatus(200);
 		    $app->response->setBody($jsonArray);
 		}
-	} catch($e){
+	} catch(Exception $e){
 		error_log("En el job se fue al suelo", 0);
-		error_log($e, 0);
+		error_log($e->getMessage(), 0);
 	}
 
 

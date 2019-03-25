@@ -76,10 +76,6 @@
 			}
 
 			$respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
-			$jsonArray = json_encode($respuesta);
-		    $app->response->headers->set('Content-Type', 'application/json');
-		    $app->response->setStatus(200);
-		    $app->response->setBody($jsonArray);
 		}
 	// } catch(Exception $e){
 	// 	error_log("En el job se fue al suelo", 0);

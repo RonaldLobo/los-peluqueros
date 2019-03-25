@@ -69,7 +69,7 @@
 		    $response = $restClient->post('http://kyrapps.com/facturador-api/api/facturador',$fact);
 		    error_log('respuesta'.gettype($response), 0);
 			error_log('respuesta'.json_encode($response), 0);
-			error_log('respuesta respuesta'.$response->respuesta, 0);
+			error_log('respuesta respuesta'.$response["respuesta"], 0);
 
 		    if($response->respuesta == "aceptado"){
 				$facturaList[$i]->estado = 'P';

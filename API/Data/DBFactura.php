@@ -192,6 +192,8 @@ class DBFactura {
         } elseif (count($row) > 0) {
             $factura = $this->parseDataList($row);         
         }
+        
+        error_log("count factura  ".count($factura), 0);
         return $factura;
     }
     

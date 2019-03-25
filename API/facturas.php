@@ -22,38 +22,40 @@
 			}
 
 	        $data = array(
-	        'factura' => array(
-	            'nombreComercial' => $factura->nombreNegocio,
-	            'situacion'=>'normal',
-	        	'emisor' => array(
-	        		'nombre'=> $factura->nombreCompletoBarbero,
-		            'tipoId'=> $factura->tipoId, 
-		            'id'=> $factura->cedulaBarbero,
-		            'provincia'=> $factura->provinciaSucursal,
-		            'canton'=> $factura->cantonSucursal,
-		            'distrito'=> $factura->distritoSucursal,
-		            'barrio'=> $factura->barrioSucursal,
-		            'senas'=> $factura->detalleDireccionSucursal,
-		            'codigoPaisTel'=>'506',
-		            'tel'=>$factura->telefonoSucursal,
-		            'codigoPaisFax'=>'',
-		            'fax'=>'',
-		            'email'=>$factura->correoSucursal
-	        	),
+	        	'factura' => array(
+		            'nombreComercial' => $factura->nombreNegocio,
+		            'situacion'=>'normal',
+		        	'emisor' => array(
+		        		'nombre'=> $factura->nombreCompletoBarbero,
+			            'tipoId'=> $factura->tipoId, 
+			            'id'=> $factura->cedulaBarbero,
+			            'provincia'=> $factura->provinciaSucursal,
+			            'canton'=> $factura->cantonSucursal,
+			            'distrito'=> $factura->distritoSucursal,
+			            'barrio'=> $factura->barrioSucursal,
+			            'senas'=> $factura->detalleDireccionSucursal,
+			            'codigoPaisTel'=>'506',
+			            'tel'=>$factura->telefonoSucursal,
+			            'codigoPaisFax'=>'',
+			            'fax'=>'',
+			            'email'=>$factura->correoSucursal
+		        	)
+		    		'omitirReceptor'=>$receptor,
+		    		'receptor' => array(
+		        		'email'=>$factura->correoUsuario
+		        	),
+		    		'refreshToken'=>$factura->refresh,
+		    		'clave'=>$factura->clave,
+		    		'xml'=>$factura->xml,
+		    		'consecutivo'=>$factura->consecutivo
+		        ),
+	    		'conrealizada'=>true,
 	        	'cliente' => array(
 	        		'id'=>$factura->idFacturadorBarbero
 	        	),
-	    		'omitirReceptor'=>$receptor,
-	    		'receptor' => array(
-	        		'email'=>$factura->correoUsuario
-	        	),
-	    		'refreshToken'=>$factura->refresh,
-	    		'clave'=>$factura->clave,
-	    		'xml'=>$factura->xml,
-	    		'consecutivo'=>$factura->consecutivo,
-	    		'conrealizada'=>true,
-	    		'facturabase'=>$base
-	            )
+		    	'facturabase' => array(
+	        		'base'=>$base
+	        	)
 	        );
 	        return $data;
 	    }

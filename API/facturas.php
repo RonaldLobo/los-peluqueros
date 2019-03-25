@@ -63,7 +63,7 @@
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $fact = createFact($facturaList[$i],$facturaList[$i]->base);
-
+		    error_log("despues de fact".implode("-",$fact), 0);
 		    $response = $restClient->post('api/facturador',$fact);
 			error_log('respuesta'.$response->respuesta, 0);
 

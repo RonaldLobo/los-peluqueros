@@ -9,6 +9,7 @@
     	// try{
 		$dbFactura = new DBFactura(); 
 		$facturaList = $dbFactura->obtenerInfoFactura('E', 8);
+		
 
 
 		function createFact($factura,$base) {

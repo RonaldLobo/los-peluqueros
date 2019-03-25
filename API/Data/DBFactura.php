@@ -184,6 +184,8 @@ class DBFactura {
         }else{
             $row = $db->listar($sql);       
         }
+
+        error_log("count row  ".count($row), 0);
         $factura= array();
         if(count($row) > 0 && ($opcion==1 || $opcion==3)){    
             $factura =  $this->parseDataOne($row);  

@@ -172,7 +172,7 @@ class DBFactura {
         }elseif ($opcion == 7) {
             $sql.= "  f.Fecha = '".$busqueda."'";
         }elseif ($opcion == 8) {
-            $sql.= "  f.Estado = '".$busqueda2."'";
+            $sql.= "  f.Estado = '".$busqueda."'";
         }
         $sql.= " ORDER BY f.Fecha DESC ";
         $db = new DB();        

@@ -50,7 +50,7 @@
 	    		'refreshToken'=>$factura->refresh,
 	    		'clave'=>$factura->clave,
 	    		'xml'=>$factura->xml,
-	    		'consecutivo'=>$factura->consecutivo
+	    		'consecutivo'=>$factura->consecutivo,
 	    		'conrealizada'=>true,
 	    		'facturabase'=>$base
 	            )
@@ -63,7 +63,7 @@
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $fact = createFact($facturaList[$i],$facturaList[$i]->base);
-		    
+
 		    $response = $restClient->post('api/facturador',$fact);
 			error_log('respuesta'.$response->respuesta, 0);
 

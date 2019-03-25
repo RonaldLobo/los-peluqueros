@@ -14,7 +14,7 @@
 		error_log("En el job 1", 0);
 
 
-		function createFact($factura) {
+		function createFact($factura,$base) {
 	    	if($factura->cedulaUser==0){
 	    		$receptor = 'true';
 			}else{
@@ -51,7 +51,8 @@
 	    		'clave'=>$factura->clave,
 	    		'xml'=>$factura->xml,
 	    		'consecutivo'=>$factura->consecutivo
-
+	    		'conrealizada'=>true,
+	    		'facturabase'=>$base
 	            )
 	        );
 	        return $data;
@@ -61,10 +62,8 @@
 		for ($i = 0; $i < count($facturaList); ++$i) {
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
-		    $fact = createFact($facturaList[$i]);
-			$fact->conrealizada = true;
-			$fact->facturabase = $facturaList[$i]->base;
-
+		    $fact = createFact($facturaList[$i],$facturaList[$i]->base);
+		    
 		    $response = $restClient->post('api/facturador',$fact);
 			error_log('respuesta'.$response->respuesta, 0);
 

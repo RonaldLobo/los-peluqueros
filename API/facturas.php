@@ -9,7 +9,8 @@
     	try{
 		$dbFactura = new DBFactura(); 
 		$factura = $dbFactura->obtenerInfoFactura('E', 8);
-		error_log("en la factura".gettype($factura),0);
+		error_log("en la factura ".gettype($factura),0);
+		error_log("en la factura ".count($factura),0);
 		error_log("En el job 1", 0);
 
 

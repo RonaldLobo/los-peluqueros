@@ -39,7 +39,7 @@
 			            'codigoPaisFax'=>'',
 			            'fax'=>'',
 			            'email'=>$factura->correoSucursal
-		        	)
+		        	),
 		    		'omitirReceptor'=>$receptor,
 		    		'receptor' => array(
 		        		'email'=>$factura->correoUsuario

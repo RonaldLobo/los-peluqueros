@@ -338,9 +338,10 @@ class Pest
      */
     public function post($url, $data, $headers = array())
     {
-        try{
+        // try{
             $data = $this->prepData($data);
             $curl_opts = $this->curl_opts;
+            error_log('URL -----------'.$url, 0);
             $curl_opts[CURLOPT_CUSTOMREQUEST] = 'POST';
             if (!is_array($data)) $headers[] = 'Content-Length: ' . strlen($data);
             $curl_opts[CURLOPT_HTTPHEADER] = $this->prepHeaders($headers);
@@ -348,10 +349,9 @@ class Pest
             $curl = $this->prepRequest($curl_opts, $url);
             $body = $this->doRequest($curl);
             $body = $this->processBody($body);
-        } catch(Exception $e){
-
-            error_log('aquiiiii columbia'.$e->getMessage(), 0);
-        }
+        // } catch(Exception $e){
+        //     error_log('aquiiiii columbia'.$e->getMessage(), 0);
+        // }
         return $body;
     }
     /**

@@ -8,7 +8,7 @@
 
     	try{
 		$dbFactura = new DBFactura(); 
-		$factura = array('factura' => $dbFactura->obtenerInfoFactura('E', 8));
+		$factura = $dbFactura->obtenerInfoFactura('E', 8);
 		error_log("En el job 1", 0);
 		function createFact($factura) {
 	    	if($factura->cedulaUser==0){

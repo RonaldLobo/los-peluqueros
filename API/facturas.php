@@ -10,6 +10,9 @@
 		$dbFactura = new DBFactura(); 
 		$factura = $dbFactura->obtenerInfoFactura('E', 8);
 		error_log("En el job 1", 0);
+
+	    error_log("facturas 1: ".count($facturas), 0);
+
 		function createFact($factura) {
 	    	if($factura->cedulaUser==0){
 	    		$receptor = 'true';

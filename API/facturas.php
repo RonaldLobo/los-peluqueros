@@ -71,15 +71,15 @@
 			error_log('respuesta'.json_encode($response), 0);
 			error_log('respuesta respuesta'.$response["respuesta"], 0);
 
-		    if($response->respuesta == "aceptado"){
+		    if($response["respuesta"] == "aceptado"){
 				$facturaList[$i]->estado = 'P';
-			} else if($response->error == "recibido"){
+			} else if($response["error"] == "recibido"){
 				$facturaList[$i]->estado = 'E';
-			} else {
-				$facturaList[$i]->estado = 'R';//Rechazada
+			} else if($response["respuesta"] == "rechazado"){
+				$facturaList[$i]->estado = 'R';
 			}
 
-			// $respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
+			$respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
 		}
 	// } catch(Exception $e){
 	// 	error_log("En el job se fue al suelo", 0);

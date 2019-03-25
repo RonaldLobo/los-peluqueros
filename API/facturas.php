@@ -77,7 +77,7 @@
 				$facturaList[$i]->estado = 'R';//Rechazada
 			}
 
-			$respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
+			// $respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
 		}
 	// } catch(Exception $e){
 	// 	error_log("En el job se fue al suelo", 0);

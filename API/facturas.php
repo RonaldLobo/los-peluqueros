@@ -6,7 +6,7 @@
     require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Servicios/pestJson.php';
 
 
-    	try{
+    	// try{
 		$dbFactura = new DBFactura(); 
 		$facturaList = $dbFactura->obtenerInfoFactura('E', 8);
 		error_log("en la factura ".gettype($facturaList),0);
@@ -63,7 +63,7 @@
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $fact = createFact($facturaList[$i],$facturaList[$i]->base);
-		    error_log("despues de fact".json_encode($fact), 0);
+		    // error_log("despues de fact".json_encode($fact), 0);
 		    $response = $restClient->post('api/facturador',$fact);
 			error_log('respuesta'.$response->respuesta, 0);
 
@@ -81,10 +81,10 @@
 		    $app->response->setStatus(200);
 		    $app->response->setBody($jsonArray);
 		}
-	} catch(Exception $e){
-		error_log("En el job se fue al suelo", 0);
-		error_log($e->getMessage(), 0);
-	}
+	// } catch(Exception $e){
+	// 	error_log("En el job se fue al suelo", 0);
+	// 	error_log($e->getMessage(), 0);
+	// }
 
 
 

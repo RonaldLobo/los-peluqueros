@@ -9,9 +9,6 @@
     	// try{
 		$dbFactura = new DBFactura(); 
 		$facturaList = $dbFactura->obtenerInfoFactura('E', 8);
-		error_log("en la factura ".gettype($facturaList),0);
-		error_log("en la factura ".count($facturaList),0);
-		error_log("En el job 1", 0);
 
 
 		function createFact($factura,$base) {
@@ -59,17 +56,12 @@
 	        );
 	        return $data;
 	    }
-	    error_log("En el job 2", 0);
-	    error_log("facturas".count($facturaList), 0);
 		for ($i = 0; $i < count($facturaList); ++$i) {
 
 		 	$restClient = new PestJSON('');
 		    $fact = createFact($facturaList[$i],$facturaList[$i]->base);
 		    // error_log("despues de fact".json_encode($fact), 0);
 		    $response = $restClient->post('http://kyrapps.com/facturador-api/api/facturador',$fact);
-		    error_log('respuesta'.gettype($response), 0);
-			error_log('respuesta'.json_encode($response), 0);
-			error_log('respuesta respuesta'.$response["respuesta"], 0);
 
 		    if($response["respuesta"] == "aceptado"){
 				$facturaList[$i]->estado = 'P';

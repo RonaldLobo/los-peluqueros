@@ -8,9 +8,9 @@
 
     	try{
 		$dbFactura = new DBFactura(); 
-		$factura = $dbFactura->obtenerInfoFactura('E', 8);
-		error_log("en la factura ".gettype($factura),0);
-		error_log("en la factura ".count($factura),0);
+		$facturaList = $dbFactura->obtenerInfoFactura('E', 8);
+		error_log("en la factura ".gettype($facturaList),0);
+		error_log("en la factura ".count($facturaList),0);
 		error_log("En el job 1", 0);
 
 
@@ -57,28 +57,28 @@
 	        return $data;
 	    }
 	    error_log("En el job 2", 0);
-	    error_log("facturas".count($facturas), 0);
-		for ($i = 0; $i < count($facturas); ++$i) {
+	    error_log("facturas".count($facturaList), 0);
+		for ($i = 0; $i < count($facturaList); ++$i) {
 
-			error_log('factura'.$facturas[$i], 0);
+			error_log('factura'.$facturaList[$i], 0);
 
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
-		    $fact = createFact($facturas[$i]);
+		    $fact = createFact($facturaList[$i]);
 			$fact->conrealizada = true;
-			$fact->facturabase = $facturas[$i]->base;
+			$fact->facturabase = $facturaList[$i]->base;
 
 		    $response = $restClient->post('api/facturador',$fact);
 			error_log('respuesta'.$response->respuesta, 0);
 
 		    if($response.respuesta == "aceptado"){
-				$facturas[$i]->estado = 'P';
+				$facturaList[$i]->estado = 'P';
 			} else if($response.error == "recibido"){
-				$facturas[$i]->estado = 'E';
+				$facturaList[$i]->estado = 'E';
 			} else {
-				$facturas[$i]->estado = 'R';//Rechazada
+				$facturaList[$i]->estado = 'R';//Rechazada
 			}
 
-			$respuesta = $dbFactura->actualizarEstadoFactura($facturas[$i]);
+			$respuesta = $dbFactura->actualizarEstadoFactura($facturaList[$i]);
 			$jsonArray = json_encode($respuesta);
 		    $app->response->headers->set('Content-Type', 'application/json');
 		    $app->response->setStatus(200);

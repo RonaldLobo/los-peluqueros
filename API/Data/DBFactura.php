@@ -175,6 +175,9 @@ class DBFactura {
             $sql.= "  f.Estado = '".$busqueda."'";
         }
         $sql.= " ORDER BY f.Fecha DESC ";
+
+        error_log("SQL  ".$sql, 0);
+
         $db = new DB();        
         if($opcion == 1 || $opcion == 3){
             $row = $db->obtenerUno($sql);  

@@ -60,8 +60,6 @@
 	    error_log("facturas".count($facturaList), 0);
 		for ($i = 0; $i < count($facturaList); ++$i) {
 
-			error_log('factura'.$facturaList[$i], 0);
-
 		 	$restClient = new PestJSON('http://kyrapps.com/facturador-api/');
 		    $fact = createFact($facturaList[$i]);
 			$fact->conrealizada = true;

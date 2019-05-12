@@ -40,6 +40,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ServicioController.ph
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/SucursalController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/InventarioController.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/FacturaController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/AprobacionController.php';
 
 $app->run();
 ?>

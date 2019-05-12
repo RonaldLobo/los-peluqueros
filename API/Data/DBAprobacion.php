@@ -52,12 +52,12 @@ class DBAprobacion {
    
     function eliminar($id){
         $db = new DB();
-        $sql = "UPDATE aprobacion SET Estado=0 WHERE pkIdAprobacion=".$id;
+        $sql = "UPDATE aprobacion WHERE pkIdAprobacion=".$id;
         $db->actualizar($sql);   
     }
    
     function obtenerAprobaciones($busqueda, $opcion){
-        $sql = "SELECT * FROM aprobacion WHERE Estado=1";
+        $sql = "SELECT * FROM aprobacion";
         if($opcion == 1){
             $sql.= " AND pkIdAprobacion=".$busqueda;
         } elseif ($opcion == 2) {

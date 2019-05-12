@@ -59,9 +59,9 @@ class DBAprobacion {
     function obtenerAprobaciones($busqueda, $opcion){
         $sql = "SELECT * FROM aprobacion";
         if($opcion == 1){
-            $sql.= " AND pkIdAprobacion=".$busqueda;
+            $sql.= " WHERE pkIdAprobacion=".$busqueda;
         } elseif ($opcion == 2) {
-            $sql.= " AND FkIdSucursalBarberiaAprobacion=".$busqueda;
+            $sql.= " WHERE FkIdSucursalBarberiaAprobacion=".$busqueda;
         }
         $db = new DB();        
         if($opcion == 0 || $opcion==2){
@@ -70,11 +70,13 @@ class DBAprobacion {
             $row = $db->obtenerUno($sql);            
         }
         $aprobacion= array();
+        error_log("conteo de aprobaciones  ".count($row), 0);
         if(count($row) > 0 && ($opcion==0 || $opcion==2)){            
              $aprobacion = $this->parseDataList($row);
         } elseif (count($row) > 0 && ($opcion==1 || $opcion==3)) {
              $aprobacion =  $this->parseRowAprobacion($row);              
         }
+        error_log("conteo de aprobaciones  ".count($aprobacion), 0);
         return $aprobacion;
     }
     

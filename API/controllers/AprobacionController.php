@@ -12,9 +12,9 @@ $app->get('/aprobacion/', function() use ($app) {
         $dbAprobacion = new DBAprobacion(); 
         $FkIdSucursalBarberiaAprobacion = $app->request->params('FkIdSucursalBarberiaAprobacion');
         if (!empty($FkIdSucursalBarberiaAprobacion)){ 
-            $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobacion($FkIdSucursalBarberiaAprobacion,2));
+            $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobaciones($FkIdSucursalBarberiaAprobacion,2));
         }else{
-            $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobacion("",0));
+            $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobaciones("",0));
         }
         $jsonArray = json_encode($aprobacion);
         $app->response->headers->set('Content-Type', 'application/json');

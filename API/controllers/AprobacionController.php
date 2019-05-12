@@ -11,7 +11,6 @@ $app->get('/aprobacion/', function() use ($app) {
     if($auth->isAuth($authToken)){
         $dbAprobacion = new DBAprobacion(); 
         $FkIdSucursalBarberiaAprobacion = $app->request->params('FkIdSucursalBarberiaAprobacion');
-        error_log("lo que llegó de aprobacion  ".$FkIdSucursalBarberiaAprobacion, 0);
         if (!empty($FkIdSucursalBarberiaAprobacion)){ 
             $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobaciones($FkIdSucursalBarberiaAprobacion,2));
         }else{
@@ -89,7 +88,7 @@ $app->get('/aprobacion/:id', function($id) use ($app) {
     $authToken = $app->request->headers->get('Authorization');
     if($auth->isAuth($authToken)){
         $dbAprobacion = new DBAprobacion(); 
-        $result = array('aprobacion' => $dbAprobacion->obtenerAprobacion($id,1));
+        $result = array('aprobacion' => $dbAprobacion->obtenerAprobaciones($id,1));
         $jsonArray = json_encode($result);
         $app->response->headers->set('Content-Type', 'application/json');
         $app->response->setStatus(200);

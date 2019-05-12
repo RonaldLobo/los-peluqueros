@@ -76,7 +76,6 @@ class DBAprobacion {
         } elseif (count($row) > 0 && ($opcion==1 || $opcion==3)) {
              $aprobacion =  $this->parseRowAprobacion($row);              
         }
-        error_log("conteo de aprobaciones  ".count($aprobacion), 0);
         return $aprobacion;
     }
     

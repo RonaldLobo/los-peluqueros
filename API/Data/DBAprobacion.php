@@ -14,15 +14,15 @@ class DBAprobacion {
                 .$aprobacion->detalle_mensaje."','"
                 .$aprobacion->mensaje."','"
                 .$aprobacion->fecha_emision_doc."',"
-                .$aprobacion->monto_total_impuesto."',"
-                .$aprobacion->numero_cedula_emisor."',"
-                .$aprobacion->numero_cedula_receptor."',"
-                .$aprobacion->tipo_cedula_emisor."',"
+                .$aprobacion->monto_total_impuesto.",'"
+                .$aprobacion->numero_cedula_emisor."','"
+                .$aprobacion->numero_cedula_receptor."','"
+                .$aprobacion->tipo_cedula_emisor."','"
                 .$aprobacion->tipo_cedula_receptor."',"
-                .$aprobacion->total_factura."',"
-                .$aprobacion->claveAprobacion."',"
-                .$aprobacion->estado."',"
-                .$aprobacion->nombre_emisor. ")";
+                .$aprobacion->total_factura.",'"
+                .$aprobacion->claveAprobacion."','"
+                .$aprobacion->estado."','"
+                .$aprobacion->nombre_emisor. "')";
         $pkIdAprobacion = $db->agregar($sql);
         $aprobacion->pkIdAprobacion = $pkIdAprobacion;
         return $aprobacion;
@@ -32,20 +32,20 @@ class DBAprobacion {
     function actualizarAprobacion($aprobacion){
         $db = new DB();
         $sql = "UPDATE aprobacion SET "
-                . "FkIdSucursalBarberiaAprobacion='".$aprobacion->FkIdSucursalBarberiaAprobacion."', "
-                . "detalle_mensaje=".$aprobacion->detalle_mensaje.","
-                . "mensaje=".$aprobacion->mensaje.","
-                . "fecha_emision_doc=".$aprobacion->fecha_emision_doc.","
+                . "FkIdSucursalBarberiaAprobacion=".$aprobacion->FkIdSucursalBarberiaAprobacion.", "
+                . "detalle_mensaje='".$aprobacion->detalle_mensaje."',"
+                . "mensaje='".$aprobacion->mensaje."',"
+                . "fecha_emision_doc='".$aprobacion->fecha_emision_doc."',"
                 . "monto_total_impuesto=".$aprobacion->monto_total_impuesto.","
-                . "numero_cedula_emisor=".$aprobacion->numero_cedula_emisor.","
-                . "numero_cedula_receptor=".$aprobacion->numero_cedula_receptor.","
-                . "tipo_cedula_emisor=".$aprobacion->tipo_cedula_emisor.","
-                . "tipo_cedula_receptor=".$aprobacion->tipo_cedula_receptor.","
+                . "numero_cedula_emisor='".$aprobacion->numero_cedula_emisor."',"
+                . "numero_cedula_receptor='".$aprobacion->numero_cedula_receptor."',"
+                . "tipo_cedula_emisor='".$aprobacion->tipo_cedula_emisor."',"
+                . "tipo_cedula_receptor='".$aprobacion->tipo_cedula_receptor."',"
                 . "total_factura=".$aprobacion->total_factura.","
-                . "claveAprobacion=".$aprobacion->claveAprobacion.","
-                . "estado=".$aprobacion->estado.","
-                . "nombre_emisor=".$aprobacion->nombre_emisor
-                . " WHERE pkIdAprobacion=".$aprobacion->pkIdAprobacion;
+                . "claveAprobacion='".$aprobacion->claveAprobacion."',"
+                . "estado='".$aprobacion->estado."',"
+                . "nombre_emisor='".$aprobacion->nombre_emisor
+                . "' WHERE pkIdAprobacion=".$aprobacion->pkIdAprobacion;
         $db->actualizar($sql);
         return $aprobacion;
     }

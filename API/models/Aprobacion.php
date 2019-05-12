@@ -14,6 +14,7 @@ class Aprobacion {
     public $total_factura = '';
     public $FkIdSucursalBarberiaAprobacion = '';
     public $claveAprobacion = '';
+    public $clave = '';
     public $estado = '';
     public $nombre_emisor = '';
 
@@ -45,6 +46,9 @@ class Aprobacion {
     function getEstado() { return $this->estado; }
     function setNombre_emisor($nombre_emisor) { $this->nombre_emisor = $nombre_emisor; }
     function getNombre_emisor() { return $this->nombre_emisor; }
+
+    function setClave($clave) { $this->clave = $clave; }
+    function getClave() { return $this->clave; }
 
     
     
@@ -93,6 +97,9 @@ class Aprobacion {
         }
         if(isset($aprobacion->estado)){
             $this->estado = $aprobacion->estado;
+        }
+        if(isset($aprobacion->clave)){
+            $this->clave = $aprobacion->clave;
         }
         if(isset($aprobacion->nombre_emisor)){
             $this->nombre_emisor = $aprobacion->nombre_emisor;

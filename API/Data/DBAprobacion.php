@@ -9,7 +9,7 @@ class DBAprobacion {
     
     function agregarAprobacion($aprobacion){
         $db = new DB();
-        $sql = "INSERT INTO aprobacion (FkIdSucursalBarberiaAprobacion,detalle_mensaje,mensaje,fecha_emision_doc,monto_total_impuesto,numero_cedula_emisor, numero_cedula_receptor, tipo_cedula_emisor, tipo_cedula_receptor, total_factura, claveAprobacion, estado, nombre_emisor) VALUES ("
+        $sql = "INSERT INTO aprobacion (FkIdSucursalBarberiaAprobacion,detalle_mensaje,mensaje,fecha_emision_doc,monto_total_impuesto,numero_cedula_emisor, numero_cedula_receptor, tipo_cedula_emisor, tipo_cedula_receptor, total_factura, claveAprobacion, clave, estado, nombre_emisor) VALUES ("
                 .$aprobacion->FkIdSucursalBarberiaAprobacion.",'"
                 .$aprobacion->detalle_mensaje."','"
                 .$aprobacion->mensaje."','"
@@ -21,6 +21,7 @@ class DBAprobacion {
                 .$aprobacion->tipo_cedula_receptor."',"
                 .$aprobacion->total_factura.",'"
                 .$aprobacion->claveAprobacion."','"
+                .$aprobacion->clave."','"
                 .$aprobacion->estado."','"
                 .$aprobacion->nombre_emisor. "')";
         $pkIdAprobacion = $db->agregar($sql);
@@ -43,6 +44,7 @@ class DBAprobacion {
                 . "tipo_cedula_receptor='".$aprobacion->tipo_cedula_receptor."',"
                 . "total_factura=".$aprobacion->total_factura.","
                 . "claveAprobacion='".$aprobacion->claveAprobacion."',"
+                . "clave='".$aprobacion->clave."',"
                 . "estado='".$aprobacion->estado."',"
                 . "nombre_emisor='".$aprobacion->nombre_emisor
                 . "' WHERE pkIdAprobacion=".$aprobacion->pkIdAprobacion;

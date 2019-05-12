@@ -11,6 +11,7 @@ $app->get('/aprobacion/', function() use ($app) {
     if($auth->isAuth($authToken)){
         $dbAprobacion = new DBAprobacion(); 
         $FkIdSucursalBarberiaAprobacion = $app->request->params('FkIdSucursalBarberiaAprobacion');
+        error_log("lo que llegó de aprobacion  ".$FkIdSucursalBarberiaAprobacion, 0);
         if (!empty($FkIdSucursalBarberiaAprobacion)){ 
             $aprobacion = array('aprobacion' => $dbAprobacion->obtenerAprobaciones($FkIdSucursalBarberiaAprobacion,2));
         }else{

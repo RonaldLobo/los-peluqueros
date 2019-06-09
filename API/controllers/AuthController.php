@@ -1,7 +1,6 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Auth.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Error.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/models/Usuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/Data/DBUsuario.php';
 

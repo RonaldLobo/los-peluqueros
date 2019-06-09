@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 require '../API/Vendor/Slim/Slim.php';
 require '../API/Vendor/JWT/JWT.php';
@@ -28,18 +29,30 @@ date_default_timezone_set('America/Costa_Rica');
 
 $app = new \Slim\Slim();
 
-
+error_log("about to load");
+error_log("about to BarberiaController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/BarberiaController.php';
+error_log("about to UsuarioController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/UsuarioController.php';
+error_log("about to HorarioBarberoController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/HorarioBarberoController.php';
+error_log("about to PausaHorarioBarberoController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/PausaHorarioBarberoController.php';
+error_log("about to ProvinciaCantonController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ProvinciaCantonController.php';
+error_log("about to AuthController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/AuthController.php';
+error_log("about to ReservarController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ReservarController.php';
+error_log("about to ServicioController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/ServicioController.php';
+error_log("about to SucursalController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/SucursalController.php';
+error_log("about to InventarioController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/InventarioController.php';
+error_log("about to FacturaController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/FacturaController.php';
+error_log("about to AprobacionController");
 require_once $_SERVER['DOCUMENT_ROOT'] . '/API/controllers/AprobacionController.php';
 
 $app->run();

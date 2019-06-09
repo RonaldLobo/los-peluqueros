@@ -16,7 +16,7 @@ class DB {
             // $this->servername = "lospeluqueroscom.ipagemysql.com";
             // $this->username = "lospeluqueros";
             // $this->password = "lospeluqueros";
-            error_log(getenv('PELUQUEROS_DB_NAME');
+        error_log(getenv('PELUQUEROS_DB_NAME'));
             $this->dbName = getenv('PELUQUEROS_DB_NAME');
             $this->servername = getenv('PELUQUEROS_DB_URL');
             $this->username = getenv('PELUQUEROS_DB_USER');
